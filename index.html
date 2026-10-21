@@ -500,6 +500,125 @@ body[data-app-theme="duo"] .rBtn{
   .readerBottom{padding-top:4px}
 }
 
+
+/* ===== COMPACT DUA LIST + ORNAMENT ELEMENT ===== */
+.cards{gap:8px}
+.card{
+  min-height:96px!important;
+  padding:11px 50px 11px 17px!important;
+  border-radius:20px!important;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+.card .tag{
+  align-self:flex-start;
+  max-width:calc(100% - 28px);
+  padding:4px 7px!important;
+  font-size:7px!important;
+  line-height:1!important;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  margin-bottom:6px;
+}
+.card h4{
+  font-size:18px!important;
+  line-height:1.08!important;
+  margin:0 0 4px!important;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  padding-right:2px;
+}
+.card p{
+  font-size:8.5px!important;
+  line-height:1.2!important;
+  margin:0!important;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.card .fav{
+  top:10px!important;
+  right:13px!important;
+  font-size:15px!important;
+}
+.card .arrow{
+  right:12px!important;
+  bottom:11px!important;
+  width:30px!important;
+  height:30px!important;
+  border-radius:11px!important;
+  z-index:2;
+}
+.cardMark{
+  position:absolute;
+  left:0;
+  top:18px;
+  bottom:18px;
+  width:7px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:2;
+}
+.cardMark:before{
+  content:"";
+  position:absolute;
+  width:2px;
+  top:0;
+  bottom:0;
+  border-radius:999px;
+  background:linear-gradient(180deg,transparent,color-mix(in srgb,var(--gold) 65%,transparent),transparent);
+}
+.cardMark:after{
+  content:"◆";
+  position:relative;
+  font-size:7px;
+  color:var(--gold);
+  filter:drop-shadow(0 0 6px color-mix(in srgb,var(--gold) 35%,transparent));
+  background:var(--surface,#fff);
+  padding:2px 0;
+}
+.card:hover .cardMark:after{transform:scale(1.15)}
+.cardMark:after{transition:transform .2s ease}
+.card:after{
+  inset:4px!important;
+  border-radius:16px!important;
+  border-color:color-mix(in srgb,var(--gold) 9%,transparent)!important;
+}
+/* subtle fancy corner */
+.cardCorner{
+  position:absolute;
+  right:42px;
+  top:10px;
+  width:18px;
+  height:18px;
+  opacity:.22;
+  pointer-events:none;
+}
+.cardCorner:before,.cardCorner:after{
+  content:"";
+  position:absolute;
+  background:var(--gold);
+  border-radius:999px;
+}
+.cardCorner:before{width:12px;height:1px;right:0;top:0}
+.cardCorner:after{width:1px;height:12px;right:0;top:0}
+body[data-app-theme="duo"] .cardMark:after{background:#fbf8f1;color:#b88732}
+body[data-app-theme="amoled"] .cardMark:after{background:#050505}
+body[data-app-theme="minimal"] .cardMark:after{background:#fff}
+body[data-app-theme="noor"] .cardMark:after{background:#101425}
+body[data-app-theme="islamic"] .cardMark:after{background:#0b1511}
+@media(max-width:560px){
+  .cards{gap:7px}
+  .card{min-height:90px!important;padding:10px 48px 10px 16px!important}
+  .card h4{font-size:17px!important}
+  .card p{font-size:8px!important}
+  .card .tag{margin-bottom:5px}
+}
+
 </style>
 </head>
 <body class="noise">
@@ -783,7 +902,7 @@ function renderCards(){
  }).map(x=>x.i);
  const rank=t=>{const n=FEATURED.indexOf(t);return n<0?999:n};filtered.sort((a,b)=>rank(D[a].title)-rank(D[b].title));
  $("#count").textContent=filtered.length+" duas";
- cards.innerHTML=filtered.length?filtered.map(i=>{const d=D[i];return `<article class="card" data-i="${i}"><button class="fav ${favs.has(i)?"on":""}" data-fav="${i}">♥</button><span class="tag">${d.tag}</span><h4>${d.title}</h4><p>${d.when}</p><span class="arrow">›</span></article>`}).join(""):`<div class="emptyState">Yahan abhi koi dua nahi mili. Search ya category change kijiye.</div>`;
+ cards.innerHTML=filtered.length?filtered.map(i=>{const d=D[i];return `<article class="card" data-i="${i}"><span class="cardMark" aria-hidden="true"></span><span class="cardCorner" aria-hidden="true"></span><button class="fav ${favs.has(i)?"on":""}" data-fav="${i}">♥</button><span class="tag">${d.tag}</span><h4 title="${d.title}">${d.title}</h4><p title="${d.when}">${d.when}</p><span class="arrow">›</span></article>`}).join(""):`<div class="emptyState">Yahan abhi koi dua nahi mili. Search ya category change kijiye.</div>`;
  renderSearchResults();updateContinue();
 }
 function renderPage(){
