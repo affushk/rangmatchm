@@ -311,6 +311,32 @@ body[data-app-theme="noor"] .kanzulLabel,body[data-app-theme="noor"] .quranBadge
 .searchEmpty{padding:15px 12px;text-align:center;color:var(--muted);font-size:9px}
 .searchHint{padding:7px 9px 5px;color:var(--muted);font-size:7.5px;border-top:1px solid var(--line);margin-top:3px}
 body[data-app-theme="minimal"] .searchResults{background:rgba(255,255,255,.96);box-shadow:0 22px 50px rgba(0,0,0,.14)}
+
+/* ===== ROMAN URDU MEANING CARD ===== */
+.meaningCard{
+  max-width:590px;margin:15px auto 8px;padding:14px 15px 13px;border-radius:16px;
+  border:1px solid rgba(151,109,53,.14);background:rgba(168,123,62,.055);text-align:center
+}
+.meaningLabel{
+  display:flex;align-items:center;justify-content:center;gap:6px;
+  font-size:8px;letter-spacing:.65px;font-weight:900;color:#8a6a45;margin-bottom:8px
+}
+.meaningText{
+  font-family:var(--roman-reader-font);font-size:14px;line-height:1.75;color:#5c4734
+}
+.meaningKanz{
+  display:inline-flex;margin-top:8px;border:1px solid rgba(152,111,54,.13);border-radius:999px;
+  padding:4px 7px;font-size:7px;color:#8a6a45;background:rgba(166,122,62,.045)
+}
+body[data-app-theme="amoled"] .meaningCard{background:#080506;border-color:rgba(255,151,188,.10)}
+body[data-app-theme="amoled"] .meaningText{color:#f5e9ee}
+body[data-app-theme="amoled"] .meaningLabel,body[data-app-theme="amoled"] .meaningKanz{color:#d8a8ba}
+body[data-app-theme="minimal"] .meaningCard{background:#faf9f6;border-color:rgba(0,0,0,.07)}
+body[data-app-theme="minimal"] .meaningText{color:#30302d}
+body[data-app-theme="noor"] .meaningCard{background:rgba(243,200,110,.05);border-color:rgba(243,200,110,.10)}
+body[data-app-theme="noor"] .meaningText{color:#f2e6d1}
+body[data-app-theme="noor"] .meaningLabel,body[data-app-theme="noor"] .meaningKanz{color:#d8bc77}
+
 </style>
 </head>
 <body class="noise">
@@ -601,11 +627,12 @@ function renderPage(){
  book.classList.remove("mode-arabic","mode-arabicroman");
  if(viewMode==="arabic")book.classList.add("mode-arabic");
  if(viewMode==="arabicroman")book.classList.add("mode-arabicroman");
+ const meaningText=d.kanzul||d.meaning||"";
+ const meaningLabel=d.kanzul?"Roman Urdu Meaning • Tarjuma-e-Kanz-ul-Iman":"Roman Urdu Meaning";
  page.innerHTML=`<div class="pageHead"><div class="pageNo">NOOR DUA BOOK • ${current+1} / ${D.length}</div><div class="duaTitle">${d.title}</div><span class="when">${d.when}</span>${d.repeat?`<div><span class="repeatNote">↻ ${d.repeat}</span></div>`:""}</div>
  <div class="divider"></div><div class="arabic" style="font-size:calc(clamp(30px,5vw,46px)*${readerScale})">${d.arabic}</div>
  <div class="roman" style="font-size:${(17*readerScale).toFixed(1)}px">${d.roman}</div>
- ${d.kanzul?`<div class="kanzulWrap"><div class="kanzulLabel">✦ Tarjuma-e-Kanz-ul-Iman • Roman Urdu ✦</div><div class="kanzulUrdu" style="font-size:${(18*readerScale).toFixed(1)}px">${d.kanzul}</div><div class="quranBadge">Ala Hazrat Imam Ahmad Raza Khan رحمۃ اللہ علیہ</div></div>`:""}
- ${d.meaning?`<div class="meaning" style="font-size:${(11*readerScale).toFixed(1)}px">${d.meaning}</div>`:""}
+ ${meaningText?`<div class="meaning meaningCard"><div class="meaningLabel">✦ ${meaningLabel} ✦</div><div class="meaningText" style="font-size:${(14*readerScale).toFixed(1)}px">${meaningText}</div>${d.kanzul?`<div class="meaningKanz">Ala Hazrat Imam Ahmad Raza Khan رحمۃ اللہ علیہ</div>`:""}</div>`:""}
  <div class="sourceBox">Source: ${d.source}</div>
  <div class="pageFoot"><span>Designed by Altaf Shaikh</span><span>✦ Noor Dua Book ✦</span></div>`;
  $("#viewBtn").textContent=viewMode==="full"?"Aa Full":viewMode==="arabicroman"?"Aa A+R":"Aa Arabic";
@@ -614,6 +641,7 @@ function renderPage(){
  $("#bookProgress").style.width=((current+1)/D.length*100).toFixed(1)+"%";
  localStorage.setItem("duaLast",String(current)); updateContinue();
 }
+
 function openReader(i){
  current=i;opened.add(i);localStorage.setItem("duaOpened",JSON.stringify([...opened]));
  recent=[i,...recent.filter(x=>x!==i)].slice(0,6);localStorage.setItem("duaRecent",JSON.stringify(recent));
