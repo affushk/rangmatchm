@@ -1,0 +1,9 @@
+{
+  "name":"Noor Dua Book",
+  "short_name":"Noor Dua",
+  "start_url":"./index.html",
+  "display":"standalone",
+  "background_color":"#07100d",
+  "theme_color":"#07100d",
+  "description":"Dua library with Arabic, Roman Urdu, meaning and book-style reading."
+}
