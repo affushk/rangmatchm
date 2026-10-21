@@ -953,6 +953,33 @@ body[data-app-theme="islamic"] .duaGlyph{background:#12231d;color:#e4c977;border
   }
 }
 
+
+/* ===== CONTENT-AWARE READER HEIGHT V6 ===== */
+.pageInner{display:block;min-height:0}
+.book{
+  min-height:0!important;
+  max-height:none!important;
+  height:auto!important;
+  transition:height .22s ease,transform .58s cubic-bezier(.2,.75,.2,1)!important;
+}
+.bookWrap{
+  height:auto!important;
+  min-height:0!important;
+}
+.readerShell{
+  height:auto!important;
+  min-height:0!important;
+  max-height:calc(100dvh - 8px)!important;
+  overflow:visible!important;
+}
+.page{
+  overflow-y:auto!important;
+}
+@media(max-width:560px){
+  .book{min-height:0!important;height:auto!important}
+  .readerShell{max-height:calc(100dvh - 6px)!important}
+}
+
 </style>
 </head>
 <body class="noise">
@@ -1241,7 +1268,18 @@ function renderCards(){
  renderSearchResults();updateContinue();
 }
 function fitBookToContent(){
-  requestAnimationFrame(()=>{page.scrollTop=0;});
+  requestAnimationFrame(()=>{
+    const inner=page.querySelector(".pageInner");
+    if(!inner)return;
+    const vh=(window.visualViewport&&window.visualViewport.height)||window.innerHeight;
+    const topH=($("#readerTop")?.offsetHeight||0)+($("#bookProgressWrap")?.offsetHeight||0);
+    const bottomH=($("#readerTools")?.offsetHeight||0)+($("#readerBottom")?.offsetHeight||0);
+    const available=Math.max(340,vh-topH-bottomH-34);
+    const natural=Math.ceil(inner.getBoundingClientRect().height)+36;
+    const target=Math.max(340,Math.min(natural,available));
+    book.style.setProperty("height",target+"px","important");
+    page.scrollTop=0;
+  });
 }
 function renderPage(){
  page.scrollTop=0;
@@ -1251,12 +1289,12 @@ function renderPage(){
  if(viewMode==="arabicroman")book.classList.add("mode-arabicroman");
  const meaningText=d.kanzul||d.meaning||"";
  const meaningLabel=d.kanzul?"Roman Urdu Meaning • Tarjuma-e-Kanz-ul-Iman":"Roman Urdu Meaning";
- page.innerHTML=`<div class="pageHead"><div class="pageNo">NOOR DUA BOOK • ${current+1} / ${D.length}</div><div class="duaTitle">${d.title}</div><span class="when">${d.when}</span>${d.repeat?`<div><span class="repeatNote">↻ ${d.repeat}</span></div>`:""}</div>
+ page.innerHTML=`<div class="pageInner"><div class="pageHead"><div class="pageNo">NOOR DUA BOOK • ${current+1} / ${D.length}</div><div class="duaTitle">${d.title}</div><span class="when">${d.when}</span>${d.repeat?`<div><span class="repeatNote">↻ ${d.repeat}</span></div>`:""}</div>
  <div class="divider"></div><div class="arabic" style="font-size:calc(clamp(30px,5vw,46px)*${readerScale})">${d.arabic}</div>
  <div class="roman" style="font-size:${(17*readerScale).toFixed(1)}px">${d.roman}</div>
  ${meaningText?`<div class="meaning meaningCard"><div class="meaningLabel">✦ ${meaningLabel} ✦</div><div class="meaningText" style="font-size:${(14*readerScale).toFixed(1)}px">${meaningText}</div>${d.kanzul?`<div class="meaningKanz">Ala Hazrat Imam Ahmad Raza Khan رحمۃ اللہ علیہ</div>`:""}</div>`:""}
  <div class="sourceBox">Source: ${d.source}</div>
- <div class="pageFoot"><span>Designed by Altaf Shaikh</span><span>✦ Noor Dua Book ✦</span></div>`;
+ <div class="pageFoot"><span>Designed by Altaf Shaikh</span><span>✦ Noor Dua Book ✦</span></div></div>`;
  $("#viewBtn").textContent=viewMode==="full"?"Aa Full":viewMode==="arabicroman"?"Aa A+R+M":"Aa Arabic";
  $("#readerFav").textContent=(favs.has(current)?"♥":"♡")+" Favorite";$("#readerFav").classList.toggle("on",favs.has(current));
  $("#bookmarkRibbon").classList.toggle("show",favs.has(current));
