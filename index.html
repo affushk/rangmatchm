@@ -774,6 +774,66 @@ body[data-app-theme="islamic"] .duaGlyph{background:#12231d;color:#e4c977;border
   }
 }
 
+
+/* ===== READER LAYOUT HARD FIX V2 ===== */
+.readerOverlay{
+  align-items:flex-start!important;
+  padding-top:max(10px,env(safe-area-inset-top))!important;
+  overflow-y:auto!important;
+}
+.readerShell{
+  width:min(760px,100%)!important;
+  height:auto!important;
+  max-height:none!important;
+  display:grid!important;
+  grid-template-rows:auto auto auto auto auto!important;
+  align-content:start!important;
+  row-gap:5px!important;
+  margin:0 auto!important;
+  overflow:visible!important;
+}
+.readerTop{
+  margin:0!important;
+  padding:0 3px 5px!important;
+}
+.bookProgress{
+  margin:0 4px 2px!important;
+}
+.bookWrap{
+  display:block!important;
+  width:100%!important;
+  height:auto!important;
+  min-height:0!important;
+  margin:0!important;
+  padding:0!important;
+}
+.book{
+  width:min(650px,96vw)!important;
+  height:clamp(390px,58dvh,540px)!important;
+  margin:0 auto!important;
+}
+.readerTools{
+  margin:0!important;
+  padding:4px 2px 0!important;
+}
+.readerBottom{
+  margin:0!important;
+  padding:2px 3px 6px!important;
+}
+@media(max-width:560px){
+  .readerOverlay{
+    padding:7px!important;
+    padding-top:max(7px,env(safe-area-inset-top))!important;
+  }
+  .readerShell{
+    row-gap:4px!important;
+  }
+  .book{
+    width:98vw!important;
+    height:clamp(360px,55dvh,490px)!important;
+  }
+}
+
 </style>
 </head>
 <body class="noise">
@@ -1062,6 +1122,7 @@ function renderCards(){
  renderSearchResults();updateContinue();
 }
 function renderPage(){
+ page.scrollTop=0;
  const d=D[current]; $("#readerTitle").textContent=d.title;$("#readerSub").textContent=d.when;
  book.classList.remove("mode-arabic","mode-arabicroman");
  if(viewMode==="arabic")book.classList.add("mode-arabic");
