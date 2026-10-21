@@ -132,6 +132,19 @@ body{overflow-x:hidden}
  .quick{grid-template-columns:repeat(4,1fr)}.cards{grid-template-columns:1fr}
  .card{min-height:118px}.book{width:97vw;height:73vh}.page{padding:24px 18px 21px}.arabic{font-size:34px;line-height:1.95}.duaTitle{font-size:23px}
 }
+
+/* ===== PHASE 2 ===== */
+.quick{display:flex!important;overflow-x:auto;scrollbar-width:none;padding-bottom:4px;gap:8px}
+.quick::-webkit-scrollbar{display:none}.quick button{min-width:82px;flex:0 0 auto}
+.continueCard{display:none;align-items:center;justify-content:space-between;gap:12px;margin:13px 0 2px;padding:13px 14px;border:1px solid rgba(217,184,106,.15);border-radius:19px;background:linear-gradient(145deg,#13251e,#0a1410);box-shadow:0 12px 28px rgba(0,0,0,.17)}
+.continueCard.show{display:flex}.continueCard .eyebrow{font-size:8px;letter-spacing:1.1px;color:#cfb873;font-weight:800}.continueCard h4{font-family:Alegreya,serif;font-size:17px;margin:4px 0 1px}.continueCard p{font-size:8px;color:#7f8d86;margin:0}.continueGo{border:1px solid rgba(217,184,106,.18);background:#183229;color:#efd58d;border-radius:13px;padding:10px 12px;font-size:9px;font-weight:800;white-space:nowrap}
+.emptyState{grid-column:1/-1;text-align:center;border:1px dashed rgba(255,255,255,.1);border-radius:20px;padding:28px 15px;color:#809088;font-size:11px}
+.readerTools{display:flex;gap:7px;justify-content:center;padding:7px 2px 0;overflow-x:auto;scrollbar-width:none}.readerTools::-webkit-scrollbar{display:none}
+.toolBtn{flex:0 0 auto;border:1px solid rgba(255,255,255,.09);background:#0c1612;color:#dfe7e3;border-radius:13px;padding:10px 11px;font-size:9px;font-weight:800;min-width:70px}.toolBtn.on{color:#f1d27c;border-color:rgba(217,184,106,.25);background:#14241d}
+.mode-arabic .roman,.mode-arabic .meaning{display:none}.mode-arabicroman .meaning{display:none}
+.repeatNote{display:inline-flex;margin-top:9px;border:1px solid rgba(139,103,56,.13);border-radius:999px;padding:5px 8px;font-size:8px;color:#8f704d;background:rgba(173,129,70,.06)}
+.listenPulse{animation:listenPulse 1.1s ease-in-out infinite}@keyframes listenPulse{50%{box-shadow:0 0 0 7px rgba(217,184,106,0)}0%,100%{box-shadow:0 0 0 0 rgba(217,184,106,.24)}}
+
 </style>
 </head>
 <body class="noise">
@@ -164,7 +177,7 @@ body{overflow-x:hidden}
   </header>
 
   <section class="hero">
-    <span class="kicker">✦ PERSONAL DUA LIBRARY</span>
+    <span class="kicker">✦ NOOR DUA BOOK • PHASE 2</span>
     <h2>Konsi dua, kab padhni hai — sab ek jagah.</h2>
     <p>Arabic Quran-style font, readable Roman Urdu, simple meaning aur source ke saath. Kisi title par tap kijiye aur real-book style reader khul jayega.</p>
     <div class="search">
@@ -178,6 +191,14 @@ body{overflow-x:hidden}
     <button data-cat="daily"><span class="ico">☀</span>Daily</button>
     <button data-cat="home"><span class="ico">⌂</span>Ghar</button>
     <button data-cat="travel"><span class="ico">➜</span>Safar</button>
+    <button data-cat="protection"><span class="ico">◈</span>Hifazat</button>
+    <button data-cat="health"><span class="ico">✚</span>Sehat</button>
+    <button data-cat="fav"><span class="ico">♥</span>Favorites</button>
+  </div>
+
+  <div class="continueCard" id="continueCard">
+    <div><div class="eyebrow">CONTINUE READING</div><h4 id="continueTitle">Dua</h4><p id="continueWhen"></p></div>
+    <button class="continueGo" id="continueGo">Open page →</button>
   </div>
 
   <div class="sectionHead"><h3>Dua Collection</h3><span id="count"></span></div>
@@ -209,6 +230,12 @@ body{overflow-x:hidden}
         <article class="page" id="page"></article>
       </div>
     </div>
+    <div class="readerTools">
+      <button class="toolBtn" id="listenBtn">🔊 Listen</button>
+      <button class="toolBtn" id="viewBtn">Aa Full</button>
+      <button class="toolBtn" id="readerFav">♡ Favorite</button>
+      <button class="toolBtn" id="shareBtn">↗ Share</button>
+    </div>
     <div class="readerBottom">
       <button class="navBtn" id="prev">← Previous</button>
       <span class="hint">Swipe pages</span>
@@ -224,23 +251,34 @@ const D=[
 {title:"Neend se uthne ke baad",when:"Aankh khulne ke baad",cat:["daily"],tag:"Morning",arabic:"الْحَمْدُ لِلَّهِ الَّذِي أَحْيَانَا بَعْدَ مَا أَمَاتَنَا وَإِلَيْهِ النُّشُورُ",roman:"Alhamdu lillahil-ladhi ahyana ba'da ma amatana wa ilayhin-nushoor.",meaning:"Tamam tareef Allah ke liye hai jisne hame maut jaisi neend ke baad zinda kiya, aur usi ki taraf lautna hai.",source:"Sahih al-Bukhari"},
 {title:"Khane se pehle",when:"Khana shuru karte waqt",cat:["daily","home"],tag:"Food",arabic:"بِسْمِ اللَّهِ",roman:"Bismillah.",meaning:"Allah ke naam se.",source:"Sunan Abi Dawud / Jami' at-Tirmidhi"},
 {title:"Khane ke baad",when:"Khana khatam hone par",cat:["daily","home"],tag:"Food",arabic:"الْحَمْدُ لِلَّهِ الَّذِي أَطْعَمَنِي هَذَا وَرَزَقَنِيهِ مِنْ غَيْرِ حَوْلٍ مِنِّي وَلَا قُوَّةٍ",roman:"Alhamdu lillahil-ladhi at'amani hadha wa razaqanihi min ghayri hawlin minni wa la quwwah.",meaning:"Allah ka shukr jisne mujhe ye khana khilaya aur bina meri taqat ke mujhe rizq diya.",source:"Sunan Abi Dawud / Jami' at-Tirmidhi"},
-{title:"Ghar se nikalte waqt",when:"Darwaze se bahar nikalte waqt",cat:["daily","home","travel"],tag:"Protection",arabic:"بِسْمِ اللَّهِ تَوَكَّلْتُ عَلَى اللَّهِ لَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ",roman:"Bismillah, tawakkaltu 'alallah, la hawla wa la quwwata illa billah.",meaning:"Allah ke naam se; maine Allah par bharosa kiya. Allah ke baghair na quwwat hai na taqat.",source:"Sunan Abi Dawud / Jami' at-Tirmidhi"},
+{title:"Ghar se nikalte waqt",when:"Darwaze se bahar nikalte waqt",cat:["daily","home","travel","protection"],tag:"Protection",arabic:"بِسْمِ اللَّهِ تَوَكَّلْتُ عَلَى اللَّهِ لَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ",roman:"Bismillah, tawakkaltu 'alallah, la hawla wa la quwwata illa billah.",meaning:"Allah ke naam se; maine Allah par bharosa kiya. Allah ke baghair na quwwat hai na taqat.",source:"Sunan Abi Dawud / Jami' at-Tirmidhi"},
 {title:"Masjid mein dakhil hote waqt",when:"Masjid mein qadam rakhte waqt",cat:["daily"],tag:"Masjid",arabic:"اللَّهُمَّ افْتَحْ لِي أَبْوَابَ رَحْمَتِكَ",roman:"Allahumma-ftah li abwaba rahmatik.",meaning:"Ae Allah, mere liye apni rehmat ke darwaze khol de.",source:"Sahih Muslim"},
 {title:"Masjid se nikalte waqt",when:"Masjid se bahar aate waqt",cat:["daily"],tag:"Masjid",arabic:"اللَّهُمَّ إِنِّي أَسْأَلُكَ مِنْ فَضْلِكَ",roman:"Allahumma inni as'aluka min fadlik.",meaning:"Ae Allah, main tujhse tera fazl mangta hoon.",source:"Sahih Muslim"},
 {title:"Bathroom mein dakhil hote waqt",when:"Toilet mein jane se pehle",cat:["daily","home"],tag:"Daily",arabic:"اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الْخُبُثِ وَالْخَبَائِثِ",roman:"Allahumma inni a'udhu bika minal-khubthi wal-khaba'ith.",meaning:"Ae Allah, main buri aur napaak cheezon se teri panaah mangta hoon.",source:"Sahih al-Bukhari / Sahih Muslim"},
 {title:"Bathroom se nikalne ke baad",when:"Toilet se bahar aane par",cat:["daily","home"],tag:"Daily",arabic:"غُفْرَانَكَ",roman:"Ghufranak.",meaning:"Ae Allah, main teri maghfirat chahta hoon.",source:"Sunan Abi Dawud / Jami' at-Tirmidhi"},
 {title:"Safar ki dua",when:"Sawari ya safar shuru karte waqt",cat:["travel"],tag:"Travel",arabic:"سُبْحَانَ الَّذِي سَخَّرَ لَنَا هَذَا وَمَا كُنَّا لَهُ مُقْرِنِينَ ۝ وَإِنَّا إِلَى رَبِّنَا لَمُنْقَلِبُونَ",roman:"Subhanalladhi sakhkhara lana hadha wa ma kunna lahu muqrinin, wa inna ila Rabbina lamunqalibun.",meaning:"Paak hai woh jisne is sawari ko hamare qaboo mein diya; warna hum ise qaboo nahi kar sakte the. Aur hame apne Rab ki taraf lautna hai.",source:"Qur'an 43:13–14; travel remembrance in Sahih Muslim"},
 {title:"Barish ke waqt",when:"Barish shuru ho",cat:["daily"],tag:"Rain",arabic:"اللَّهُمَّ صَيِّبًا نَافِعًا",roman:"Allahumma sayyiban nafi'an.",meaning:"Ae Allah, is barish ko faydemand bana.",source:"Sahih al-Bukhari"},
-{title:"Pareshani aur gham",when:"Tension, gham ya fikr ho",cat:["daily"],tag:"Relief",arabic:"اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الْهَمِّ وَالْحَزَنِ وَالْعَجْزِ وَالْكَسَلِ وَالْبُخْلِ وَالْجُبْنِ وَضَلَعِ الدَّيْنِ وَغَلَبَةِ الرِّجَالِ",roman:"Allahumma inni a'udhu bika minal-hammi wal-hazan, wal-'ajzi wal-kasal, wal-bukhli wal-jubn, wa dala'id-dayni wa ghalabatir-rijal.",meaning:"Ae Allah, main fikr, gham, kamzori, susti, bukhl, buzdili, qarz ke bojh aur logon ke ghalbe se teri panaah mangta hoon.",source:"Sahih al-Bukhari"},
-{title:"Mushkil waqt mein",when:"Sakht pareshani ya mushkil mein",cat:["daily"],tag:"Dua of Yunus",arabic:"لَا إِلَهَ إِلَّا أَنْتَ سُبْحَانَكَ إِنِّي كُنْتُ مِنَ الظَّالِمِينَ",roman:"La ilaha illa Anta, subhanaka inni kuntu minaz-zalimin.",meaning:"Tere siwa koi mabood nahi. Tu paak hai; beshak main hi zalimon mein se tha.",source:"Qur'an 21:87"},
+{title:"Pareshani aur gham",when:"Tension, gham ya fikr ho",cat:["daily","protection"],tag:"Relief",arabic:"اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الْهَمِّ وَالْحَزَنِ وَالْعَجْزِ وَالْكَسَلِ وَالْبُخْلِ وَالْجُبْنِ وَضَلَعِ الدَّيْنِ وَغَلَبَةِ الرِّجَالِ",roman:"Allahumma inni a'udhu bika minal-hammi wal-hazan, wal-'ajzi wal-kasal, wal-bukhli wal-jubn, wa dala'id-dayni wa ghalabatir-rijal.",meaning:"Ae Allah, main fikr, gham, kamzori, susti, bukhl, buzdili, qarz ke bojh aur logon ke ghalbe se teri panaah mangta hoon.",source:"Sahih al-Bukhari"},
+{title:"Mushkil waqt mein",when:"Sakht pareshani ya mushkil mein",cat:["daily","protection"],tag:"Dua of Yunus",arabic:"لَا إِلَهَ إِلَّا أَنْتَ سُبْحَانَكَ إِنِّي كُنْتُ مِنَ الظَّالِمِينَ",roman:"La ilaha illa Anta, subhanaka inni kuntu minaz-zalimin.",meaning:"Tere siwa koi mabood nahi. Tu paak hai; beshak main hi zalimon mein se tha.",source:"Qur'an 21:87"},
 {title:"Walidain ke liye",when:"Parents ke liye dua karte waqt",cat:["home"],tag:"Parents",arabic:"رَبِّ ارْحَمْهُمَا كَمَا رَبَّيَانِي صَغِيرًا",roman:"Rabbir-hamhuma kama rabbayani saghira.",meaning:"Ae mere Rab, un dono par rehmat farma jis tarah unhone bachpan mein mujhe pala.",source:"Qur'an 17:24"},
 {title:"Ilm badhne ki dua",when:"Padhai ya seekhne se pehle/dauran",cat:["daily"],tag:"Knowledge",arabic:"رَبِّ زِدْنِي عِلْمًا",roman:"Rabbi zidni 'ilma.",meaning:"Ae mere Rab, mere ilm mein izafa farma.",source:"Qur'an 20:114"},
 {title:"Duniya aur akhirat ki bhalai",when:"Jami' dua ke taur par",cat:["daily"],tag:"Qur'anic",arabic:"رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ",roman:"Rabbana atina fid-dunya hasanatan wa fil-akhirati hasanatan wa qina 'adhaban-nar.",meaning:"Ae hamare Rab, hame duniya mein bhalai de, akhirat mein bhalai de aur hame aag ke azaab se bacha.",source:"Qur'an 2:201"},
 {title:"Maghfirat ki dua",when:"Tauba aur maafi mangte waqt",cat:["daily"],tag:"Forgiveness",arabic:"رَبِّ اغْفِرْ لِي وَتُبْ عَلَيَّ إِنَّكَ أَنْتَ التَّوَّابُ الرَّحِيمُ",roman:"Rabbighfir li wa tub 'alayya innaka Antat-Tawwabur-Rahim.",meaning:"Ae mere Rab, mujhe bakhsh de aur meri tauba qubool farma; beshak Tu bohat tauba qubool karne wala, nihayat meherban hai.",source:"Sunan Abi Dawud / Jami' at-Tirmidhi"},
-{title:"Kapde pehente waqt",when:"Naya ya roz ka libas pehente waqt",cat:["daily","home"],tag:"Clothes",arabic:"الْحَمْدُ لِلَّهِ الَّذِي كَسَانِي هَذَا وَرَزَقَنِيهِ مِنْ غَيْرِ حَوْلٍ مِنِّي وَلَا قُوَّةٍ",roman:"Alhamdu lillahil-ladhi kasani hadha wa razaqanihi min ghayri hawlin minni wa la quwwah.",meaning:"Allah ka shukr jisne mujhe ye libas pehnaya aur bina meri taqat ke ye ata kiya.",source:"Sunan Abi Dawud"}
+{title:"Kapde pehente waqt",when:"Naya ya roz ka libas pehente waqt",cat:["daily","home"],tag:"Clothes",arabic:"الْحَمْدُ لِلَّهِ الَّذِي كَسَانِي هَذَا وَرَزَقَنِيهِ مِنْ غَيْرِ حَوْلٍ مِنِّي وَلَا قُوَّةٍ",roman:"Alhamdu lillahil-ladhi kasani hadha wa razaqanihi min ghayri hawlin minni wa la quwwah.",meaning:"Allah ka shukr jisne mujhe ye libas pehnaya aur bina meri taqat ke ye ata kiya.",source:"Sunan Abi Dawud"},
+{title:"Subah-shaam hifazat",when:"Subah aur shaam 3 martaba",cat:["daily","protection"],tag:"Morning & Evening",repeat:"3×",arabic:"بِسْمِ اللَّهِ الَّذِي لَا يَضُرُّ مَعَ اسْمِهِ شَيْءٌ فِي الْأَرْضِ وَلَا فِي السَّمَاءِ وَهُوَ السَّمِيعُ الْعَلِيمُ",roman:"Bismillahil-ladhi la yadurru ma'asmihi shay'un fil-ardi wa la fis-sama'i wa Huwas-Sami'ul-'Alim.",meaning:"Allah ke naam ke saath, jiske naam ke hote hue zameen aur aasman mein koi cheez nuqsan nahi de sakti; aur Woh sab sunne, sab jaanne wala hai.",source:"Sunan Abi Dawud / Jami' at-Tirmidhi"},
+{title:"Har shar se panaah",when:"Kisi jagah utarne ya hifazat chahne par",cat:["protection","travel"],tag:"Protection",arabic:"أَعُوذُ بِكَلِمَاتِ اللَّهِ التَّامَّاتِ مِنْ شَرِّ مَا خَلَقَ",roman:"A'udhu bi kalimatillahit-tammati min sharri ma khalaq.",meaning:"Main Allah ke poore kalimat ke zariye uski makhlooq ke shar se panaah mangta hoon.",source:"Sahih Muslim"},
+{title:"Gusse ke waqt",when:"Jab gussa aaye",cat:["daily","protection"],tag:"Anger",arabic:"أَعُوذُ بِاللَّهِ مِنَ الشَّيْطَانِ الرَّجِيمِ",roman:"A'udhu billahi minash-shaytanir-rajim.",meaning:"Main shaitan mardood se Allah ki panaah mangta hoon.",source:"Sahih al-Bukhari / Sahih Muslim"},
+{title:"Dard ki dua",when:"Jism mein dard ho — pehle Bismillah 3 martaba, phir ye 7 martaba",cat:["health","protection"],tag:"Pain",repeat:"Bismillah 3× • Dua 7×",arabic:"أَعُوذُ بِاللَّهِ وَقُدْرَتِهِ مِنْ شَرِّ مَا أَجِدُ وَأُحَاذِرُ",roman:"A'udhu billahi wa qudratihi min sharri ma ajidu wa uhadhir.",meaning:"Main Allah aur uski qudrat ki panaah mangta hoon us cheez ke shar se jo main mehsoos karta hoon aur jis se darta hoon.",source:"Sahih Muslim"},
+{title:"Bimar ki shifa",when:"Bimar shakhs ke liye 7 martaba",cat:["health"],tag:"Healing",repeat:"7×",arabic:"أَسْأَلُ اللَّهَ الْعَظِيمَ رَبَّ الْعَرْشِ الْعَظِيمِ أَنْ يَشْفِيَكَ",roman:"As'alullahal-'Azim Rabbal-'Arshil-'Azim an yashfiyak.",meaning:"Main Azeem Allah se, jo Arsh-e-Azeem ka Rab hai, dua karta hoon ke Woh aapko shifa de.",source:"Sunan Abi Dawud / Jami' at-Tirmidhi"},
+{title:"Wuzu ke baad",when:"Wuzu mukammal karne ke baad",cat:["daily"],tag:"Wudu",arabic:"أَشْهَدُ أَنْ لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ وَأَشْهَدُ أَنَّ مُحَمَّدًا عَبْدُهُ وَرَسُولُهُ",roman:"Ashhadu an la ilaha illallahu wahdahu la sharika lah, wa ashhadu anna Muhammadan 'abduhu wa rasuluh.",meaning:"Main gawahi deta hoon ke Allah ke siwa koi mabood nahi, Woh akela hai, uska koi shareek nahi; aur Muhammad ﷺ uske bande aur Rasool hain.",source:"Sahih Muslim"},
+{title:"Azan ke baad",when:"Azan khatam hone ke baad",cat:["daily"],tag:"Adhan",arabic:"اللَّهُمَّ رَبَّ هَذِهِ الدَّعْوَةِ التَّامَّةِ وَالصَّلَاةِ الْقَائِمَةِ آتِ مُحَمَّدًا الْوَسِيلَةَ وَالْفَضِيلَةَ وَابْعَثْهُ مَقَامًا مَحْمُودًا الَّذِي وَعَدْتَهُ",roman:"Allahumma Rabba hadhihid-da'watit-tammah, was-salatil-qa'imah, ati Muhammadanil-wasilata wal-fadilah, wab'athhu maqaman mahmudanilladhi wa'adtah.",meaning:"Ae Allah, is poori dawat aur qayam hone wali namaz ke Rab, Muhammad ﷺ ko waseelah aur fazilat ata farma aur unhein woh maqam-e-mahmood ata farma jiska Tu ne wada kiya.",source:"Sahih al-Bukhari"},
+{title:"Qabristan ki dua",when:"Qabristan mein dakhil hote waqt",cat:["daily"],tag:"Cemetery",arabic:"السَّلَامُ عَلَيْكُمْ دَارَ قَوْمٍ مُؤْمِنِينَ وَإِنَّا إِنْ شَاءَ اللَّهُ بِكُمْ لَاحِقُونَ أَسْأَلُ اللَّهَ لَنَا وَلَكُمُ الْعَافِيَةَ",roman:"Assalamu 'alaykum dara qawmin mu'minin, wa inna in sha'Allahu bikum lahiqun, as'alullaha lana wa lakumul-'afiyah.",meaning:"Aye momin logon ke ghar walon, tum par salam ho. In sha Allah hum bhi tumse milne wale hain. Hum Allah se apne aur tumhare liye afiyat mangte hain.",source:"Sahih Muslim"},
+{title:"Hidayat aur paakdamni",when:"Hidayat, taqwa aur be-niyazi mangte waqt",cat:["daily"],tag:"Guidance",arabic:"اللَّهُمَّ إِنِّي أَسْأَلُكَ الْهُدَى وَالتُّقَى وَالْعَفَافَ وَالْغِنَى",roman:"Allahumma inni as'alukal-huda wat-tuqa wal-'afafa wal-ghina.",meaning:"Ae Allah, main tujhse hidayat, taqwa, paakdamni aur be-niyazi mangta hoon.",source:"Sahih Muslim"},
+{title:"Safar se wapsi",when:"Safar se wapas aate waqt",cat:["travel"],tag:"Return",arabic:"آيِبُونَ تَائِبُونَ عَابِدُونَ لِرَبِّنَا حَامِدُونَ",roman:"Ayibuna ta'ibuna 'abiduna li-Rabbina hamidun.",meaning:"Hum lautne wale, tauba karne wale, ibadat karne wale aur apne Rab ki hamd karne wale hain.",source:"Sahih Muslim"},
+{title:"Sayyid-ul-Istighfar",when:"Subah-shaam maghfirat ki azeem dua",cat:["daily","protection"],tag:"Forgiveness",arabic:"اللَّهُمَّ أَنْتَ رَبِّي لَا إِلَهَ إِلَّا أَنْتَ خَلَقْتَنِي وَأَنَا عَبْدُكَ وَأَنَا عَلَى عَهْدِكَ وَوَعْدِكَ مَا اسْتَطَعْتُ أَعُوذُ بِكَ مِنْ شَرِّ مَا صَنَعْتُ أَبُوءُ لَكَ بِنِعْمَتِكَ عَلَيَّ وَأَبُوءُ بِذَنْبِي فَاغْفِرْ لِي فَإِنَّهُ لَا يَغْفِرُ الذُّنُوبَ إِلَّا أَنْتَ",roman:"Allahumma Anta Rabbi la ilaha illa Anta, khalaqtani wa ana 'abduka, wa ana 'ala 'ahdika wa wa'dika mastata'tu. A'udhu bika min sharri ma sana'tu, abu'u laka bini'matika 'alayya, wa abu'u bidhanbi, faghfir li fa innahu la yaghfirudh-dhunuba illa Anta.",meaning:"Ae Allah, Tu mera Rab hai; Tere siwa koi mabood nahi. Tu ne mujhe paida kiya aur main Tera banda hoon... main apne gunah ka iqrar karta hoon; mujhe bakhsh de, kyunki Tere siwa gunah koi nahi bakhshta.",source:"Sahih al-Bukhari"}
 ];
 
-let current=0,filtered=D.map((_,i)=>i),soundOn=localStorage.getItem("duaSound")!=="off",arabicScale=1;
+let current=0,filtered=D.map((_,i)=>i),soundOn=localStorage.getItem("duaSound")!=="off",arabicScale=1,viewMode=localStorage.getItem("duaViewMode")||"full",speaking=false;
 const $=s=>document.querySelector(s), cards=$("#cards"), reader=$("#reader"), page=$("#page"), book=$("#book");
 const favs=new Set(JSON.parse(localStorage.getItem("duaFavs")||"[]"));
 
@@ -267,26 +305,52 @@ function pageSound(){
 function toast(t){const el=$("#toast");el.textContent=t;el.classList.add("show");clearTimeout(el._t);el._t=setTimeout(()=>el.classList.remove("show"),1300)}
 function renderCards(){
  const q=$("#search").value.trim().toLowerCase(), active=$("#filters .active")?.dataset.cat||"all";
- filtered=D.map((d,i)=>({d,i})).filter(x=>(active==="all"||x.d.cat.includes(active))&&(!q||[x.d.title,x.d.when,x.d.tag,x.d.roman,x.d.meaning].join(" ").toLowerCase().includes(q))).map(x=>x.i);
+ filtered=D.map((d,i)=>({d,i})).filter(x=>((active==="all")||(active==="fav"&&favs.has(x.i))||x.d.cat.includes(active))&&(!q||[x.d.title,x.d.when,x.d.tag,x.d.roman,x.d.meaning].join(" ").toLowerCase().includes(q))).map(x=>x.i);
  $("#count").textContent=filtered.length+" duas";
- cards.innerHTML=filtered.map(i=>{const d=D[i];return `<article class="card" data-i="${i}">
+ cards.innerHTML=filtered.length?filtered.map(i=>{const d=D[i];return `<article class="card" data-i="${i}">
    <button class="fav ${favs.has(i)?"on":""}" data-fav="${i}">♥</button>
    <span class="tag">${d.tag}</span><h4>${d.title}</h4><p>${d.when}</p><span class="arrow">›</span>
- </article>`}).join("");
+ </article>`}).join(""):`<div class="emptyState">Yahan abhi koi dua nahi mili. Search ya category change kijiye.</div>`;
+ updateContinue();
 }
 function renderPage(){
  const d=D[current]; $("#readerTitle").textContent=d.title;$("#readerSub").textContent=d.when;
- page.innerHTML=`<div class="pageHead"><div class="pageNo">NOOR DUA BOOK • ${current+1} / ${D.length}</div><div class="duaTitle">${d.title}</div><span class="when">${d.when}</span></div>
+ book.classList.remove("mode-arabic","mode-arabicroman");
+ if(viewMode==="arabic")book.classList.add("mode-arabic");
+ if(viewMode==="arabicroman")book.classList.add("mode-arabicroman");
+ page.innerHTML=`<div class="pageHead"><div class="pageNo">NOOR DUA BOOK • ${current+1} / ${D.length}</div><div class="duaTitle">${d.title}</div><span class="when">${d.when}</span>${d.repeat?`<div><span class="repeatNote">↻ ${d.repeat}</span></div>`:""}</div>
  <div class="divider"></div><div class="arabic" style="font-size:calc(clamp(30px,5vw,46px)*${arabicScale})">${d.arabic}</div>
  <div class="roman">${d.roman}</div><div class="meaning">${d.meaning}</div><div class="sourceBox">Source: ${d.source}</div>
  <div class="pageFoot"><span>Designed by Altaf Shaikh</span><span>✦ Noor Dua Book ✦</span></div>`;
+ $("#viewBtn").textContent=viewMode==="full"?"Aa Full":viewMode==="arabicroman"?"Aa A+R":"Aa Arabic";
+ $("#readerFav").textContent=(favs.has(current)?"♥":"♡")+" Favorite";$("#readerFav").classList.toggle("on",favs.has(current));
+ localStorage.setItem("duaLast",String(current)); updateContinue();
 }
 function openReader(i){current=i;renderPage();reader.classList.add("open");document.body.style.overflow="hidden";haptic(true)}
-function closeReader(){reader.classList.remove("open");document.body.style.overflow="";haptic()}
+function closeReader(){stopSpeech();reader.classList.remove("open");document.body.style.overflow="";haptic()}
 function go(dir){
+ stopSpeech();
  const idx=filtered.indexOf(current);let ni=idx+dir;if(ni<0||ni>=filtered.length){toast("Is side aur page nahi hai");return}
  page.classList.add(dir>0?"turningNext":"turningPrev");pageSound();if(navigator.vibrate&&soundOn)navigator.vibrate(10);
  setTimeout(()=>{current=filtered[ni];renderPage();page.scrollTop=0;page.classList.remove("turningNext","turningPrev")},260)
+}
+function updateContinue(){
+ const raw=localStorage.getItem("duaLast"),i=raw===null?-1:Number(raw),box=$("#continueCard");
+ if(Number.isInteger(i)&&D[i]){box.classList.add("show");$("#continueTitle").textContent=D[i].title;$("#continueWhen").textContent=D[i].when;$("#continueGo").dataset.i=i}else box.classList.remove("show");
+}
+function stopSpeech(){if("speechSynthesis" in window)speechSynthesis.cancel();speaking=false;$("#listenBtn")?.classList.remove("listenPulse");if($("#listenBtn"))$("#listenBtn").textContent="🔊 Listen"}
+function speakCurrent(){
+ if(!("speechSynthesis" in window)){toast("Is device/browser me Arabic voice available nahi hai");return}
+ if(speaking){stopSpeech();return}
+ stopSpeech();const u=new SpeechSynthesisUtterance(D[current].arabic);u.lang="ar-SA";u.rate=.82;u.pitch=1;
+ const voices=speechSynthesis.getVoices();const ar=voices.find(v=>/^ar(-|_)/i.test(v.lang));if(ar)u.voice=ar;
+ u.onstart=()=>{speaking=true;$("#listenBtn").textContent="■ Stop";$("#listenBtn").classList.add("listenPulse")};
+ u.onend=u.onerror=()=>{speaking=false;$("#listenBtn").textContent="🔊 Listen";$("#listenBtn").classList.remove("listenPulse")};
+ speechSynthesis.speak(u);haptic(true);
+}
+async function shareCurrent(){
+ const d=D[current],text=`${d.title}\n\n${d.arabic}\n\n${d.roman}\n\n${d.meaning}\nSource: ${d.source}\n\nNoor Dua Book — Designed by Altaf Shaikh`;
+ try{if(navigator.share)await navigator.share({title:d.title,text});else{await navigator.clipboard.writeText(text);toast("Dua copied")}}catch(e){}
 }
 cards.addEventListener("click",e=>{const f=e.target.closest("[data-fav]");if(f){e.stopPropagation();const i=+f.dataset.fav;favs.has(i)?favs.delete(i):favs.add(i);localStorage.setItem("duaFavs",JSON.stringify([...favs]));haptic();renderCards();return}
  const c=e.target.closest(".card");if(c)openReader(+c.dataset.i)});
@@ -294,6 +358,11 @@ $("#filters").addEventListener("click",e=>{const b=e.target.closest("button");if
 $("#search").addEventListener("input",renderCards);
 $("#soundToggle").onclick=()=>{soundOn=!soundOn;localStorage.setItem("duaSound",soundOn?"on":"off");$("#soundToggle").textContent=soundOn?"♪":"×";toast(soundOn?"Touch sound + haptic ON":"Sound + haptic OFF");haptic(true)};
 $("#closeReader").onclick=closeReader;$("#next").onclick=()=>go(1);$("#prev").onclick=()=>go(-1);
+$("#continueGo").onclick=e=>openReader(Number(e.currentTarget.dataset.i));
+$("#listenBtn").onclick=speakCurrent;
+$("#shareBtn").onclick=shareCurrent;
+$("#readerFav").onclick=()=>{favs.has(current)?favs.delete(current):favs.add(current);localStorage.setItem("duaFavs",JSON.stringify([...favs]));renderPage();renderCards();haptic()};
+$("#viewBtn").onclick=()=>{viewMode=viewMode==="full"?"arabicroman":viewMode==="arabicroman"?"arabic":"full";localStorage.setItem("duaViewMode",viewMode);renderPage();haptic()};
 $("#themeBtn").onclick=()=>{$("#themeMenu").classList.toggle("open");haptic()};
 $("#themeMenu").onclick=e=>{const b=e.target.closest("button");if(!b)return;book.className="book theme-"+b.dataset.theme;localStorage.setItem("bookTheme",b.dataset.theme);$("#themeMenu").classList.remove("open");haptic(true)};
 $("#fontBtn").onclick=()=>{arabicScale=arabicScale>=1.28?.92:arabicScale+.12;renderPage();toast("Arabic size "+Math.round(arabicScale*100)+"%");haptic()};
@@ -301,7 +370,8 @@ let sx=0,sy=0;
 page.addEventListener("touchstart",e=>{sx=e.touches[0].clientX;sy=e.touches[0].clientY},{passive:true});
 page.addEventListener("touchend",e=>{const dx=e.changedTouches[0].clientX-sx,dy=e.changedTouches[0].clientY-sy;if(Math.abs(dx)>55&&Math.abs(dx)>Math.abs(dy)*1.25)go(dx<0?1:-1)},{passive:true});
 const savedTheme=localStorage.getItem("bookTheme")||"classic";book.className="book theme-"+savedTheme;
-renderCards();
+updateContinue();renderCards();
+$("#soundToggle").textContent=soundOn?"♪":"×";
 setTimeout(()=>$("#splash").classList.add("hide"),2200);
 if("serviceWorker" in navigator)navigator.serviceWorker.register("sw.js").catch(()=>{});
 </script>
