@@ -900,6 +900,59 @@ body[data-app-theme="islamic"] .duaGlyph{background:#12231d;color:#e4c977;border
   .readerBottom{padding-top:1px!important;padding-bottom:2px!important}
 }
 
+
+/* ===== READER SPACE FIX V5 ===== */
+/* Mobile browsers were not honoring the grid fill reliably.
+   Give the book a direct viewport-based height so the unused lower area is used. */
+.readerOverlay{
+  overflow-y:auto!important;
+  align-items:flex-start!important;
+}
+.readerShell{
+  height:auto!important;
+  min-height:calc(100dvh - 8px)!important;
+  max-height:none!important;
+  overflow:visible!important;
+}
+.bookWrap{
+  height:auto!important;
+  min-height:0!important;
+}
+.book{
+  height:min(70dvh,880px)!important;
+  min-height:560px!important;
+  max-height:none!important;
+}
+.page{
+  overflow-y:auto!important;
+  padding-bottom:18px!important;
+}
+.readerTools{
+  margin-top:5px!important;
+}
+.readerBottom{
+  padding-bottom:10px!important;
+}
+@media(max-width:560px){
+  .readerShell{
+    min-height:calc(100dvh - 6px)!important;
+  }
+  .book{
+    height:72dvh!important;
+    min-height:610px!important;
+  }
+  .page{
+    padding-bottom:20px!important;
+  }
+}
+/* Very short screens: keep controls reachable and allow page scrolling */
+@media(max-height:760px){
+  .book{
+    height:64dvh!important;
+    min-height:440px!important;
+  }
+}
+
 </style>
 </head>
 <body class="noise">
@@ -1188,10 +1241,7 @@ function renderCards(){
  renderSearchResults();updateContinue();
 }
 function fitBookToContent(){
-  requestAnimationFrame(()=>{
-    book.style.setProperty("height","100%","important");
-    page.scrollTop=0;
-  });
+  requestAnimationFrame(()=>{page.scrollTop=0;});
 }
 function renderPage(){
  page.scrollTop=0;
