@@ -292,6 +292,25 @@ body[data-app-theme="noor"] .kanzulLabel,body[data-app-theme="noor"] .quranBadge
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
 @media(max-width:560px){.fontGrid{grid-template-columns:repeat(2,minmax(0,1fr))}.fontCard{min-height:66px;padding:9px}}
 
+/* ===== SMART SEARCH FIX ===== */
+.searchWrap{position:relative}
+.search{position:relative;z-index:6}
+.searchGlyph{width:26px;height:26px;display:grid;place-items:center;color:var(--gold2);font-size:19px;flex:0 0 auto;opacity:.8}
+.searchClear{display:none;width:38px;height:38px;border:0;border-radius:13px;background:var(--surface2,#13231c);color:inherit;font-size:14px;flex:0 0 auto}
+.searchClear.show{display:grid;place-items:center}
+.searchResults{position:absolute;left:0;right:0;top:calc(100% + 7px);z-index:35;display:none;border:1px solid var(--line);background:color-mix(in srgb,var(--panel) 96%,transparent);backdrop-filter:blur(18px);border-radius:18px;padding:6px;box-shadow:0 22px 55px rgba(0,0,0,.32);max-height:310px;overflow:auto}
+.searchResults.open{display:block;animation:searchDrop .18s ease both}
+@keyframes searchDrop{from{opacity:0;transform:translateY(-5px) scale(.99)}to{opacity:1;transform:none}}
+.searchResult{width:100%;border:0;background:transparent;color:inherit;display:flex;align-items:center;gap:10px;text-align:left;border-radius:13px;padding:10px;transition:.18s}
+.searchResult:active{transform:scale(.985)}
+.searchResult:hover{background:color-mix(in srgb,var(--surface2) 86%,transparent)}
+.searchResultIcon{width:34px;height:34px;border-radius:11px;display:grid;place-items:center;flex:0 0 auto;background:color-mix(in srgb,var(--gold) 11%,var(--surface2));color:var(--gold2);font-size:12px}
+.searchResultText{min-width:0;flex:1}.searchResultText b{display:block;font-family:Alegreya,serif;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.searchResultText small{display:block;color:var(--muted);font-size:8px;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.searchResultTag{font-size:7px;color:var(--gold2);border:1px solid color-mix(in srgb,var(--gold) 18%,transparent);border-radius:999px;padding:4px 6px;white-space:nowrap}
+.searchEmpty{padding:15px 12px;text-align:center;color:var(--muted);font-size:9px}
+.searchHint{padding:7px 9px 5px;color:var(--muted);font-size:7.5px;border-top:1px solid var(--line);margin-top:3px}
+body[data-app-theme="minimal"] .searchResults{background:rgba(255,255,255,.96);box-shadow:0 22px 50px rgba(0,0,0,.14)}
 </style>
 </head>
 <body class="noise">
@@ -327,9 +346,13 @@ body[data-app-theme="noor"] .kanzulLabel,body[data-app-theme="noor"] .quranBadge
     <span class="kicker">✦ NOOR DUA BOOK • CUSTOM EDITION</span>
     <h2>Konsi dua, kab padhni hai — sab ek jagah.</h2>
     <p>Arabic Quran-style font, readable Roman Urdu, simple meaning aur source ke saath. Kisi title par tap kijiye aur real-book style reader khul jayega.</p>
-    <div class="search">
-      <input id="search" placeholder="Search: safar, neend, rizq, pareshani...">
-      <button class="iconBtn" id="soundToggle" aria-label="Sound and haptic">♪</button>
+    <div class="searchWrap">
+      <div class="search">
+        <span class="searchGlyph" aria-hidden="true">⌕</span>
+        <input id="search" autocomplete="off" inputmode="search" placeholder="Search: barkat, safar, neend, rizq...">
+        <button class="searchClear" id="searchClear" aria-label="Clear search">✕</button>
+      </div>
+      <div class="searchResults" id="searchResults"></div>
     </div>
     <div class="statusRow">
       <span class="statusPill"><i class="statusDot" id="netDot"></i><span id="netText">Online</span></span>
@@ -547,16 +570,31 @@ function pageSound(){
  }catch(e){}
 }
 function toast(t){const el=$("#toast");el.textContent=t;el.classList.add("show");clearTimeout(el._t);el._t=setTimeout(()=>el.classList.remove("show"),1300)}
+function getSearchMatches(q){
+ const needle=q.trim().toLowerCase();if(!needle)return [];
+ return D.map((d,i)=>({d,i,hay:[d.title,d.when,d.tag,d.roman,d.meaning||"",d.kanzul||"",...(d.cat||[])].join(" ").toLowerCase()}))
+   .filter(x=>x.hay.includes(needle))
+   .sort((a,b)=>{const at=a.d.title.toLowerCase().includes(needle)?0:1,bt=b.d.title.toLowerCase().includes(needle)?0:1;if(at!==bt)return at-bt;const ar=FEATURED.indexOf(a.d.title),br=FEATURED.indexOf(b.d.title);return (ar<0?999:ar)-(br<0?999:br)});
+}
+function renderSearchResults(){
+ const q=$("#search").value.trim(),box=$("#searchResults"),clear=$("#searchClear");
+ clear.classList.toggle("show",!!q);
+ if(!q){box.classList.remove("open");box.innerHTML="";return}
+ const all=getSearchMatches(q),matches=all.slice(0,6);
+ box.innerHTML=matches.length?matches.map(x=>"<button class=\"searchResult\" data-search-i=\""+x.i+"\"><span class=\"searchResultIcon\">✦</span><span class=\"searchResultText\"><b>"+x.d.title+"</b><small>"+x.d.when+"</small></span><span class=\"searchResultTag\">"+x.d.tag+"</span></button>").join("")+"<div class=\"searchHint\">"+all.length+" result"+(all.length===1?"":"s")+" • Tap karke direct dua kholiye</div>":"<div class=\"searchEmpty\">“"+q+"” ke liye abhi koi dua nahi mili.</div>";
+ box.classList.add("open");
+}
 function renderCards(){
  const q=$("#search").value.trim().toLowerCase(), active=$("#filters .active")?.dataset.cat||"all";
- filtered=D.map((d,i)=>({d,i})).filter(x=>((active==="all")||(active==="fav"&&favs.has(x.i))||x.d.cat.includes(active))&&(!q||[x.d.title,x.d.when,x.d.tag,x.d.roman,x.d.meaning||"",x.d.kanzul||""].join(" ").toLowerCase().includes(q))).map(x=>x.i);
+ filtered=D.map((d,i)=>({d,i})).filter(x=>{
+   const searchOk=!q||[x.d.title,x.d.when,x.d.tag,x.d.roman,x.d.meaning||"",x.d.kanzul||"",...(x.d.cat||[])].join(" ").toLowerCase().includes(q);
+   const categoryOk=q?true:((active==="all")||(active==="fav"&&favs.has(x.i))||x.d.cat.includes(active));
+   return searchOk&&categoryOk;
+ }).map(x=>x.i);
  const rank=t=>{const n=FEATURED.indexOf(t);return n<0?999:n};filtered.sort((a,b)=>rank(D[a].title)-rank(D[b].title));
  $("#count").textContent=filtered.length+" duas";
- cards.innerHTML=filtered.length?filtered.map(i=>{const d=D[i];return `<article class="card" data-i="${i}">
-   <button class="fav ${favs.has(i)?"on":""}" data-fav="${i}">♥</button>
-   <span class="tag">${d.tag}</span><h4>${d.title}</h4><p>${d.when}</p><span class="arrow">›</span>
- </article>`}).join(""):`<div class="emptyState">Yahan abhi koi dua nahi mili. Search ya category change kijiye.</div>`;
- updateContinue();
+ cards.innerHTML=filtered.length?filtered.map(i=>{const d=D[i];return `<article class="card" data-i="${i}"><button class="fav ${favs.has(i)?"on":""}" data-fav="${i}">♥</button><span class="tag">${d.tag}</span><h4>${d.title}</h4><p>${d.when}</p><span class="arrow">›</span></article>`}).join(""):`<div class="emptyState">Yahan abhi koi dua nahi mili. Search ya category change kijiye.</div>`;
+ renderSearchResults();updateContinue();
 }
 function renderPage(){
  const d=D[current]; $("#readerTitle").textContent=d.title;$("#readerSub").textContent=d.when;
@@ -682,14 +720,18 @@ async function shareCurrent(){
 cards.addEventListener("click",e=>{const f=e.target.closest("[data-fav]");if(f){e.stopPropagation();const i=+f.dataset.fav;favs.has(i)?favs.delete(i):favs.add(i);localStorage.setItem("duaFavs",JSON.stringify([...favs]));haptic();renderCards();return}
  const c=e.target.closest(".card");if(c)openReader(+c.dataset.i)});
 $("#filters").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;$("#filters button.active")?.classList.remove("active");b.classList.add("active");haptic();renderCards()});
+function toggleSound(){soundOn=!soundOn;localStorage.setItem("duaSound",soundOn?"on":"off");toast(soundOn?"Touch sound + haptic ON":"Sound + haptic OFF");syncSettings();haptic(true)}
 $("#search").addEventListener("input",renderCards);
-$("#soundToggle").onclick=()=>{soundOn=!soundOn;localStorage.setItem("duaSound",soundOn?"on":"off");$("#soundToggle").textContent=soundOn?"♪":"×";toast(soundOn?"Touch sound + haptic ON":"Sound + haptic OFF");syncSettings();haptic(true)};
+$("#search").addEventListener("keydown",e=>{if(e.key==="Enter"){const first=getSearchMatches(e.currentTarget.value)[0];if(first){openReader(first.i);$("#searchResults").classList.remove("open");e.currentTarget.blur()}}});
+$("#searchClear").onclick=()=>{$("#search").value="";renderCards();$("#search").focus();haptic()};
+$("#searchResults").onclick=e=>{const b=e.target.closest("[data-search-i]");if(!b)return;openReader(Number(b.dataset.searchI));$("#searchResults").classList.remove("open");haptic(true)};
+document.addEventListener("click",e=>{if(!e.target.closest(".searchWrap"))$("#searchResults").classList.remove("open")});
 $("#nowGo").onclick=e=>openReader(Number(e.currentTarget.dataset.i));
 $("#recentList").onclick=e=>{const b=e.target.closest("[data-recent]");if(b)openReader(Number(b.dataset.recent))};
 $("#settingsBtn").onclick=()=>{$("#settingsSheet").classList.add("open");syncSettings();haptic()};
 $("#sheetClose").onclick=()=>$("#settingsSheet").classList.remove("open");
 $("#settingsSheet").onclick=e=>{if(e.target===$("#settingsSheet"))$("#settingsSheet").classList.remove("open")};
-$("#settingSound").onclick=()=>$("#soundToggle").click();
+$("#settingSound").onclick=toggleSound;
 $("#settingView").onclick=()=>{$("#viewBtn").click();syncSettings()};
 $("#themeGrid").onclick=e=>{const b=e.target.closest("[data-app-theme]");if(!b)return;applyAppTheme(b.dataset.appTheme);toast((b.querySelector("b")?.textContent||"")+" theme");haptic(true)};
 $("#fxGrid").onclick=e=>{const b=e.target.closest("[data-fx]");if(!b)return;applyPageFx(b.dataset.fx);toast((b.querySelector("b")?.textContent||"")+" effect");haptic()};
@@ -731,7 +773,6 @@ page.addEventListener("touchend",e=>{
 },{passive:true});
 applyAppTheme(appTheme,false);applyPageFx(pageFx,false);setReaderScale(readerScale,false);applyReaderFonts(false);
 updateContinue();renderCards();renderRecent();updateStats();pickNow();updateNetwork();syncSettings();
-$("#soundToggle").textContent=soundOn?"♪":"×";
 setTimeout(()=>$("#splash").classList.add("hide"),2200);
 if("serviceWorker" in navigator)navigator.serviceWorker.register("sw.js").catch(()=>{});
 </script>
