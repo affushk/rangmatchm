@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#0b1612">
-<title>Noor Dua Book — Designed by Altaf Shaikh</title>
+<title>Noor-e-Dua — Designed by Altaf Shaikh</title>
 <link rel="manifest" href="app.webmanifest">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1112,12 +1112,51 @@ body[data-app-theme="gpt"] .rBtn{background:#303030;color:#ececec;border-color:r
   .settingsNav{top:78px}
 }
 
+
+/* ===== FINAL APK SPLASH BRANDING ===== */
+.apkSplashIcon{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:28px;
+  z-index:2;animation:sealIn .85s cubic-bezier(.2,.85,.2,1) both
+}
+.brandSeal{position:relative;overflow:hidden}
+.brandSeal .apkSplashIcon+svg{position:relative;z-index:1}
+.designerFocus{
+  position:relative;margin-top:24px;padding:17px 28px 14px;min-width:min(330px,86vw);
+  border:1px solid rgba(241,212,127,.24);border-radius:21px;
+  background:linear-gradient(145deg,rgba(241,212,127,.055),rgba(255,255,255,.012));
+  box-shadow:0 18px 55px rgba(0,0,0,.32),inset 0 0 0 1px rgba(255,255,255,.025);
+  animation:designerFocusIn .8s .58s cubic-bezier(.16,.85,.2,1) both
+}
+.designerLine{display:flex;align-items:center;gap:9px;justify-content:center}
+.designerLine i{
+  display:block;width:56px;height:1px;background:linear-gradient(90deg,transparent,#f1d47f);
+  transform-origin:right;animation:lineDraw .8s .9s ease both
+}
+.designerLine i:last-child{background:linear-gradient(90deg,#f1d47f,transparent);transform-origin:left}
+.designerLine span{color:#e8d697;font-size:9px;letter-spacing:3.1px;font-weight:800}
+.splash .designerFocus .name{
+  position:relative;z-index:2;margin-top:7px;font-family:Alegreya,serif;font-size:31px;
+  letter-spacing:.35px;color:#fff7e7;text-shadow:0 0 12px rgba(242,207,111,.35),0 0 35px rgba(217,184,106,.16);
+  animation:nameGlow 1.65s 1.05s ease-in-out infinite alternate
+}
+.designerGlow{
+  position:absolute;left:12%;right:12%;bottom:8px;height:2px;border-radius:99px;
+  background:linear-gradient(90deg,transparent,#f1d47f,#fff2bc,#f1d47f,transparent);
+  filter:blur(.15px);box-shadow:0 0 13px rgba(241,212,127,.55);
+  transform:scaleX(0);animation:glowSweep 1s 1.05s cubic-bezier(.2,.8,.2,1) forwards
+}
+@keyframes designerFocusIn{from{opacity:0;transform:translateY(18px) scale(.96)}to{opacity:1;transform:none}}
+@keyframes lineDraw{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes glowSweep{to{transform:scaleX(1)}}
+@keyframes nameGlow{from{filter:brightness(.96)}to{filter:brightness(1.18)}}
+
 </style>
 </head>
 <body class="noise">
 <div class="splash" id="splash">
   <div class="splashCard">
     <div class="brandSeal">
+      <img class="apkSplashIcon" src="noor_icon.webp" alt="" onerror="this.style.display='none'">
       <svg viewBox="0 0 108 108" aria-hidden="true">
         <path fill="#0d2018" d="M4 4h100v100H4z" rx="24"/>
         <path fill="#f1d47f" fill-rule="evenodd" d="M66 20a31 31 0 1 0 0 62 26 26 0 1 1 0-62z"/>
@@ -1125,10 +1164,13 @@ body[data-app-theme="gpt"] .rBtn{background:#303030;color:#ececec;border-color:r
         <path fill="none" stroke="#f1d47f" stroke-width="3" d="M26 79V54c0-15 12-27 28-27s28 12 28 27v25"/>
       </svg>
     </div>
-    <h1>Noor Dua Book</h1>
+    <h1>Noor-e-Dua</h1>
     <p>Har dua • sahi waqt • ek khoobsurat digital kitaab</p>
-    <div class="by">DESIGNED BY</div>
-    <div class="name">Altaf Shaikh</div>
+    <div class="designerFocus">
+      <div class="designerLine"><i></i><span>DESIGNED BY</span><i></i></div>
+      <div class="name">Altaf Shaikh</div>
+      <div class="designerGlow" aria-hidden="true"></div>
+    </div>
   </div>
 </div>
 
@@ -1138,13 +1180,13 @@ body[data-app-theme="gpt"] .rBtn{background:#303030;color:#ececec;border-color:r
       <div class="logo">
         <svg viewBox="0 0 108 108" aria-hidden="true"><path fill="#f1d47f" fill-rule="evenodd" d="M66 20a31 31 0 1 0 0 62 26 26 0 1 1 0-62z"/><path fill="#e6b85f" d="M82 21l3 7 7 3-7 3-3 7-3-7-7-3 7-3z"/></svg>
       </div>
-      <div><h1>Noor Dua Book</h1><small>Read • Understand • Remember</small></div>
+      <div><h1>Noor-e-Dua</h1><small>Read • Understand • Remember</small></div>
     </div>
     <div class="brandBadge">Altaf Shaikh Studio</div>
   </header>
 
   <section class="hero">
-    <span class="kicker">✦ NOOR DUA BOOK • CUSTOM EDITION</span>
+    <span class="kicker">✦ NOOR-E-DUA • CUSTOM EDITION</span>
     <h2>Konsi dua, kab padhni hai — sab ek jagah.</h2>
     <p>Arabic Quran-style font, readable Roman Urdu, simple meaning aur source ke saath. Kisi title par tap kijiye aur real-book style reader khul jayega.</p>
     <div class="searchWrap">
@@ -1205,7 +1247,7 @@ body[data-app-theme="gpt"] .rBtn{background:#303030;color:#ececec;border-color:r
   </div>
 
   <footer style="text-align:center;color:#66756e;font-size:9px;margin-top:28px">
-    Noor Dua Book • Crafted by <span style="color:#d7bf7d">Altaf Shaikh</span>
+    Noor-e-Dua • Crafted by <span style="color:#d7bf7d">Altaf Shaikh</span>
   </footer>
 </div>
 
@@ -1326,7 +1368,7 @@ body[data-app-theme="gpt"] .rBtn{background:#303030;color:#ececec;border-color:r
 
     <section class="settingsSection settingsInstall">
       <div class="settingsSectionTitle"><span>05</span><div><b>App</b><small>Install aur offline experience</small></div></div>
-      <button class="installBtn" id="installBtn">＋ Install Noor Dua Book</button>
+      <button class="installBtn" id="installBtn">＋ Install Noor-e-Dua</button>
     </section>
   </aside>
 </div>
@@ -1380,7 +1422,8 @@ const $=s=>document.querySelector(s), cards=$("#cards"), reader=$("#reader"), pa
 const favs=new Set(JSON.parse(localStorage.getItem("duaFavs")||"[]"));
 
 function haptic(strong=false){
-  if(soundOn && navigator.vibrate) navigator.vibrate(strong?18:8);
+  if(soundOn && window.NoorNative && NoorNative.haptic){try{NoorNative.haptic(!!strong)}catch(e){}}
+  else if(soundOn && navigator.vibrate) navigator.vibrate(strong?18:8);
   if(!soundOn) return;
   try{
     const C=window.AudioContext||window.webkitAudioContext; if(!C)return;
@@ -1448,12 +1491,12 @@ function renderPage(){
  if(viewMode==="arabicroman")book.classList.add("mode-arabicroman");
  const meaningText=d.kanzul||d.meaning||"";
  const meaningLabel=d.kanzul?"Roman Urdu Meaning • Tarjuma-e-Kanz-ul-Iman":"Roman Urdu Meaning";
- page.innerHTML=`<div class="pageInner"><div class="pageHead"><div class="pageNo">NOOR DUA BOOK • ${current+1} / ${D.length}</div><div class="duaTitle">${d.title}</div><span class="when">${d.when}</span>${d.repeat?`<div><span class="repeatNote">↻ ${d.repeat}</span></div>`:""}</div>
+ page.innerHTML=`<div class="pageInner"><div class="pageHead"><div class="pageNo">NOOR-E-DUA • ${current+1} / ${D.length}</div><div class="duaTitle">${d.title}</div><span class="when">${d.when}</span>${d.repeat?`<div><span class="repeatNote">↻ ${d.repeat}</span></div>`:""}</div>
  <div class="divider"></div><div class="arabic" style="font-size:calc(clamp(30px,5vw,46px)*${readerScale})">${d.arabic}</div>
  <div class="roman" style="font-size:${(17*readerScale).toFixed(1)}px">${d.roman}</div>
  ${meaningText?`<div class="meaning meaningCard"><div class="meaningLabel">✦ ${meaningLabel} ✦</div><div class="meaningText" style="font-size:${(14*readerScale).toFixed(1)}px">${meaningText}</div>${d.kanzul?`<div class="meaningKanz">Ala Hazrat Imam Ahmad Raza Khan رحمۃ اللہ علیہ</div>`:""}</div>`:""}
  <div class="sourceBox">Source: ${d.source}</div>
- <div class="pageFoot"><span>Designed by Altaf Shaikh</span><span>✦ Noor Dua Book ✦</span></div></div>`;
+ <div class="pageFoot"><span>Designed by Altaf Shaikh</span><span>✦ Noor-e-Dua ✦</span></div></div>`;
  $("#viewBtn").textContent=viewMode==="full"?"Aa Full":viewMode==="arabicroman"?"Aa A+R+M":"Aa Arabic";
  $("#readerFav").textContent=(favs.has(current)?"♥":"♡")+" Favorite";$("#readerFav").classList.toggle("on",favs.has(current));
  $("#bookmarkRibbon").classList.toggle("show",favs.has(current));
@@ -1547,24 +1590,40 @@ function updateContinue(){
  if(Number.isInteger(i)&&D[i]){box.classList.add("show");$("#continueTitle").textContent=D[i].title;$("#continueWhen").textContent=D[i].when;$("#continueGo").dataset.i=i}else box.classList.remove("show");
 }
 function stopSpeech(){if("speechSynthesis" in window)speechSynthesis.cancel();speaking=false;$("#listenBtn")?.classList.remove("listenPulse");if($("#listenBtn"))$("#listenBtn").textContent="🔊 Listen"}
+function nativeSpeechDone(){
+ speaking=false;$("#listenBtn").textContent="🔊 Listen";$("#listenBtn").classList.remove("listenPulse");
+}
+window.noorNativeSpeechDone=nativeSpeechDone;
 function speakCurrent(){
+ if(window.NoorNative && NoorNative.speak){
+   if(speaking){try{NoorNative.stopSpeak()}catch(e){};nativeSpeechDone();return}
+   speaking=true;$("#listenBtn").textContent="■ Stop";$("#listenBtn").classList.add("listenPulse");
+   try{NoorNative.speak(D[current].arabic)}catch(e){nativeSpeechDone()}
+   haptic(true);return;
+ }
  if(!("speechSynthesis" in window)){toast("Is device/browser me Arabic voice available nahi hai");return}
  if(speaking){stopSpeech();return}
  stopSpeech();const u=new SpeechSynthesisUtterance(D[current].arabic);u.lang="ar-SA";u.rate=.82;u.pitch=1;
  const voices=speechSynthesis.getVoices();const ar=voices.find(v=>/^ar(-|_)/i.test(v.lang));if(ar)u.voice=ar;
  u.onstart=()=>{speaking=true;$("#listenBtn").textContent="■ Stop";$("#listenBtn").classList.add("listenPulse")};
- u.onend=u.onerror=()=>{speaking=false;$("#listenBtn").textContent="🔊 Listen";$("#listenBtn").classList.remove("listenPulse")};
+ u.onend=u.onerror=nativeSpeechDone;
  speechSynthesis.speak(u);haptic(true);
 }
+
 async function shareCurrent(){
  const d=D[current];
  const parts=[d.title,"",d.arabic,"","Roman: "+d.roman];
  if(d.kanzul)parts.push("","Tarjuma Kanz-ul-Iman:",d.kanzul);
  if(d.meaning)parts.push("",d.meaning);
- parts.push("","Source: "+d.source,"","Noor Dua Book — Designed by Altaf Shaikh");
+ parts.push("","Source: "+d.source,"","Noor-e-Dua — Designed by Altaf Shaikh");
  const text=parts.join("\n");
- try{if(navigator.share)await navigator.share({title:d.title,text});else{await navigator.clipboard.writeText(text);toast("Dua copied")}}catch(e){}
+ try{
+   if(window.NoorNative && NoorNative.share){NoorNative.share(d.title,text)}
+   else if(navigator.share)await navigator.share({title:d.title,text});
+   else{await navigator.clipboard.writeText(text);toast("Dua copied")}
+ }catch(e){}
 }
+
 cards.addEventListener("click",e=>{const f=e.target.closest("[data-fav]");if(f){e.stopPropagation();const i=+f.dataset.fav;favs.has(i)?favs.delete(i):favs.add(i);localStorage.setItem("duaFavs",JSON.stringify([...favs]));haptic();renderCards();return}
  const c=e.target.closest(".card");if(c)openReader(+c.dataset.i)});
 $("#filters").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;$("#filters button.active")?.classList.remove("active");b.classList.add("active");haptic();renderCards()});
@@ -1641,7 +1700,7 @@ page.addEventListener("touchend",e=>{
 },{passive:true});
 applyAppTheme(appTheme,false);applyPageFx(pageFx,false);setReaderScale(readerScale,false);applyReaderFonts(false);
 updateContinue();renderCards();renderRecent();updateStats();pickNow();updateNetwork();syncSettings();
-setTimeout(()=>$("#splash").classList.add("hide"),2200);
+setTimeout(()=>$("#splash").classList.add("hide"),2800);
 window.addEventListener("resize",()=>{if(reader.classList.contains("open"))fitBookToContent()});
 if(window.visualViewport)visualViewport.addEventListener("resize",()=>{if(reader.classList.contains("open"))fitBookToContent()});
 if("serviceWorker" in navigator)navigator.serviceWorker.register("sw.js").catch(()=>{});
