@@ -8,7 +8,7 @@
 <link rel="manifest" href="app.webmanifest">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Amiri+Quran&family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Noto+Nastaliq+Urdu:wght@400;500;600;700&family=Alegreya:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Amiri+Quran&family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Scheherazade+New:wght@400;500;600;700&family=Lateef:wght@400;500;600;700&family=Markazi+Text:wght@400;500;600;700&family=Alegreya:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&family=Lora:wght@400;500;600;700&family=Merriweather:wght@400;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#07100d;--panel:#0d1814;--panel2:#12231d;--gold:#d9b86a;--gold2:#f2d98d;
@@ -231,6 +231,67 @@ body[data-app-theme="noor"] .kanzulWrap{background:rgba(243,200,110,.05);border-
 body[data-app-theme="noor"] .kanzulUrdu{color:#f5ead4}
 body[data-app-theme="noor"] .kanzulLabel,body[data-app-theme="noor"] .quranBadge{color:#d8bc77}
 @media(max-width:560px){.kanzulUrdu{font-size:16px;line-height:1.75}}
+
+/* ===== FONT LAB + HOME POLISH ===== */
+:root{
+  --arabic-reader-font:"Noto Naskh Arabic","Amiri Quran",serif;
+  --roman-reader-font:Alegreya,Manrope,serif;
+}
+.arabic{font-family:var(--arabic-reader-font)!important}
+.roman,.meaning,.kanzulUrdu{font-family:var(--roman-reader-font)!important}
+.fontGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:9px 0 3px}
+.fontCard{
+  border:1px solid var(--line);background:var(--surface2);color:inherit;border-radius:15px;padding:10px;
+  text-align:left;min-height:70px;transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease
+}
+.fontCard:active{transform:scale(.985)}
+.fontCard.active{border-color:color-mix(in srgb,var(--gold) 45%,transparent);box-shadow:0 0 0 1px color-mix(in srgb,var(--gold) 14%,transparent) inset,0 10px 28px rgba(0,0,0,.12)}
+.fontCard b{display:block;font-size:9px;margin-bottom:4px}
+.fontCard small{display:block;color:var(--muted);font-size:7.5px;line-height:1.35}
+.fontSampleArabic{display:block;direction:rtl;text-align:center;font-size:21px;line-height:1.4;margin:4px 0 5px;color:var(--gold2)}
+.fontSampleRoman{display:block;font-size:12px;line-height:1.45;margin:5px 0;color:var(--gold2)}
+.font-amiri{font-family:"Amiri Quran",serif}
+.font-noto{font-family:"Noto Naskh Arabic",serif}
+.font-scheherazade{font-family:"Scheherazade New",serif}
+.font-lateef{font-family:Lateef,serif}
+.font-markazi{font-family:"Markazi Text",serif}
+.font-manrope{font-family:Manrope,sans-serif}
+.font-alegreya{font-family:Alegreya,serif}
+.font-lora{font-family:Lora,serif}
+.font-merriweather{font-family:Merriweather,serif}
+.font-poppins{font-family:Poppins,sans-serif}
+
+/* decorative Islamic-style divider */
+.ornamentLine{display:flex;align-items:center;justify-content:center;gap:9px;margin:13px 5px 7px;color:var(--gold);opacity:.82}
+.ornamentLine i{height:1px;flex:1;max-width:120px;background:linear-gradient(90deg,transparent,color-mix(in srgb,var(--gold) 62%,transparent),transparent)}
+.ornamentLine span{font-size:11px;filter:drop-shadow(0 0 10px color-mix(in srgb,var(--gold) 28%,transparent))}
+.hero{isolation:isolate}
+.hero:before{
+  content:"";position:absolute;inset:7px;border-radius:23px;pointer-events:none;z-index:0;
+  border:1px solid color-mix(in srgb,var(--gold) 12%,transparent);
+  background:
+    linear-gradient(90deg,color-mix(in srgb,var(--gold) 25%,transparent) 0 1px,transparent 1px 100%),
+    linear-gradient(color-mix(in srgb,var(--gold) 25%,transparent) 0 1px,transparent 1px 100%);
+  background-size:32px 32px;mask:linear-gradient(#0000 0 68%,#000 92%);
+  opacity:.2
+}
+.hero>*{position:relative;z-index:1}
+.hero .kicker{box-shadow:0 0 0 1px rgba(255,255,255,.015) inset}
+.card,.quick button,.nowCard,.continueCard,.recentChip,.toolBtn,.navBtn,.rBtn,.settingsBtn{
+  will-change:transform;transition:transform .2s cubic-bezier(.2,.8,.2,1),box-shadow .25s ease,border-color .25s ease,background .25s ease
+}
+.card:hover,.nowCard:hover,.continueCard:hover,.recentChip:hover{transform:translateY(-2px)}
+.quick button:active,.toolBtn:active,.navBtn:active,.rBtn:active,.settingsBtn:active{transform:scale(.96)}
+.card .arrow{transition:transform .2s ease,background .2s ease}.card:hover .arrow{transform:translateX(2px)}
+.logo{animation:logoFloat 5.2s ease-in-out infinite}
+@keyframes logoFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+.hero h2{animation:heroIn .55s cubic-bezier(.2,.8,.2,1) both}
+.hero p{animation:heroIn .55s .07s cubic-bezier(.2,.8,.2,1) both}
+.search{animation:heroIn .55s .14s cubic-bezier(.2,.8,.2,1) both}
+@keyframes heroIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
+@media(max-width:560px){.fontGrid{grid-template-columns:repeat(2,minmax(0,1fr))}.fontCard{min-height:66px;padding:9px}}
+
 </style>
 </head>
 <body class="noise">
@@ -276,6 +337,7 @@ body[data-app-theme="noor"] .kanzulLabel,body[data-app-theme="noor"] .quranBadge
       <span class="statusPill">⌁ Offline shell ready</span>
     </div>
   </section>
+  <div class="ornamentLine" aria-hidden="true"><i></i><span>✦</span><span>۞</span><span>✦</span><i></i></div>
 
   <div class="nowCard" id="nowCard">
     <div><div class="eyebrow">QUICK SUGGESTION</div><h4 id="nowTitle">Dua</h4><p id="nowWhen"></p></div>
@@ -384,6 +446,26 @@ body[data-app-theme="noor"] .kanzulLabel,body[data-app-theme="noor"] .quranBadge
       </div>
     </div>
     <div class="settingRow" style="display:block">
+      <div><b>Arabic Font Family</b><small>Jo Quran-style font padhne me sabse comfortable lage, wahi apply kijiye</small></div>
+      <div class="fontGrid" id="arabicFontGrid">
+        <button class="fontCard" data-arabic-font="noto"><b>Noto Naskh Arabic</b><span class="fontSampleArabic font-noto">بِسْمِ اللّٰهِ</span><small>Clear • balanced • easy reading</small></button>
+        <button class="fontCard" data-arabic-font="amiri"><b>Amiri Quran</b><span class="fontSampleArabic font-amiri">بِسْمِ اللّٰهِ</span><small>Traditional Quran feel</small></button>
+        <button class="fontCard" data-arabic-font="scheherazade"><b>Scheherazade New</b><span class="fontSampleArabic font-scheherazade">بِسْمِ اللّٰهِ</span><small>Elegant Naskh • spacious</small></button>
+        <button class="fontCard" data-arabic-font="lateef"><b>Lateef</b><span class="fontSampleArabic font-lateef">بِسْمِ اللّٰهِ</span><small>Soft handwritten Naskh feel</small></button>
+        <button class="fontCard" data-arabic-font="markazi"><b>Markazi Text</b><span class="fontSampleArabic font-markazi">بِسْمِ اللّٰهِ</span><small>Compact • bold • modern</small></button>
+      </div>
+    </div>
+    <div class="settingRow" style="display:block">
+      <div><b>Roman Urdu Font Family</b><small>Tarjuma aur Roman reading ka style choose kijiye</small></div>
+      <div class="fontGrid" id="romanFontGrid">
+        <button class="fontCard" data-roman-font="alegreya"><b>Alegreya</b><span class="fontSampleRoman font-alegreya">Bismillahir Rahmanir Raheem</span><small>Book-like • elegant</small></button>
+        <button class="fontCard" data-roman-font="manrope"><b>Manrope</b><span class="fontSampleRoman font-manrope">Bismillahir Rahmanir Raheem</span><small>Modern • very clean</small></button>
+        <button class="fontCard" data-roman-font="lora"><b>Lora</b><span class="fontSampleRoman font-lora">Bismillahir Rahmanir Raheem</span><small>Premium reading serif</small></button>
+        <button class="fontCard" data-roman-font="merriweather"><b>Merriweather</b><span class="fontSampleRoman font-merriweather">Bismillahir Rahmanir Raheem</span><small>Comfortable long reading</small></button>
+        <button class="fontCard" data-roman-font="poppins"><b>Poppins</b><span class="fontSampleRoman font-poppins">Bismillahir Rahmanir Raheem</span><small>Simple • rounded • modern</small></button>
+      </div>
+    </div>
+    <div class="settingRow" style="display:block">
       <div><b>Page Swipe Effect</b><small>Page badalte waqt animation style choose kijiye</small></div>
       <div class="fxGrid" id="fxGrid">
         <button class="fxCard" data-fx="flip"><b>Real Flip</b><small>Book page jaisa 3D turn</small></button>
@@ -438,7 +520,7 @@ const D=[
 ];
 
 const FEATURED=["Durood-e-Ibraheem","Surah Al-Fatihah","Ayat-ul-Kursi","Surah Al-Kafirun","Surah Al-Ikhlas","Surah Al-Falaq","Surah An-Naas"];
-let current=0,filtered=D.map((_,i)=>i),soundOn=localStorage.getItem("duaSound")!=="off",readerScale=Number(localStorage.getItem("duaFontScale")||1),viewMode=localStorage.getItem("duaViewMode")||"full",speaking=false,deferredInstall=null,appTheme=localStorage.getItem("duaAppTheme")||"islamic",pageFx=localStorage.getItem("duaPageFx")||"flip";
+let current=0,filtered=D.map((_,i)=>i),soundOn=localStorage.getItem("duaSound")!=="off",readerScale=Number(localStorage.getItem("duaFontScale")||1),viewMode=localStorage.getItem("duaViewMode")||"full",speaking=false,deferredInstall=null,appTheme=localStorage.getItem("duaAppTheme")||"islamic",pageFx=localStorage.getItem("duaPageFx")||"flip",arabicFont=localStorage.getItem("duaArabicFont")||"noto",romanFont=localStorage.getItem("duaRomanFont")||"alegreya";
 const opened=new Set(JSON.parse(localStorage.getItem("duaOpened")||"[]"));
 let recent=JSON.parse(localStorage.getItem("duaRecent")||"[]");
 const $=s=>document.querySelector(s), cards=$("#cards"), reader=$("#reader"), page=$("#page"), book=$("#book");
@@ -544,12 +626,35 @@ function setReaderScale(v,save=true){
  if($("#fontValue"))$("#fontValue").textContent=Math.round(readerScale*100)+"%";
  if(reader.classList.contains("open"))renderPage();
 }
+function applyReaderFonts(save=true){
+ const aMap={
+  noto:'"Noto Naskh Arabic","Amiri Quran",serif',
+  amiri:'"Amiri Quran","Noto Naskh Arabic",serif',
+  scheherazade:'"Scheherazade New","Noto Naskh Arabic",serif',
+  lateef:'Lateef,"Noto Naskh Arabic",serif',
+  markazi:'"Markazi Text","Noto Naskh Arabic",serif'
+ };
+ const rMap={
+  alegreya:'Alegreya,Manrope,serif',
+  manrope:'Manrope,system-ui,sans-serif',
+  lora:'Lora,Alegreya,serif',
+  merriweather:'Merriweather,Alegreya,serif',
+  poppins:'Poppins,Manrope,sans-serif'
+ };
+ if(!aMap[arabicFont])arabicFont="noto";if(!rMap[romanFont])romanFont="alegreya";
+ document.documentElement.style.setProperty("--arabic-reader-font",aMap[arabicFont]);
+ document.documentElement.style.setProperty("--roman-reader-font",rMap[romanFont]);
+ if(save){localStorage.setItem("duaArabicFont",arabicFont);localStorage.setItem("duaRomanFont",romanFont)}
+ document.querySelectorAll("[data-arabic-font]").forEach(b=>b.classList.toggle("active",b.dataset.arabicFont===arabicFont));
+ document.querySelectorAll("[data-roman-font]").forEach(b=>b.classList.toggle("active",b.dataset.romanFont===romanFont));
+}
 function syncSettings(){
  $("#settingSound").textContent=soundOn?"ON":"OFF";$("#settingSound").classList.toggle("on",soundOn);
  $("#settingView").textContent=viewMode==="full"?"FULL":viewMode==="arabicroman"?"A+R":"ARABIC";$("#settingView").classList.add("on");
  document.querySelectorAll("[data-app-theme]").forEach(b=>b.classList.toggle("active",b.dataset.appTheme===appTheme));
  document.querySelectorAll("[data-fx]").forEach(b=>b.classList.toggle("active",b.dataset.fx===pageFx));
  if($("#fontRange")){$("#fontRange").value=Math.round(readerScale*100);$("#fontValue").textContent=Math.round(readerScale*100)+"%"}
+ applyReaderFonts(false)
 }
 function updateContinue(){
  const raw=localStorage.getItem("duaLast"),i=raw===null?-1:Number(raw),box=$("#continueCard");
@@ -590,6 +695,8 @@ $("#themeGrid").onclick=e=>{const b=e.target.closest("[data-app-theme]");if(!b)r
 $("#fxGrid").onclick=e=>{const b=e.target.closest("[data-fx]");if(!b)return;applyPageFx(b.dataset.fx);toast((b.querySelector("b")?.textContent||"")+" effect");haptic()};
 $("#fontRange").oninput=e=>setReaderScale(Number(e.target.value)/100);
 $("#fontRange").onchange=e=>{setReaderScale(Number(e.target.value)/100);haptic()};
+$("#arabicFontGrid").onclick=e=>{const b=e.target.closest("[data-arabic-font]");if(!b)return;arabicFont=b.dataset.arabicFont;applyReaderFonts();if(reader.classList.contains("open"))renderPage();toast(b.querySelector("b").textContent+" applied");haptic(true)};
+$("#romanFontGrid").onclick=e=>{const b=e.target.closest("[data-roman-font]");if(!b)return;romanFont=b.dataset.romanFont;applyReaderFonts();if(reader.classList.contains("open"))renderPage();toast(b.querySelector("b").textContent+" applied");haptic(true)};
 window.addEventListener("online",updateNetwork);window.addEventListener("offline",updateNetwork);
 window.addEventListener("beforeinstallprompt",e=>{e.preventDefault();deferredInstall=e;$("#installBtn").classList.add("show")});
 $("#installBtn").onclick=async()=>{if(!deferredInstall){toast("Install option browser support par depend karta hai");return}deferredInstall.prompt();await deferredInstall.userChoice;deferredInstall=null;$("#installBtn").classList.remove("show")};
@@ -622,7 +729,7 @@ page.addEventListener("touchend",e=>{
  if(dragging&&Math.abs(dx)>55&&Math.abs(dx)>Math.abs(dy)*1.2)go(dx<0?1:-1);
  dragging=false;
 },{passive:true});
-applyAppTheme(appTheme,false);applyPageFx(pageFx,false);setReaderScale(readerScale,false);
+applyAppTheme(appTheme,false);applyPageFx(pageFx,false);setReaderScale(readerScale,false);applyReaderFonts(false);
 updateContinue();renderCards();renderRecent();updateStats();pickNow();updateNetwork();syncSettings();
 $("#soundToggle").textContent=soundOn?"♪":"×";
 setTimeout(()=>$("#splash").classList.add("hide"),2200);
