@@ -619,6 +619,73 @@ body[data-app-theme="islamic"] .cardMark:after{background:#0b1511}
   .card .tag{margin-bottom:5px}
 }
 
+
+/* ===== TRUE COMPACT LIST V2 ===== */
+.cards{gap:7px!important}
+.card.compactCard{
+  display:grid!important;
+  grid-template-columns:38px minmax(0,1fr) 48px!important;
+  align-items:center!important;
+  gap:10px!important;
+  min-height:78px!important;
+  height:auto!important;
+  padding:9px 10px!important;
+  border-radius:18px!important;
+  overflow:hidden!important;
+  justify-content:initial!important;
+}
+.card.compactCard:after{inset:3px!important;border-radius:15px!important}
+.duaGlyph{
+  width:36px;height:36px;border-radius:12px;display:grid;place-items:center;
+  background:color-mix(in srgb,var(--gold) 10%,var(--surface2));
+  color:var(--gold2);font-size:15px;border:1px solid color-mix(in srgb,var(--gold) 14%,transparent);
+  box-shadow:inset 0 1px rgba(255,255,255,.035);
+}
+.duaCardText{min-width:0}
+.duaMeta{
+  font-size:6.8px;line-height:1;text-transform:uppercase;letter-spacing:.55px;
+  color:color-mix(in srgb,var(--gold) 78%,var(--muted));font-weight:800;
+  margin-bottom:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis
+}
+.card.compactCard h4{
+  margin:0!important;font-size:17px!important;line-height:1.05!important;
+  white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important
+}
+.card.compactCard p{
+  margin:4px 0 0!important;font-size:7.8px!important;line-height:1.1!important;
+  white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;color:var(--muted)!important
+}
+.duaCardActions{
+  height:54px;display:grid;grid-template-rows:22px 28px;align-items:center;justify-items:center
+}
+.card.compactCard .fav{
+  position:static!important;width:28px;height:22px;padding:0!important;font-size:14px!important;
+  display:grid;place-items:center
+}
+.card.compactCard .arrow{
+  position:static!important;width:28px!important;height:28px!important;border-radius:9px!important;
+  display:grid;place-items:center;font-size:13px!important
+}
+/* old ornament pieces hidden in compact mode */
+.card.compactCard .cardMark,.card.compactCard .cardCorner,.card.compactCard .tag{display:none!important}
+body[data-app-theme="duo"] .duaGlyph{background:#171813;color:#f0c86e;border-color:#24251f}
+body[data-app-theme="minimal"] .duaGlyph{background:#f1efe9;color:#222;border-color:#e1ded5}
+body[data-app-theme="amoled"] .duaGlyph{background:#0b0b0b;color:#ff9cbe;border-color:#171717}
+body[data-app-theme="noor"] .duaGlyph{background:#181d34;color:#f3c86e;border-color:#252b4b}
+body[data-app-theme="islamic"] .duaGlyph{background:#12231d;color:#e4c977;border-color:#1d352c}
+@media(max-width:560px){
+  .card.compactCard{
+    grid-template-columns:34px minmax(0,1fr) 44px!important;
+    gap:8px!important;min-height:72px!important;padding:8px 9px!important
+  }
+  .duaGlyph{width:32px;height:32px;border-radius:10px;font-size:13px}
+  .card.compactCard h4{font-size:16px!important}
+  .card.compactCard p{font-size:7.4px!important;margin-top:3px!important}
+  .duaMeta{font-size:6.4px;margin-bottom:3px}
+  .duaCardActions{height:50px;grid-template-rows:20px 26px}
+  .card.compactCard .arrow{width:26px!important;height:26px!important}
+}
+
 </style>
 </head>
 <body class="noise">
@@ -902,7 +969,7 @@ function renderCards(){
  }).map(x=>x.i);
  const rank=t=>{const n=FEATURED.indexOf(t);return n<0?999:n};filtered.sort((a,b)=>rank(D[a].title)-rank(D[b].title));
  $("#count").textContent=filtered.length+" duas";
- cards.innerHTML=filtered.length?filtered.map(i=>{const d=D[i];return `<article class="card" data-i="${i}"><span class="cardMark" aria-hidden="true"></span><span class="cardCorner" aria-hidden="true"></span><button class="fav ${favs.has(i)?"on":""}" data-fav="${i}">♥</button><span class="tag">${d.tag}</span><h4 title="${d.title}">${d.title}</h4><p title="${d.when}">${d.when}</p><span class="arrow">›</span></article>`}).join(""):`<div class="emptyState">Yahan abhi koi dua nahi mili. Search ya category change kijiye.</div>`;
+ cards.innerHTML=filtered.length?filtered.map(i=>{const d=D[i];const sym=d.cat.includes("quran")?"۞":d.cat.includes("salah")?"☾":d.cat.includes("travel")?"➜":d.cat.includes("health")?"✚":"✦";return `<article class="card compactCard" data-i="${i}"><span class="duaGlyph" aria-hidden="true">${sym}</span><div class="duaCardText"><div class="duaMeta">${d.tag}</div><h4 title="${d.title}">${d.title}</h4><p title="${d.when}">${d.when}</p></div><div class="duaCardActions"><button class="fav ${favs.has(i)?"on":""}" data-fav="${i}">♥</button><span class="arrow">›</span></div></article>`}).join(""):`<div class="emptyState">Yahan abhi koi dua nahi mili. Search ya category change kijiye.</div>`;
  renderSearchResults();updateContinue();
 }
 function renderPage(){
