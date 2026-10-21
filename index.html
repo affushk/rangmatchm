@@ -834,6 +834,18 @@ body[data-app-theme="islamic"] .duaGlyph{background:#12231d;color:#e4c977;border
   }
 }
 
+
+/* ===== ADAPTIVE BOOK HEIGHT V3 ===== */
+.book{transition:height .22s ease,transform .58s cubic-bezier(.2,.75,.2,1)!important}
+.page{scrollbar-width:thin;scrollbar-color:color-mix(in srgb,var(--gold) 35%,transparent) transparent}
+.page::-webkit-scrollbar{width:3px}
+.page::-webkit-scrollbar-thumb{background:color-mix(in srgb,var(--gold) 35%,transparent);border-radius:999px}
+@media(max-width:560px){
+  .readerTools,.readerBottom{flex-wrap:nowrap!important}
+  .readerTools{overflow-x:auto!important;justify-content:flex-start!important;padding-left:2px!important}
+  .readerBottom{justify-content:center!important}
+}
+
 </style>
 </head>
 <body class="noise">
@@ -933,7 +945,7 @@ body[data-app-theme="islamic"] .duaGlyph{background:#12231d;color:#e4c977;border
 
 <div class="readerOverlay" id="reader">
   <div class="readerShell">
-    <div class="readerTop">
+    <div class="readerTop" id="readerTop">
       <div class="title"><h3 id="readerTitle">Dua</h3><small id="readerSub">Book Reader</small></div>
       <div class="readerActions">
         <button class="rBtn" id="themeBtn">◐</button>
@@ -947,7 +959,7 @@ body[data-app-theme="islamic"] .duaGlyph{background:#12231d;color:#e4c977;border
         <button data-app-theme="noor">Noor Royal</button>
       </div>
     </div>
-    <div class="bookProgress"><i id="bookProgress"></i></div>
+    <div class="bookProgress" id="bookProgressWrap"><i id="bookProgress"></i></div>
     <div class="bookWrap">
       <div class="book theme-classic" id="book">
         <div class="bookmarkRibbon" id="bookmarkRibbon"></div>
@@ -956,13 +968,13 @@ body[data-app-theme="islamic"] .duaGlyph{background:#12231d;color:#e4c977;border
         <div class="pageEdge"></div>
       </div>
     </div>
-    <div class="readerTools">
+    <div class="readerTools" id="readerTools">
       <button class="toolBtn" id="listenBtn">🔊 Listen</button>
       <button class="toolBtn" id="viewBtn">Aa Full</button>
       <button class="toolBtn" id="readerFav">♡ Favorite</button>
       <button class="toolBtn" id="shareBtn">↗ Share</button>
     </div>
-    <div class="readerBottom">
+    <div class="readerBottom" id="readerBottom">
       <button class="navBtn" id="prev">← Previous</button>
       <span class="hint">Swipe pages</span>
       <button class="navBtn" id="next">Next →</button>
@@ -1121,6 +1133,18 @@ function renderCards(){
  cards.innerHTML=filtered.length?filtered.map(i=>{const d=D[i];const sym=d.cat.includes("quran")?"۞":d.cat.includes("salah")?"☾":d.cat.includes("travel")?"➜":d.cat.includes("health")?"✚":"✦";return `<article class="card compactCard" data-i="${i}"><span class="duaGlyph" aria-hidden="true">${sym}</span><div class="duaCardText"><div class="duaMeta">${d.tag}</div><h4 title="${d.title}">${d.title}</h4><p title="${d.when}">${d.when}</p></div><div class="duaCardActions"><button class="fav ${favs.has(i)?"on":""}" data-fav="${i}">♥</button><span class="arrow">›</span></div></article>`}).join(""):`<div class="emptyState">Yahan abhi koi dua nahi mili. Search ya category change kijiye.</div>`;
  renderSearchResults();updateContinue();
 }
+function fitBookToContent(){
+  requestAnimationFrame(()=>{
+    const vh=(window.visualViewport&&window.visualViewport.height)||window.innerHeight;
+    const chrome=($("#readerTop")?.offsetHeight||0)+($("#bookProgress")?.offsetHeight||0)+($("#readerTools")?.offsetHeight||0)+($("#readerBottom")?.offsetHeight||0)+36;
+    const maxH=Math.max(360,Math.min(760,vh-chrome));
+    book.style.setProperty("height","1px","important");
+    const natural=Math.max(0,page.scrollHeight+4);
+    const target=Math.max(340,Math.min(natural,maxH));
+    book.style.setProperty("height",target+"px","important");
+    page.scrollTop=0;
+  });
+}
 function renderPage(){
  page.scrollTop=0;
  const d=D[current]; $("#readerTitle").textContent=d.title;$("#readerSub").textContent=d.when;
@@ -1139,6 +1163,7 @@ function renderPage(){
  $("#readerFav").textContent=(favs.has(current)?"♥":"♡")+" Favorite";$("#readerFav").classList.toggle("on",favs.has(current));
  $("#bookmarkRibbon").classList.toggle("show",favs.has(current));
  $("#bookProgress").style.width=((current+1)/D.length*100).toFixed(1)+"%";
+ fitBookToContent();
  localStorage.setItem("duaLast",String(current)); updateContinue();
 }
 
@@ -1313,6 +1338,8 @@ page.addEventListener("touchend",e=>{
 applyAppTheme(appTheme,false);applyPageFx(pageFx,false);setReaderScale(readerScale,false);applyReaderFonts(false);
 updateContinue();renderCards();renderRecent();updateStats();pickNow();updateNetwork();syncSettings();
 setTimeout(()=>$("#splash").classList.add("hide"),2200);
+window.addEventListener("resize",()=>{if(reader.classList.contains("open"))fitBookToContent()});
+if(window.visualViewport)visualViewport.addEventListener("resize",()=>{if(reader.classList.contains("open"))fitBookToContent()});
 if("serviceWorker" in navigator)navigator.serviceWorker.register("sw.js").catch(()=>{});
 </script>
 </body>
