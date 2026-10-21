@@ -686,6 +686,59 @@ body[data-app-theme="islamic"] .duaGlyph{background:#12231d;color:#e4c977;border
   .card.compactCard .arrow{width:26px!important;height:26px!important}
 }
 
+
+/* ===== SETTINGS SCROLL BUG FIX ===== */
+.settingsSheet{
+  overflow:hidden;
+  touch-action:none;
+}
+.settingsPanel{
+  max-height:min(92dvh,820px)!important;
+  overflow-y:auto!important;
+  overflow-x:hidden!important;
+  overscroll-behavior:contain;
+  -webkit-overflow-scrolling:touch;
+  touch-action:pan-y!important;
+  scrollbar-width:thin;
+  scrollbar-color:color-mix(in srgb,var(--gold) 45%,transparent) transparent;
+  padding-bottom:calc(28px + env(safe-area-inset-bottom))!important;
+}
+.settingsPanel::-webkit-scrollbar{width:4px}
+.settingsPanel::-webkit-scrollbar-track{background:transparent}
+.settingsPanel::-webkit-scrollbar-thumb{
+  background:color-mix(in srgb,var(--gold) 45%,transparent);
+  border-radius:999px
+}
+.sheetTop{
+  position:sticky!important;
+  top:-17px;
+  z-index:15;
+  margin:-17px -15px 7px;
+  padding:17px 15px 11px;
+  background:linear-gradient(180deg,var(--panel) 76%,color-mix(in srgb,var(--panel) 92%,transparent));
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--line);
+}
+.settingsScrollHint{
+  position:sticky;
+  bottom:0;
+  z-index:10;
+  text-align:center;
+  padding:8px 8px 3px;
+  margin-top:7px;
+  font-size:7.5px;
+  color:var(--muted);
+  background:linear-gradient(0deg,var(--panel) 58%,transparent);
+  pointer-events:none;
+}
+@media(max-width:560px){
+  .settingsPanel{
+    max-height:88dvh!important;
+    border-radius:22px 22px 0 0!important;
+  }
+  .sheetTop{top:-17px}
+}
+
 </style>
 </head>
 <body class="noise">
@@ -873,6 +926,7 @@ body[data-app-theme="islamic"] .duaGlyph{background:#12231d;color:#e4c977;border
         <button class="fxCard" data-fx="zoom"><b>Focus Zoom</b><small>Modern zoom transition</small></button>
       </div>
     </div>
+    <div class="settingsScrollHint">↑ Swipe up/down • aur settings neeche hain</div>
     <button class="installBtn" id="installBtn">＋ Install Noor Dua Book</button>
   </div>
 </div>
@@ -1106,9 +1160,20 @@ $("#searchResults").onclick=e=>{const b=e.target.closest("[data-search-i]");if(!
 document.addEventListener("click",e=>{if(!e.target.closest(".searchWrap"))$("#searchResults").classList.remove("open")});
 $("#nowGo").onclick=e=>openReader(Number(e.currentTarget.dataset.i));
 $("#recentList").onclick=e=>{const b=e.target.closest("[data-recent]");if(b)openReader(Number(b.dataset.recent))};
-$("#settingsBtn").onclick=()=>{$("#settingsSheet").classList.add("open");syncSettings();haptic()};
-$("#sheetClose").onclick=()=>$("#settingsSheet").classList.remove("open");
-$("#settingsSheet").onclick=e=>{if(e.target===$("#settingsSheet"))$("#settingsSheet").classList.remove("open")};
+function openSettings(){
+ $("#settingsSheet").classList.add("open");
+ document.body.dataset.settingsOpen="1";
+ document.body.style.overflow="hidden";
+ syncSettings();haptic();
+}
+function closeSettings(){
+ $("#settingsSheet").classList.remove("open");
+ delete document.body.dataset.settingsOpen;
+ if(!reader.classList.contains("open"))document.body.style.overflow="";
+}
+$("#settingsBtn").onclick=openSettings;
+$("#sheetClose").onclick=closeSettings;
+$("#settingsSheet").onclick=e=>{if(e.target===$("#settingsSheet"))closeSettings()};
 $("#settingSound").onclick=toggleSound;
 $("#settingView").onclick=()=>{$("#viewBtn").click();syncSettings()};
 $("#themeGrid").onclick=e=>{const b=e.target.closest("[data-app-theme]");if(!b)return;applyAppTheme(b.dataset.appTheme);toast((b.querySelector("b")?.textContent||"")+" theme");haptic(true)};
@@ -1126,9 +1191,9 @@ $("#listenBtn").onclick=speakCurrent;
 $("#shareBtn").onclick=shareCurrent;
 $("#readerFav").onclick=()=>{favs.has(current)?favs.delete(current):favs.add(current);localStorage.setItem("duaFavs",JSON.stringify([...favs]));renderPage();renderCards();haptic()};
 $("#viewBtn").onclick=()=>{viewMode=viewMode==="full"?"arabicroman":viewMode==="arabicroman"?"arabic":"full";localStorage.setItem("duaViewMode",viewMode);renderPage();syncSettings();haptic()};
-$("#themeBtn").onclick=()=>{$("#settingsSheet").classList.add("open");syncSettings();haptic()};
+$("#themeBtn").onclick=openSettings;
 $("#themeMenu").onclick=e=>{const b=e.target.closest("[data-app-theme]");if(!b)return;applyAppTheme(b.dataset.appTheme);$("#themeMenu").classList.remove("open");toast(b.textContent+" theme");haptic(true)};
-$("#fontBtn").onclick=()=>{$("#settingsSheet").classList.add("open");setTimeout(()=>$("#fontRange").focus(),100);haptic()};
+$("#fontBtn").onclick=()=>{openSettings();setTimeout(()=>$("#fontRange").focus(),100)};
 let sx=0,sy=0,dragging=false;
 page.addEventListener("touchstart",e=>{sx=e.touches[0].clientX;sy=e.touches[0].clientY;dragging=false},{passive:true});
 page.addEventListener("touchmove",e=>{
