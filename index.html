@@ -980,6 +980,138 @@ body[data-app-theme="islamic"] .duaGlyph{background:#12231d;color:#e4c977;border
   .readerShell{max-height:calc(100dvh - 6px)!important}
 }
 
+
+/* ===== PREMIUM SETTINGS SIDEBAR + GPT DARK ===== */
+.settingsSheet{
+  position:fixed!important;inset:0!important;z-index:90!important;
+  display:block!important;background:rgba(0,0,0,.48)!important;
+  backdrop-filter:blur(8px)!important;
+  opacity:0!important;visibility:hidden!important;pointer-events:none!important;
+  transition:opacity .28s ease,visibility .28s ease!important;
+}
+.settingsSheet.open{opacity:1!important;visibility:visible!important;pointer-events:auto!important}
+.settingsPanel{
+  position:absolute!important;right:0!important;top:0!important;bottom:0!important;
+  width:min(460px,92vw)!important;height:100dvh!important;max-height:none!important;
+  margin:0!important;border-radius:26px 0 0 26px!important;
+  border:1px solid var(--line)!important;border-right:0!important;
+  padding:0 16px 28px!important;overflow-y:auto!important;overflow-x:hidden!important;
+  transform:translateX(104%)!important;
+  transition:transform .34s cubic-bezier(.2,.85,.2,1)!important;
+  box-shadow:-28px 0 80px rgba(0,0,0,.38)!important;
+  overscroll-behavior:contain!important;-webkit-overflow-scrolling:touch!important;
+}
+.settingsSheet.open .settingsPanel{transform:translateX(0)!important}
+.sheetTop{
+  position:sticky!important;top:0!important;z-index:20!important;
+  margin:0 -16px!important;padding:16px!important;
+  min-height:78px!important;background:color-mix(in srgb,var(--panel) 94%,transparent)!important;
+  backdrop-filter:blur(20px)!important;border-bottom:1px solid var(--line)!important;
+}
+.settingsBrand{display:flex;align-items:center;gap:11px}
+.settingsBrandIcon{
+  width:38px;height:38px;border-radius:13px;display:grid;place-items:center;
+  background:linear-gradient(145deg,var(--surface2),var(--panel2));
+  color:var(--gold2);border:1px solid color-mix(in srgb,var(--gold) 22%,transparent);
+  box-shadow:inset 0 1px rgba(255,255,255,.04)
+}
+.settingsBrand h3{margin:0!important;font-size:20px!important}
+.settingsBrand small{display:block;color:var(--muted);font-size:8px;margin-top:2px}
+.sheetClose{width:38px!important;height:38px!important;border-radius:13px!important}
+.settingsNav{
+  position:sticky;top:78px;z-index:18;display:flex;gap:6px;overflow-x:auto;
+  margin:0 -16px 14px;padding:9px 16px;background:color-mix(in srgb,var(--panel) 92%,transparent);
+  backdrop-filter:blur(18px);border-bottom:1px solid var(--line);scrollbar-width:none
+}
+.settingsNav::-webkit-scrollbar{display:none}
+.settingsNav button{
+  flex:0 0 auto;border:1px solid var(--line);background:var(--surface2);color:var(--muted);
+  border-radius:999px;padding:8px 11px;font-size:8px;font-weight:800;transition:.2s
+}
+.settingsNav button.active{color:var(--gold2);border-color:color-mix(in srgb,var(--gold) 30%,transparent);background:color-mix(in srgb,var(--gold) 8%,var(--surface2))}
+.settingsSection{
+  margin:0 0 12px;padding:13px;border:1px solid var(--line);border-radius:18px;
+  background:color-mix(in srgb,var(--surface) 88%,transparent)
+}
+.settingsSectionTitle{display:flex;align-items:center;gap:10px;padding-bottom:10px;border-bottom:1px solid var(--line);margin-bottom:4px}
+.settingsSectionTitle>span{
+  width:29px;height:29px;border-radius:9px;display:grid;place-items:center;
+  background:var(--surface2);color:var(--gold2);font-size:7px;font-weight:900;border:1px solid var(--line)
+}
+.settingsSectionTitle b{font-size:11px}.settingsSectionTitle small{display:block;color:var(--muted);font-size:7.5px;margin-top:2px}
+.settingsSection .settingRow{padding:11px 0!important}
+.settingStack{display:block!important}
+.settingsSection .themeGrid,.settingsSection .fontGrid,.settingsSection .fxGrid{margin-top:10px}
+.settingsInstall{margin-bottom:4px}
+.settingsInstall .installBtn{display:block!important}
+.settingsBtn{
+  width:48px!important;height:48px!important;border-radius:16px!important;
+  box-shadow:0 16px 38px rgba(0,0,0,.28)!important
+}
+
+/* GPT-style graphite dark theme */
+body[data-app-theme="gpt"]{
+  --bg:#212121;--panel:#262626;--panel2:#303030;--gold:#10a37f;--gold2:#7fe3c4;
+  --muted:#a9a9a9;--accent:#10a37f;--line:rgba(255,255,255,.09);--surface:#2a2a2a;--surface2:#333333;
+  background:radial-gradient(circle at 88% 0%,rgba(16,163,127,.08),transparent 24%),#212121;
+  color:#ececec
+}
+body[data-app-theme="gpt"] .topbar:after{background:linear-gradient(180deg,rgba(33,33,33,.98),rgba(33,33,33,.88))}
+body[data-app-theme="gpt"] .hero{
+  background:linear-gradient(145deg,#2f2f2f,#262626);border-color:rgba(255,255,255,.08);
+  box-shadow:0 18px 50px rgba(0,0,0,.18)
+}
+body[data-app-theme="gpt"] .hero h2,body[data-app-theme="gpt"] .brand h1,body[data-app-theme="gpt"] .sectionHead h3{color:#f4f4f4!important}
+body[data-app-theme="gpt"] .hero p,body[data-app-theme="gpt"] .brand small{color:#aaa!important}
+body[data-app-theme="gpt"] .search{background:#303030;border-color:rgba(255,255,255,.09)}
+body[data-app-theme="gpt"] .search input{color:#f4f4f4}
+body[data-app-theme="gpt"] .search input::placeholder{color:#8e8e8e}
+body[data-app-theme="gpt"] .card,
+body[data-app-theme="gpt"] .continueCard,
+body[data-app-theme="gpt"] .nowCard,
+body[data-app-theme="gpt"] .stat,
+body[data-app-theme="gpt"] .recentChip,
+body[data-app-theme="gpt"] .trustCard{
+  background:#2a2a2a!important;color:#ececec!important;border-color:rgba(255,255,255,.075)!important;box-shadow:none!important
+}
+body[data-app-theme="gpt"] .card h4,body[data-app-theme="gpt"] .continueCard h4,body[data-app-theme="gpt"] .nowCard h4,body[data-app-theme="gpt"] .recentChip b{color:#f2f2f2!important}
+body[data-app-theme="gpt"] .card p,body[data-app-theme="gpt"] .continueCard p,body[data-app-theme="gpt"] .nowCard p,body[data-app-theme="gpt"] .recentChip span{color:#aaa!important}
+body[data-app-theme="gpt"] .quick button{background:#2a2a2a;color:#bdbdbd;border-color:rgba(255,255,255,.08)}
+body[data-app-theme="gpt"] .quick button.active{background:#343434;color:#7fe3c4;border-color:rgba(16,163,127,.32)}
+body[data-app-theme="gpt"] .duaGlyph{background:#333;color:#7fe3c4;border-color:rgba(16,163,127,.18)}
+body[data-app-theme="gpt"] .settingsBtn{background:#303030;color:#7fe3c4;border-color:rgba(255,255,255,.09)}
+body[data-app-theme="gpt"] .settingsPanel{background:#212121!important;color:#ececec!important}
+body[data-app-theme="gpt"] .settingsSection{background:#282828;border-color:rgba(255,255,255,.08)}
+body[data-app-theme="gpt"] .themeCard,
+body[data-app-theme="gpt"] .fontCard,
+body[data-app-theme="gpt"] .fxCard,
+body[data-app-theme="gpt"] .switch{background:#303030;color:#ececec;border-color:rgba(255,255,255,.08)}
+body[data-app-theme="gpt"] .readerOverlay{background:rgba(20,20,20,.94)}
+body[data-app-theme="gpt"] .readerTop{color:#ececec}
+body[data-app-theme="gpt"] .page{
+  background:#2b2b2b;color:#ececec;
+  box-shadow:0 24px 65px rgba(0,0,0,.38),inset 0 0 0 1px rgba(255,255,255,.06)
+}
+body[data-app-theme="gpt"] .page:before{border-color:rgba(16,163,127,.10)}
+body[data-app-theme="gpt"] .arabic{color:#f6f6f6}
+body[data-app-theme="gpt"] .roman{color:#e2e2e2}
+body[data-app-theme="gpt"] .meaningCard{background:#303030;border-color:rgba(16,163,127,.16)}
+body[data-app-theme="gpt"] .meaningText{color:#d6d6d6}
+body[data-app-theme="gpt"] .meaningLabel,
+body[data-app-theme="gpt"] .meaningKanz,
+body[data-app-theme="gpt"] .pageNo,
+body[data-app-theme="gpt"] .sourceBox{color:#7fe3c4}
+body[data-app-theme="gpt"] .when{color:#bfeedd;background:rgba(16,163,127,.09);border-color:rgba(16,163,127,.14)}
+body[data-app-theme="gpt"] .toolBtn,
+body[data-app-theme="gpt"] .navBtn,
+body[data-app-theme="gpt"] .rBtn{background:#303030;color:#ececec;border-color:rgba(255,255,255,.08)}
+
+@media(max-width:560px){
+  .settingsPanel{width:94vw!important;border-radius:24px 0 0 24px!important}
+  .settingsSection{padding:11px;border-radius:16px}
+  .settingsNav{top:78px}
+}
+
 </style>
 </head>
 <body class="noise">
@@ -1117,59 +1249,86 @@ body[data-app-theme="islamic"] .duaGlyph{background:#12231d;color:#e4c977;border
 </div>
 <button class="settingsBtn" id="settingsBtn" aria-label="Settings">⚙</button>
 <div class="settingsSheet" id="settingsSheet">
-  <div class="settingsPanel">
-    <div class="sheetTop"><h3>Noor Dua Settings</h3><button class="sheetClose" id="sheetClose">✕</button></div>
-    <div class="settingRow"><div><b>Touch sound + haptic</b><small>Buttons aur page turn par soft feedback</small></div><button class="switch" id="settingSound">ON</button></div>
-    <div class="settingRow"><div><b>Reading mode</b><small>Full / Arabic+Roman / Arabic only</small></div><button class="switch" id="settingView">FULL</button></div>
-    <div class="settingRow" style="display:block">
-      <div><b>Full App Theme</b><small>Home, cards, reader aur settings — sab ek saath change honge</small></div>
+  <aside class="settingsPanel" aria-label="Noor Dua settings">
+    <div class="sheetTop">
+      <div class="settingsBrand">
+        <div class="settingsBrandIcon">✦</div>
+        <div><h3>Noor Control Center</h3><small>All settings • one premium sidebar</small></div>
+      </div>
+      <button class="sheetClose" id="sheetClose">✕</button>
+    </div>
+
+    <nav class="settingsNav" id="settingsNav">
+      <button data-settings-target="settingsExperience" class="active">General</button>
+      <button data-settings-target="settingsAppearance">Themes</button>
+      <button data-settings-target="settingsTypography">Fonts</button>
+      <button data-settings-target="settingsMotion">Motion</button>
+    </nav>
+
+    <section class="settingsSection" id="settingsExperience">
+      <div class="settingsSectionTitle"><span>01</span><div><b>Experience</b><small>Reading aur touch controls</small></div></div>
+      <div class="settingRow"><div><b>Touch sound + haptic</b><small>Buttons aur page turn par soft feedback</small></div><button class="switch" id="settingSound">ON</button></div>
+      <div class="settingRow"><div><b>Reading mode</b><small>Full / Arabic+Roman / Arabic only</small></div><button class="switch" id="settingView">FULL</button></div>
+    </section>
+
+    <section class="settingsSection" id="settingsAppearance">
+      <div class="settingsSectionTitle"><span>02</span><div><b>Full App Theme</b><small>Home, reader, cards aur sidebar sab change honge</small></div></div>
       <div class="themeGrid" id="themeGrid">
+        <button class="themeCard" data-app-theme="gpt"><span class="swatches"><i style="background:#212121"></i><i style="background:#2f2f2f"></i><i style="background:#10a37f"></i></span><b>GPT Dark</b><small>Graphite • soft mint • premium dark</small></button>
         <button class="themeCard" data-app-theme="amoled"><span class="swatches"><i style="background:#000"></i><i style="background:#ff78ad"></i><i style="background:#fff"></i></span><b>AMOLED</b><small>Pure black • pink glow</small></button>
         <button class="themeCard" data-app-theme="minimal"><span class="swatches"><i style="background:#fff"></i><i style="background:#efeee9"></i><i style="background:#222"></i></span><b>Minimal</b><small>Clean • light • distraction-free</small></button>
         <button class="themeCard" data-app-theme="islamic"><span class="swatches"><i style="background:#07100d"></i><i style="background:#2f8d71"></i><i style="background:#d9b86a"></i></span><b>Islamic</b><small>Emerald • gold • classic</small></button>
         <button class="themeCard" data-app-theme="noor"><span class="swatches"><i style="background:#0a0d1a"></i><i style="background:#8b76e8"></i><i style="background:#f3c86e"></i></span><b>Noor Royal</b><small>Navy • violet • gold</small></button>
         <button class="themeCard" data-app-theme="duo"><span class="swatches"><i style="background:#f2eee5"></i><i style="background:#151612"></i><i style="background:#c89a42"></i></span><b>Ivory Noir</b><small>Light + dark • premium contrast</small></button>
       </div>
-    </div>
-    <div class="settingRow" style="display:block">
-      <div><b>Reader Font Size</b><small>Arabic, Roman Urdu aur meaning ko ek saath bada/chhota kijiye</small></div>
-      <div class="rangeWrap"><div class="rangeLine"><span></span><span class="rangeValue" id="fontValue">100%</span></div>
-        <input class="fontRange" id="fontRange" type="range" min="75" max="155" step="5" value="100">
-        <div class="rangeScale"><span>Small</span><span>Normal</span><span>Large</span></div>
+    </section>
+
+    <section class="settingsSection" id="settingsTypography">
+      <div class="settingsSectionTitle"><span>03</span><div><b>Typography</b><small>Reader size aur font families</small></div></div>
+      <div class="settingRow settingStack">
+        <div><b>Reader Font Size</b><small>Arabic, Roman Urdu aur meaning ko ek saath bada/chhota kijiye</small></div>
+        <div class="rangeWrap"><div class="rangeLine"><span></span><span class="rangeValue" id="fontValue">100%</span></div>
+          <input class="fontRange" id="fontRange" type="range" min="75" max="155" step="5" value="100">
+          <div class="rangeScale"><span>Small</span><span>Normal</span><span>Large</span></div>
+        </div>
       </div>
-    </div>
-    <div class="settingRow" style="display:block">
-      <div><b>Arabic Font Family</b><small>Jo Quran-style font padhne me sabse comfortable lage, wahi apply kijiye</small></div>
-      <div class="fontGrid" id="arabicFontGrid">
-        <button class="fontCard" data-arabic-font="noto"><b>Noto Naskh Arabic</b><span class="fontSampleArabic font-noto">بِسْمِ اللّٰهِ</span><small>Clear • balanced • easy reading</small></button>
-        <button class="fontCard" data-arabic-font="amiri"><b>Amiri Quran</b><span class="fontSampleArabic font-amiri">بِسْمِ اللّٰهِ</span><small>Traditional Quran feel</small></button>
-        <button class="fontCard" data-arabic-font="scheherazade"><b>Scheherazade New</b><span class="fontSampleArabic font-scheherazade">بِسْمِ اللّٰهِ</span><small>Elegant Naskh • spacious</small></button>
-        <button class="fontCard" data-arabic-font="lateef"><b>Lateef</b><span class="fontSampleArabic font-lateef">بِسْمِ اللّٰهِ</span><small>Soft handwritten Naskh feel</small></button>
-        <button class="fontCard" data-arabic-font="markazi"><b>Markazi Text</b><span class="fontSampleArabic font-markazi">بِسْمِ اللّٰهِ</span><small>Compact • bold • modern</small></button>
+      <div class="settingRow settingStack">
+        <div><b>Arabic Font Family</b><small>Quran-style font choose kijiye</small></div>
+        <div class="fontGrid" id="arabicFontGrid">
+          <button class="fontCard" data-arabic-font="noto"><b>Noto Naskh Arabic</b><span class="fontSampleArabic font-noto">بِسْمِ اللّٰهِ</span><small>Clear • balanced</small></button>
+          <button class="fontCard" data-arabic-font="amiri"><b>Amiri Quran</b><span class="fontSampleArabic font-amiri">بِسْمِ اللّٰهِ</span><small>Traditional Quran feel</small></button>
+          <button class="fontCard" data-arabic-font="scheherazade"><b>Scheherazade New</b><span class="fontSampleArabic font-scheherazade">بِسْمِ اللّٰهِ</span><small>Elegant Naskh</small></button>
+          <button class="fontCard" data-arabic-font="lateef"><b>Lateef</b><span class="fontSampleArabic font-lateef">بِسْمِ اللّٰهِ</span><small>Soft handwritten feel</small></button>
+          <button class="fontCard" data-arabic-font="markazi"><b>Markazi Text</b><span class="fontSampleArabic font-markazi">بِسْمِ اللّٰهِ</span><small>Compact • bold</small></button>
+        </div>
       </div>
-    </div>
-    <div class="settingRow" style="display:block">
-      <div><b>Roman Urdu Font Family</b><small>Tarjuma aur Roman reading ka style choose kijiye</small></div>
-      <div class="fontGrid" id="romanFontGrid">
-        <button class="fontCard" data-roman-font="alegreya"><b>Alegreya</b><span class="fontSampleRoman font-alegreya">Bismillahir Rahmanir Raheem</span><small>Book-like • elegant</small></button>
-        <button class="fontCard" data-roman-font="manrope"><b>Manrope</b><span class="fontSampleRoman font-manrope">Bismillahir Rahmanir Raheem</span><small>Modern • very clean</small></button>
-        <button class="fontCard" data-roman-font="lora"><b>Lora</b><span class="fontSampleRoman font-lora">Bismillahir Rahmanir Raheem</span><small>Premium reading serif</small></button>
-        <button class="fontCard" data-roman-font="merriweather"><b>Merriweather</b><span class="fontSampleRoman font-merriweather">Bismillahir Rahmanir Raheem</span><small>Comfortable long reading</small></button>
-        <button class="fontCard" data-roman-font="poppins"><b>Poppins</b><span class="fontSampleRoman font-poppins">Bismillahir Rahmanir Raheem</span><small>Simple • rounded • modern</small></button>
+      <div class="settingRow settingStack">
+        <div><b>Roman Urdu Font Family</b><small>Tarjuma aur Roman reading ka style</small></div>
+        <div class="fontGrid" id="romanFontGrid">
+          <button class="fontCard" data-roman-font="alegreya"><b>Alegreya</b><span class="fontSampleRoman font-alegreya">Bismillahir Rahmanir Raheem</span><small>Book-like • elegant</small></button>
+          <button class="fontCard" data-roman-font="manrope"><b>Manrope</b><span class="fontSampleRoman font-manrope">Bismillahir Rahmanir Raheem</span><small>Modern • clean</small></button>
+          <button class="fontCard" data-roman-font="lora"><b>Lora</b><span class="fontSampleRoman font-lora">Bismillahir Rahmanir Raheem</span><small>Premium serif</small></button>
+          <button class="fontCard" data-roman-font="merriweather"><b>Merriweather</b><span class="fontSampleRoman font-merriweather">Bismillahir Rahmanir Raheem</span><small>Long reading</small></button>
+          <button class="fontCard" data-roman-font="poppins"><b>Poppins</b><span class="fontSampleRoman font-poppins">Bismillahir Rahmanir Raheem</span><small>Rounded • modern</small></button>
+        </div>
       </div>
-    </div>
-    <div class="settingRow" style="display:block">
-      <div><b>Page Swipe Effect</b><small>Page badalte waqt animation style choose kijiye</small></div>
+    </section>
+
+    <section class="settingsSection" id="settingsMotion">
+      <div class="settingsSectionTitle"><span>04</span><div><b>Motion & Pages</b><small>Page transition customize kijiye</small></div></div>
       <div class="fxGrid" id="fxGrid">
-        <button class="fxCard" data-fx="flip"><b>Real Flip</b><small>Book page jaisa 3D turn</small></button>
-        <button class="fxCard" data-fx="slide"><b>Smooth Slide</b><small>Clean horizontal motion</small></button>
-        <button class="fxCard" data-fx="fade"><b>Soft Fade</b><small>Simple & calm transition</small></button>
-        <button class="fxCard" data-fx="zoom"><b>Focus Zoom</b><small>Modern zoom transition</small></button>
+        <button class="fxCard" data-fx="flip"><b>Real Flip</b><small>3D book page turn</small></button>
+        <button class="fxCard" data-fx="slide"><b>Smooth Slide</b><small>Horizontal motion</small></button>
+        <button class="fxCard" data-fx="fade"><b>Soft Fade</b><small>Calm transition</small></button>
+        <button class="fxCard" data-fx="zoom"><b>Focus Zoom</b><small>Modern zoom</small></button>
       </div>
-    </div>
-    <div class="settingsScrollHint">↑ Swipe up/down • aur settings neeche hain</div>
-    <button class="installBtn" id="installBtn">＋ Install Noor Dua Book</button>
-  </div>
+    </section>
+
+    <section class="settingsSection settingsInstall">
+      <div class="settingsSectionTitle"><span>05</span><div><b>App</b><small>Install aur offline experience</small></div></div>
+      <button class="installBtn" id="installBtn">＋ Install Noor Dua Book</button>
+    </section>
+  </aside>
 </div>
 <div class="toast" id="toast"></div>
 
@@ -1336,7 +1495,7 @@ function updateNetwork(){
  const on=navigator.onLine;$("#netText").textContent=on?"Online":"Offline";$("#netDot").classList.toggle("off",!on)
 }
 function applyAppTheme(theme,save=true){
- const allowed=["amoled","minimal","islamic","noor","duo"];appTheme=allowed.includes(theme)?theme:"islamic";
+ const allowed=["gpt","amoled","minimal","islamic","noor","duo"];appTheme=allowed.includes(theme)?theme:"islamic";
  document.body.dataset.appTheme=appTheme;if(save)localStorage.setItem("duaAppTheme",appTheme);
  document.querySelectorAll("[data-app-theme]").forEach(b=>b.classList.toggle("active",b.dataset.appTheme===appTheme));
  book.dataset.fx=pageFx;syncSettings();
@@ -1421,7 +1580,10 @@ function openSettings(){
  $("#settingsSheet").classList.add("open");
  document.body.dataset.settingsOpen="1";
  document.body.style.overflow="hidden";
- syncSettings();haptic();
+ syncSettings();
+ const p=document.querySelector(".settingsPanel");if(p)p.scrollTop=0;
+ document.querySelectorAll("#settingsNav button").forEach((x,i)=>x.classList.toggle("active",i===0));
+ haptic();
 }
 function closeSettings(){
  $("#settingsSheet").classList.remove("open");
@@ -1430,6 +1592,12 @@ function closeSettings(){
 }
 $("#settingsBtn").onclick=openSettings;
 $("#sheetClose").onclick=closeSettings;
+$("#settingsNav").onclick=e=>{
+ const b=e.target.closest("[data-settings-target]");if(!b)return;
+ const target=document.getElementById(b.dataset.settingsTarget);if(!target)return;
+ document.querySelectorAll("#settingsNav button").forEach(x=>x.classList.toggle("active",x===b));
+ target.scrollIntoView({behavior:"smooth",block:"start"});haptic();
+};
 $("#settingsSheet").onclick=e=>{if(e.target===$("#settingsSheet"))closeSettings()};
 $("#settingSound").onclick=toggleSound;
 $("#settingView").onclick=()=>{$("#viewBtn").click();syncSettings()};
