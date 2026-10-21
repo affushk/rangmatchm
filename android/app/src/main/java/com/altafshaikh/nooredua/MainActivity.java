@@ -12,6 +12,7 @@ import android.os.Vibrator;
 import android.provider.Settings;
 import android.speech.tts.TextToSpeech;
 import android.speech.tts.UtteranceProgressListener;
+import android.speech.tts.Voice;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
@@ -22,11 +23,13 @@ import android.view.WindowManager;
 
 import java.util.Locale;
 import java.util.UUID;
+import java.util.Set;
 
 public class MainActivity extends Activity {
     private WebView webView;
     private TextToSpeech tts;
     private boolean ttsReady = false;
+    private String voiceMode = "qari";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,9 +82,8 @@ public class MainActivity extends Activity {
         tts = new TextToSpeech(this, status -> {
             if (status == TextToSpeech.SUCCESS) {
                 ttsReady = true;
-                tts.setLanguage(new Locale("ar"));
-                tts.setSpeechRate(0.82f);
-                tts.setPitch(1.0f);
+                tts.setLanguage(new Locale("ar", "SA"));
+                applyVoiceProfile();
                 tts.setOnUtteranceProgressListener(new UtteranceProgressListener() {
                     @Override public void onStart(String utteranceId) {}
                     @Override public void onDone(String utteranceId) { speechDone(); }
@@ -89,6 +91,46 @@ public class MainActivity extends Activity {
                 });
             }
         });
+    }
+
+    private void applyVoiceProfile() {
+        if (tts == null) return;
+        try {
+            Voice best = null;
+            int bestScore = Integer.MIN_VALUE;
+            Set<Voice> voices = tts.getVoices();
+            if (voices != null) {
+                for (Voice v : voices) {
+                    Locale loc = v.getLocale();
+                    if (loc == null || !"ar".equalsIgnoreCase(loc.getLanguage())) continue;
+                    int score = v.getQuality() * 10;
+                    String country = loc.getCountry();
+                    if ("SA".equalsIgnoreCase(country)) score += 140;
+                    else if ("AE".equalsIgnoreCase(country) || "QA".equalsIgnoreCase(country)) score += 90;
+                    else if ("EG".equalsIgnoreCase(country)) score += 60;
+                    if (v.isNetworkConnectionRequired()) score += 22;
+                    String name = v.getName() == null ? "" : v.getName().toLowerCase(Locale.US);
+                    if (name.contains("male")) score += 35;
+                    if (name.contains("premium") || name.contains("neural") || name.contains("wavenet")) score += 55;
+                    if (score > bestScore) { bestScore = score; best = v; }
+                }
+            }
+            if (best != null) tts.setVoice(best);
+            else tts.setLanguage(new Locale("ar", "SA"));
+        } catch (Exception ignored) {
+            tts.setLanguage(new Locale("ar", "SA"));
+        }
+
+        if ("teacher".equals(voiceMode)) {
+            tts.setSpeechRate(0.86f);
+            tts.setPitch(1.00f);
+        } else if ("slow".equals(voiceMode)) {
+            tts.setSpeechRate(0.68f);
+            tts.setPitch(0.96f);
+        } else {
+            tts.setSpeechRate(0.78f);
+            tts.setPitch(0.92f);
+        }
     }
 
     private void speechDone() {
@@ -164,6 +206,16 @@ public class MainActivity extends Activity {
                 String id = "noor-" + UUID.randomUUID();
                 tts.stop();
                 tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, id);
+            });
+        }
+
+        @JavascriptInterface
+        public void setVoiceMode(String mode) {
+            runOnUiThread(() -> {
+                if ("teacher".equals(mode) || "slow".equals(mode) || "qari".equals(mode)) {
+                    voiceMode = mode;
+                    applyVoiceProfile();
+                }
             });
         }
 
