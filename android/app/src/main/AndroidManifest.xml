@@ -6,8 +6,8 @@
     <application
         android:allowBackup="true"
         android:label="Noor-e-Dua"
-        android:icon="@drawable/noor_icon"
-        android:roundIcon="@drawable/noor_icon"
+        android:icon="@drawable/noor_icon_exact"
+        android:roundIcon="@drawable/noor_icon_exact"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="false">
