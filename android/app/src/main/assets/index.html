@@ -1,0 +1,1714 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0b1612">
+<title>Noor-e-Dua — Designed by Altaf Shaikh</title>
+<link rel="manifest" href="app.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri+Quran&family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Scheherazade+New:wght@400;500;600;700&family=Lateef:wght@400;500;600;700&family=Markazi+Text:wght@400;500;600;700&family=Alegreya:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&family=Lora:wght@400;500;600;700&family=Merriweather:wght@400;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#07100d;--panel:#0d1814;--panel2:#12231d;--gold:#d9b86a;--gold2:#f2d98d;
+  --cream:#f6eddb;--paper:#fffaf0;--ink:#2d2118;--muted:#a8b3ad;--accent:#2f8d71;
+  --rose:#dc8ba6;--line:rgba(255,255,255,.08);--shadow:0 24px 70px rgba(0,0,0,.38);
+}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;background:
+ radial-gradient(circle at 12% 4%,rgba(47,141,113,.13),transparent 24%),
+ radial-gradient(circle at 92% 0%,rgba(217,184,106,.11),transparent 20%),
+ var(--bg);color:#fff;font-family:Manrope,system-ui,sans-serif}
+button,input{font:inherit}
+button{-webkit-tap-highlight-color:transparent}
+body{overflow-x:hidden}
+.noise:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.15;z-index:0;
+ background-image:radial-gradient(circle,rgba(255,255,255,.17) 1px,transparent 1px);background-size:4px 4px;mix-blend-mode:soft-light}
+.splash{position:fixed;inset:0;z-index:99;display:flex;align-items:center;justify-content:center;background:
+ radial-gradient(circle at 50% 36%,rgba(217,184,106,.13),transparent 22%),
+ linear-gradient(180deg,#07100d,#030806);transition:opacity .55s ease,visibility .55s ease}
+.splash.hide{opacity:0;visibility:hidden}
+.splashCard{text-align:center}
+.brandSeal{width:104px;height:104px;border-radius:30px;margin:auto;display:grid;place-items:center;
+ border:1px solid rgba(242,217,141,.35);background:linear-gradient(145deg,#163228,#09130f);
+ box-shadow:0 25px 60px rgba(0,0,0,.48),inset 0 1px rgba(255,255,255,.06),0 0 40px rgba(217,184,106,.08);
+ animation:sealIn .85s cubic-bezier(.2,.85,.2,1) both}
+.brandSeal svg{width:66px;height:66px}
+@keyframes sealIn{from{opacity:0;transform:scale(.7) rotate(-7deg)}to{opacity:1;transform:scale(1) rotate(0)}}
+.splash h1{font-family:Alegreya,serif;font-size:31px;margin:18px 0 4px;letter-spacing:.4px;animation:rise .7s .25s both}
+.splash p{margin:0;color:#bcb7a7;font-size:12px;animation:rise .7s .38s both}
+.splash .by{margin-top:20px;color:var(--gold2);font-size:10px;letter-spacing:2.3px;font-weight:800;animation:rise .7s .55s both}
+.splash .name{margin-top:5px;font-family:Alegreya,serif;font-size:18px;color:#f8f0dc;animation:rise .7s .66s both}
+@keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+
+.app{position:relative;z-index:1;max-width:820px;margin:auto;padding:14px 14px 60px}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 2px 16px}
+.brand{display:flex;align-items:center;gap:11px}
+.logo{width:52px;height:52px;border-radius:17px;display:grid;place-items:center;background:linear-gradient(145deg,#183a2e,#0c1712);
+ border:1px solid rgba(217,184,106,.28);box-shadow:0 12px 28px rgba(0,0,0,.28),inset 0 1px rgba(255,255,255,.05)}
+.logo svg{width:34px;height:34px}
+.brand h1{font-family:Alegreya,serif;font-size:24px;line-height:1;margin:0;color:#fff}
+.brand small{display:block;color:#98a49e;font-size:10px;margin-top:4px}
+.brandBadge{border:1px solid rgba(217,184,106,.22);background:#0b1612;color:#e7cf90;border-radius:999px;padding:9px 11px;font-size:9px;font-weight:800;white-space:nowrap}
+
+.hero{border:1px solid var(--line);border-radius:28px;background:
+ linear-gradient(145deg,rgba(24,52,42,.92),rgba(9,18,14,.96));padding:22px 18px 18px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;width:210px;height:210px;border-radius:50%;right:-90px;top:-100px;border:1px solid rgba(217,184,106,.12);box-shadow:0 0 0 24px rgba(217,184,106,.03),0 0 0 54px rgba(217,184,106,.02)}
+.kicker{display:inline-flex;align-items:center;gap:7px;border:1px solid rgba(217,184,106,.2);background:rgba(217,184,106,.06);
+ color:#dfc887;border-radius:999px;padding:7px 10px;font-size:9px;font-weight:800;letter-spacing:.7px}
+.hero h2{font-family:Alegreya,serif;font-size:31px;line-height:1.08;margin:14px 0 8px;max-width:520px}
+.hero p{color:#abb8b1;font-size:12px;line-height:1.65;max-width:590px;margin:0 0 17px}
+.search{display:flex;gap:8px;align-items:center;background:#08110e;border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:6px 7px 6px 13px}
+.search input{flex:1;min-width:0;background:transparent;border:0;outline:0;color:#fff;font-size:12px}
+.search input::placeholder{color:#64736c}
+.iconBtn{width:38px;height:38px;border:0;border-radius:13px;background:linear-gradient(145deg,#2b8269,#1e5b49);color:white;display:grid;place-items:center}
+
+.quick{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:12px 0 4px}
+.quick button{border:1px solid var(--line);background:#0c1713;color:#c8d1cc;border-radius:17px;padding:11px 6px;font-size:9px;font-weight:700;min-height:54px;transition:.2s}
+.quick button.active{background:linear-gradient(145deg,#264f40,#183328);color:#fff;border-color:rgba(217,184,106,.22)}
+.quick .ico{display:block;font-size:16px;margin-bottom:4px}
+
+.sectionHead{display:flex;align-items:end;justify-content:space-between;gap:12px;margin:22px 2px 10px}
+.sectionHead h3{font-family:Alegreya,serif;font-size:22px;margin:0}
+.sectionHead span{font-size:9px;color:#7f8e86}
+.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.card{position:relative;border:1px solid var(--line);background:linear-gradient(145deg,#111d18,#0a120f);border-radius:22px;padding:15px;min-height:138px;
+ box-shadow:0 12px 28px rgba(0,0,0,.16);transition:transform .18s ease,border-color .18s ease;overflow:hidden}
+.card:active{transform:scale(.985)}
+.card .tag{display:inline-flex;color:#d8c992;background:rgba(217,184,106,.06);border:1px solid rgba(217,184,106,.13);font-size:8px;font-weight:800;padding:5px 7px;border-radius:999px}
+.card h4{font-family:Alegreya,serif;font-size:18px;margin:11px 0 5px;line-height:1.1}
+.card p{font-size:9px;color:#8f9d96;line-height:1.5;margin:0 28px 0 0}
+.card .arrow{position:absolute;right:13px;bottom:13px;width:30px;height:30px;border-radius:10px;background:#162922;color:#d9b86a;display:grid;place-items:center;font-size:14px}
+.card .fav{position:absolute;right:13px;top:13px;border:0;background:transparent;color:#6f7c76;font-size:16px}
+.card .fav.on{color:#e49ab2}
+
+.readerOverlay{position:fixed;inset:0;background:rgba(0,0,0,.82);backdrop-filter:blur(14px);z-index:50;display:none;align-items:center;justify-content:center;padding:12px}
+.readerOverlay.open{display:flex}
+.readerShell{width:min(760px,100%);height:min(92vh,790px);display:flex;flex-direction:column}
+.readerTop{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:0 3px 9px;color:#fff}
+.readerTop .title{min-width:0}
+.readerTop h3{font-family:Alegreya,serif;margin:0;font-size:19px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.readerTop small{color:#95a39c;font-size:9px}
+.readerActions{display:flex;gap:7px}
+.rBtn{border:1px solid rgba(255,255,255,.1);background:#0c1512;color:#e8edea;border-radius:13px;min-width:38px;height:38px;padding:0 10px;font-size:11px}
+.bookWrap{flex:1;min-height:0;display:grid;place-items:center;perspective:1600px}
+.book{width:min(650px,96vw);height:min(72vh,650px);position:relative;transform-style:preserve-3d}
+.page{position:absolute;inset:0;border-radius:14px 25px 25px 14px;padding:28px 26px 24px;overflow:auto;backface-visibility:hidden;transform-origin:left center;
+ transition:transform .58s cubic-bezier(.2,.75,.2,1),box-shadow .58s;background:
+ linear-gradient(90deg,rgba(88,64,41,.10),transparent 5%),
+ radial-gradient(circle at 70% 20%,rgba(255,255,255,.7),transparent 24%),
+ var(--paper);color:var(--ink);box-shadow:0 28px 70px rgba(0,0,0,.44),inset 18px 0 28px rgba(114,84,50,.06),inset 0 0 0 1px rgba(80,57,35,.08)}
+.page.turningNext{transform:rotateY(-12deg) translateX(-5px);box-shadow:-15px 24px 60px rgba(0,0,0,.48)}
+.page.turningPrev{transform:rotateY(8deg) translateX(4px)}
+.page:before{content:"";position:absolute;inset:12px;border:1px solid rgba(142,104,58,.17);border-radius:10px 19px 19px 10px;pointer-events:none}
+.pageHead{text-align:center;position:relative;z-index:1}
+.pageNo{font-size:9px;color:#8e7254;letter-spacing:1.4px;font-weight:800}
+.duaTitle{font-family:Alegreya,serif;font-size:26px;margin:8px 0 4px}
+.when{display:inline-block;font-size:9px;color:#72593d;background:rgba(173,129,70,.09);border:1px solid rgba(142,104,58,.14);border-radius:999px;padding:6px 9px}
+.divider{width:90px;height:1px;background:linear-gradient(90deg,transparent,#b88c52,transparent);margin:18px auto}
+.arabic{font-family:"Amiri Quran",serif;font-size:clamp(30px,5vw,46px);line-height:2.05;text-align:center;direction:rtl;color:#20170f;margin:6px auto 20px;max-width:600px}
+.roman{font-family:Alegreya,serif;font-size:17px;line-height:1.72;text-align:center;color:#4c3928;margin:0 auto 14px;max-width:560px}
+.meaning{font-size:11px;line-height:1.75;text-align:center;color:#6e5944;max-width:560px;margin:auto}
+.sourceBox{margin:18px auto 0;max-width:570px;border-top:1px solid rgba(100,72,42,.13);padding-top:12px;text-align:center;font-size:9px;color:#90765b}
+.pageFoot{display:flex;align-items:center;justify-content:space-between;margin-top:20px;font-size:8px;color:#a18a72}
+.readerBottom{display:flex;align-items:center;justify-content:center;gap:8px;padding:9px 3px 0}
+.navBtn{border:1px solid rgba(255,255,255,.09);background:#0c1612;color:#e8edea;border-radius:14px;padding:11px 15px;font-size:10px;font-weight:800}
+.readerBottom .hint{color:#84928b;font-size:9px}
+
+.theme-classic{--paper:#fffaf0;--ink:#2d2118}
+.theme-emerald{--paper:#f7f5e9;--ink:#18362e}
+.theme-midnight{--paper:#141a20;--ink:#f3ead8}
+.theme-midnight .arabic,.theme-midnight .roman{color:#f7eddd}.theme-midnight .meaning{color:#c7beb0}.theme-midnight .sourceBox{color:#a89f92}.theme-midnight .when{color:#e7cb87}.theme-midnight .pageNo{color:#d8b96d}
+.theme-rose{--paper:#fff5f7;--ink:#5f3443}
+.themeSelect{position:absolute;right:14px;top:56px;z-index:3;display:none;background:#0a1410;border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:6px;box-shadow:0 20px 50px rgba(0,0,0,.45)}
+.themeSelect.open{display:grid;gap:4px}
+.themeSelect button{border:0;background:#101e18;color:#dbe4df;border-radius:10px;padding:9px 12px;text-align:left;font-size:9px}
+
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,20px);opacity:0;z-index:120;background:#101a16;border:1px solid rgba(255,255,255,.1);color:#e7eee9;border-radius:999px;padding:10px 14px;font-size:10px;transition:.25s}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+@media(max-width:560px){
+ .app{padding:10px 10px 50px}.brandBadge{display:none}.hero{padding:19px 15px 16px}.hero h2{font-size:27px}
+ .quick{grid-template-columns:repeat(4,1fr)}.cards{grid-template-columns:1fr}
+ .card{min-height:118px}.book{width:97vw;height:73vh}.page{padding:24px 18px 21px}.arabic{font-size:34px;line-height:1.95}.duaTitle{font-size:23px}
+}
+
+/* ===== PHASE 2 ===== */
+.quick{display:flex!important;overflow-x:auto;scrollbar-width:none;padding-bottom:4px;gap:8px}
+.quick::-webkit-scrollbar{display:none}.quick button{min-width:82px;flex:0 0 auto}
+.continueCard{display:none;align-items:center;justify-content:space-between;gap:12px;margin:13px 0 2px;padding:13px 14px;border:1px solid rgba(217,184,106,.15);border-radius:19px;background:linear-gradient(145deg,#13251e,#0a1410);box-shadow:0 12px 28px rgba(0,0,0,.17)}
+.continueCard.show{display:flex}.continueCard .eyebrow{font-size:8px;letter-spacing:1.1px;color:#cfb873;font-weight:800}.continueCard h4{font-family:Alegreya,serif;font-size:17px;margin:4px 0 1px}.continueCard p{font-size:8px;color:#7f8d86;margin:0}.continueGo{border:1px solid rgba(217,184,106,.18);background:#183229;color:#efd58d;border-radius:13px;padding:10px 12px;font-size:9px;font-weight:800;white-space:nowrap}
+.emptyState{grid-column:1/-1;text-align:center;border:1px dashed rgba(255,255,255,.1);border-radius:20px;padding:28px 15px;color:#809088;font-size:11px}
+.readerTools{display:flex;gap:7px;justify-content:center;padding:7px 2px 0;overflow-x:auto;scrollbar-width:none}.readerTools::-webkit-scrollbar{display:none}
+.toolBtn{flex:0 0 auto;border:1px solid rgba(255,255,255,.09);background:#0c1612;color:#dfe7e3;border-radius:13px;padding:10px 11px;font-size:9px;font-weight:800;min-width:70px}.toolBtn.on{color:#f1d27c;border-color:rgba(217,184,106,.25);background:#14241d}
+.mode-arabic .roman,.mode-arabic .meaning{display:none}.mode-arabicroman .meaning:not(.meaningCard){display:none}.mode-arabicroman .meaningCard{display:block}
+.repeatNote{display:inline-flex;margin-top:9px;border:1px solid rgba(139,103,56,.13);border-radius:999px;padding:5px 8px;font-size:8px;color:#8f704d;background:rgba(173,129,70,.06)}
+.listenPulse{animation:listenPulse 1.1s ease-in-out infinite}@keyframes listenPulse{50%{box-shadow:0 0 0 7px rgba(217,184,106,0)}0%,100%{box-shadow:0 0 0 0 rgba(217,184,106,.24)}}
+
+
+/* ===== PHASE 3 — PREMIUM BOOK EXPERIENCE ===== */
+.statusRow{display:flex;gap:7px;align-items:center;flex-wrap:wrap;margin:10px 0 0}
+.statusPill{display:inline-flex;align-items:center;gap:6px;border:1px solid rgba(255,255,255,.07);background:#0a1410;color:#8f9e96;border-radius:999px;padding:6px 9px;font-size:8px;font-weight:800}
+.statusDot{width:6px;height:6px;border-radius:50%;background:#56c995;box-shadow:0 0 10px rgba(86,201,149,.55)}
+.statusDot.off{background:#d79090;box-shadow:none}
+.nowCard{margin:13px 0 3px;border:1px solid rgba(217,184,106,.18);border-radius:22px;padding:15px;background:
+ radial-gradient(circle at 90% 20%,rgba(217,184,106,.08),transparent 22%),
+ linear-gradient(145deg,#173027,#0b1712);display:flex;align-items:center;justify-content:space-between;gap:12px;box-shadow:0 16px 36px rgba(0,0,0,.2)}
+.nowCard .eyebrow{font-size:8px;color:#d8c27e;letter-spacing:1px;font-weight:900}.nowCard h4{font-family:Alegreya,serif;font-size:19px;margin:4px 0 2px}.nowCard p{margin:0;color:#829189;font-size:9px}.nowGo{border:1px solid rgba(217,184,106,.2);background:#1d3a30;color:#f0d68c;border-radius:14px;padding:11px 12px;font-size:9px;font-weight:900;white-space:nowrap}
+.libraryStrip{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:10px 0 0}
+.stat{border:1px solid var(--line);border-radius:16px;background:#0b1511;padding:10px 9px}.stat b{display:block;font-family:Alegreya,serif;font-size:18px;color:#f3e8cc}.stat span{display:block;color:#73827a;font-size:8px;margin-top:2px}
+.recentWrap{margin-top:18px}.recentHead{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}.recentHead h3{font-family:Alegreya,serif;font-size:18px;margin:0}.recentHead small{font-size:8px;color:#718078}
+.recentList{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding-bottom:3px}.recentList::-webkit-scrollbar{display:none}
+.recentChip{flex:0 0 auto;max-width:190px;border:1px solid rgba(255,255,255,.07);background:#0b1511;color:#cbd4cf;border-radius:14px;padding:10px 11px;font-size:9px;text-align:left}.recentChip b{display:block;font-family:Alegreya,serif;font-size:14px;color:#f0eadc;margin-bottom:2px}.recentChip span{color:#73827b;font-size:8px}
+.bookProgress{height:3px;background:rgba(255,255,255,.06);border-radius:999px;overflow:hidden;margin:0 4px 6px}.bookProgress i{display:block;height:100%;width:0;background:linear-gradient(90deg,#b99243,#f1d682);border-radius:999px;transition:width .3s ease}
+.bookmarkRibbon{position:absolute;right:34px;top:-2px;width:28px;height:48px;background:linear-gradient(#d6ad53,#a87a27);clip-path:polygon(0 0,100% 0,100% 100%,50% 78%,0 100%);z-index:6;filter:drop-shadow(0 5px 8px rgba(0,0,0,.22));opacity:0;transform:translateY(-8px);transition:.25s}.bookmarkRibbon.show{opacity:1;transform:none}
+.pageEdge{position:absolute;right:0;top:0;bottom:0;width:13px;border-radius:0 24px 24px 0;background:linear-gradient(90deg,rgba(87,61,36,.04),rgba(87,61,36,.15),rgba(255,255,255,.14));pointer-events:none;z-index:3}
+.page.dragging{transition:none!important;will-change:transform,box-shadow}
+.pageTurnShadow{position:absolute;inset:0;border-radius:14px 25px 25px 14px;pointer-events:none;background:linear-gradient(90deg,transparent 70%,rgba(0,0,0,.11));opacity:0;transition:opacity .2s;z-index:2}.page.dragging+.pageTurnShadow{opacity:1}
+.trustCard{margin:20px 0 0;border:1px solid rgba(217,184,106,.12);background:#0b1511;border-radius:20px;padding:14px;display:flex;gap:11px;align-items:flex-start}.trustIcon{width:34px;height:34px;border-radius:11px;display:grid;place-items:center;background:#193329;color:#e4c873;flex:0 0 auto}.trustCard b{font-family:Alegreya,serif;font-size:15px}.trustCard p{font-size:8.5px;line-height:1.55;color:#77867e;margin:3px 0 0}
+.settingsBtn{position:fixed;right:14px;bottom:16px;z-index:20;width:45px;height:45px;border-radius:15px;border:1px solid rgba(217,184,106,.18);background:#102019;color:#e6ce88;box-shadow:0 15px 35px rgba(0,0,0,.35);font-size:17px}
+.settingsSheet{position:fixed;inset:0;z-index:90;display:none;align-items:flex-end;background:rgba(0,0,0,.65);backdrop-filter:blur(8px)}.settingsSheet.open{display:flex}.settingsPanel{width:min(620px,100%);margin:auto;background:#0b1511;border:1px solid rgba(255,255,255,.08);border-bottom:0;border-radius:25px 25px 0 0;padding:17px 15px calc(18px + env(safe-area-inset-bottom));box-shadow:0 -24px 70px rgba(0,0,0,.45)}
+.sheetTop{display:flex;align-items:center;justify-content:space-between}.sheetTop h3{font-family:Alegreya,serif;font-size:21px;margin:0}.sheetClose{border:0;background:#13231c;color:#cfd8d3;width:35px;height:35px;border-radius:11px}.settingRow{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:13px 2px;border-bottom:1px solid rgba(255,255,255,.05)}.settingRow b{font-size:10px}.settingRow small{display:block;color:#6e7d75;font-size:8px;margin-top:2px}.switch{min-width:64px;border:1px solid rgba(255,255,255,.08);background:#111e19;color:#a9b5af;border-radius:999px;padding:8px 10px;font-size:8px;font-weight:900}.switch.on{background:#1c3a2e;color:#f0d68c;border-color:rgba(217,184,106,.18)}
+.installBtn{width:100%;margin-top:13px;border:1px solid rgba(217,184,106,.2);background:linear-gradient(145deg,#244b3d,#173027);color:#f4dda0;border-radius:15px;padding:12px;font-size:9px;font-weight:900;display:none}.installBtn.show{display:block}
+@media(max-width:560px){.libraryStrip{grid-template-columns:repeat(3,1fr)}.nowCard{padding:13px}.nowCard h4{font-size:17px}.settingsBtn{bottom:12px;right:10px}}
+
+
+/* ===== CUSTOM EDITION — THEMES / FONT / PAGE EFFECTS ===== */
+body{transition:background .35s ease,color .35s ease}
+body[data-app-theme="islamic"]{--bg:#07100d;--panel:#0d1814;--panel2:#12231d;--gold:#d9b86a;--gold2:#f2d98d;--muted:#a8b3ad;--accent:#2f8d71;--line:rgba(255,255,255,.08);--surface:#0b1511;--surface2:#12231d;background:radial-gradient(circle at 12% 4%,rgba(47,141,113,.16),transparent 24%),radial-gradient(circle at 92% 0%,rgba(217,184,106,.11),transparent 20%),#07100d}
+body[data-app-theme="amoled"]{--bg:#000;--panel:#050505;--panel2:#090909;--gold:#ff97bc;--gold2:#ffd5e4;--muted:#8f8f94;--accent:#ff78ad;--line:rgba(255,255,255,.075);--surface:#050505;--surface2:#0a0a0a;background:radial-gradient(circle at 86% 2%,rgba(255,120,173,.10),transparent 23%),radial-gradient(circle at 8% 18%,rgba(130,92,255,.07),transparent 25%),#000}
+body[data-app-theme="minimal"]{--bg:#f3f1ec;--panel:#fff;--panel2:#f8f7f3;--gold:#222;--gold2:#111;--muted:#6f7471;--accent:#242a27;--line:rgba(20,27,24,.09);--surface:#fff;--surface2:#f7f6f2;background:linear-gradient(180deg,#f7f6f2,#efeee9);color:#171b19}
+body[data-app-theme="noor"]{--bg:#0a0d1a;--panel:#101426;--panel2:#181a31;--gold:#f3c86e;--gold2:#ffe6a6;--muted:#9aa0b6;--accent:#8b76e8;--line:rgba(255,255,255,.09);--surface:#101425;--surface2:#181d34;background:radial-gradient(circle at 88% 2%,rgba(244,188,97,.14),transparent 22%),radial-gradient(circle at 9% 12%,rgba(115,96,231,.18),transparent 28%),linear-gradient(180deg,#0a0d1a,#060812)}
+body[data-app-theme] .hero{background:linear-gradient(145deg,var(--panel2),var(--panel));border-color:var(--line)}
+body[data-app-theme] .search,body[data-app-theme] .card,body[data-app-theme] .continueCard,body[data-app-theme] .nowCard,body[data-app-theme] .stat,body[data-app-theme] .recentChip,body[data-app-theme] .trustCard{background:var(--surface);border-color:var(--line)}
+body[data-app-theme] .quick button{background:var(--surface);border-color:var(--line)}
+body[data-app-theme] .quick button.active{background:linear-gradient(145deg,var(--surface2),var(--panel2));color:var(--gold2);border-color:color-mix(in srgb,var(--gold) 30%,transparent)}
+body[data-app-theme] .logo,body[data-app-theme] .brandSeal{background:linear-gradient(145deg,var(--panel2),var(--panel));border-color:color-mix(in srgb,var(--gold) 30%,transparent)}
+body[data-app-theme] .brand small,body[data-app-theme] .hero p,body[data-app-theme] .card p,body[data-app-theme] .nowCard p,body[data-app-theme] .stat span{color:var(--muted)}
+body[data-app-theme] .kicker,body[data-app-theme] .nowCard .eyebrow,body[data-app-theme] .brandBadge{color:var(--gold2)}
+body[data-app-theme] .settingsBtn{background:var(--surface2);color:var(--gold2);border-color:color-mix(in srgb,var(--gold) 28%,transparent)}
+body[data-app-theme] .settingsPanel{background:var(--panel);color:inherit;border-color:var(--line)}
+body[data-app-theme] .settingRow{border-color:var(--line)}
+body[data-app-theme] .switch,body[data-app-theme] .toolBtn,body[data-app-theme] .navBtn,body[data-app-theme] .rBtn{background:var(--surface2);color:inherit;border-color:var(--line)}
+body[data-app-theme] .switch.on,body[data-app-theme] .toolBtn.on{color:var(--gold2);border-color:color-mix(in srgb,var(--gold) 30%,transparent)}
+body[data-app-theme="minimal"] .brand h1,body[data-app-theme="minimal"] .sectionHead h3,body[data-app-theme="minimal"] .hero h2,body[data-app-theme="minimal"] .card h4,body[data-app-theme="minimal"] .nowCard h4,body[data-app-theme="minimal"] .recentChip b,body[data-app-theme="minimal"] footer{color:#181c1a!important}
+body[data-app-theme="minimal"] .brand small,body[data-app-theme="minimal"] .hero p,body[data-app-theme="minimal"] .card p,body[data-app-theme="minimal"] .recentChip span,body[data-app-theme="minimal"] .trustCard p{color:#737975!important}
+body[data-app-theme="minimal"] .search input{color:#151a17}body[data-app-theme="minimal"] .search input::placeholder{color:#999e9b}body[data-app-theme="minimal"] .iconBtn{background:#222b27}
+body[data-app-theme="minimal"] .readerOverlay{background:rgba(225,225,220,.86)}body[data-app-theme="minimal"] .readerTop{color:#151a17}body[data-app-theme="minimal"] .readerTop small{color:#717873}body[data-app-theme="minimal"] .statusPill{background:#fff;color:#646a67;border-color:rgba(0,0,0,.08)}
+body[data-app-theme="minimal"] .splash{background:linear-gradient(180deg,#f8f7f3,#eceae4);color:#171a18}body[data-app-theme="minimal"] .splash p{color:#6e746f}body[data-app-theme="minimal"] .splash .name{color:#171a18}
+body[data-app-theme="amoled"] .hero,body[data-app-theme="amoled"] .card,body[data-app-theme="amoled"] .continueCard,body[data-app-theme="amoled"] .nowCard,body[data-app-theme="amoled"] .stat,body[data-app-theme="amoled"] .recentChip,body[data-app-theme="amoled"] .trustCard,body[data-app-theme="amoled"] .settingsPanel{box-shadow:none}
+body[data-app-theme="amoled"] .hero{background:#030303}body[data-app-theme="amoled"] .card{background:#050505}body[data-app-theme="amoled"] .nowCard{background:linear-gradient(145deg,#080306,#030303)}
+.topbar{position:sticky;top:0;z-index:18;padding:10px 2px 12px;backdrop-filter:blur(18px)}.topbar:after{content:"";position:absolute;left:-14px;right:-14px;top:-14px;bottom:0;background:linear-gradient(180deg,var(--bg),color-mix(in srgb,var(--bg) 72%,transparent));z-index:-1;pointer-events:none}
+.hero{padding:24px 19px 19px!important;border-radius:30px!important}.hero h2{font-size:clamp(29px,7vw,38px);letter-spacing:-.6px}.search{min-height:52px;border-radius:19px!important}.search input{font-size:13px}.card{border-radius:24px!important;min-height:132px}.nowCard{border-radius:24px!important}.stat{border-radius:18px!important}
+.themeGrid,.fxGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:9px 0 3px}
+.themeCard,.fxCard{border:1px solid var(--line);background:var(--surface2);color:inherit;border-radius:15px;padding:10px;text-align:left;min-height:64px;transition:.18s}
+.themeCard.active,.fxCard.active{border-color:color-mix(in srgb,var(--gold) 42%,transparent);box-shadow:0 0 0 1px color-mix(in srgb,var(--gold) 16%,transparent) inset;transform:translateY(-1px)}
+.themeCard b,.fxCard b{display:block;font-size:9px}.themeCard small,.fxCard small{display:block;font-size:7.5px;color:var(--muted);margin-top:3px;line-height:1.35}.swatches{display:flex;gap:4px;margin-bottom:7px}.swatches i{width:14px;height:14px;border-radius:50%;border:1px solid rgba(255,255,255,.13)}
+.rangeWrap{padding:10px 0 2px}.rangeLine{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}.rangeValue{font-size:9px;color:var(--gold2);font-weight:900}.fontRange{width:100%;accent-color:var(--gold);height:24px}.rangeScale{display:flex;justify-content:space-between;font-size:7px;color:var(--muted);margin-top:-2px}
+body[data-app-theme="amoled"] .page{background:#050505;color:#f7edf1;box-shadow:0 28px 70px rgba(0,0,0,.7),inset 18px 0 28px rgba(255,120,173,.025),inset 0 0 0 1px rgba(255,255,255,.055)}body[data-app-theme="amoled"] .page:before{border-color:rgba(255,151,188,.11)}body[data-app-theme="amoled"] .arabic,body[data-app-theme="amoled"] .roman{color:#fff}body[data-app-theme="amoled"] .meaning{color:#b9afb3}body[data-app-theme="amoled"] .sourceBox,body[data-app-theme="amoled"] .pageNo{color:#ca9caf}
+body[data-app-theme="minimal"] .page{background:#fff;color:#201f1c;box-shadow:0 25px 60px rgba(0,0,0,.18),inset 0 0 0 1px rgba(0,0,0,.06)}body[data-app-theme="minimal"] .arabic{color:#181818}body[data-app-theme="minimal"] .roman{color:#343434}body[data-app-theme="minimal"] .meaning{color:#666}
+body[data-app-theme="islamic"] .page{background:linear-gradient(90deg,rgba(40,81,62,.06),transparent 6%),#f8f3e5}
+body[data-app-theme="noor"] .page{background:linear-gradient(145deg,#171a31,#0f1225);color:#f6ead0;box-shadow:0 30px 75px rgba(0,0,0,.55),inset 0 0 0 1px rgba(243,200,110,.08)}body[data-app-theme="noor"] .arabic{color:#fff3d4}body[data-app-theme="noor"] .roman{color:#ead9ba}body[data-app-theme="noor"] .meaning{color:#b9b3c8}body[data-app-theme="noor"] .sourceBox,body[data-app-theme="noor"] .pageNo{color:#d4b66f}
+.book[data-fx="flip"] .page.turningNext{transform:rotateY(-72deg) translateX(-12px);opacity:.72}.book[data-fx="flip"] .page.turningPrev{transform:rotateY(58deg) translateX(9px);opacity:.76}
+.book[data-fx="slide"] .page.turningNext{transform:translateX(-42%) scale(.985);opacity:.25}.book[data-fx="slide"] .page.turningPrev{transform:translateX(42%) scale(.985);opacity:.25}
+.book[data-fx="fade"] .page.turningNext,.book[data-fx="fade"] .page.turningPrev{transform:scale(.985);opacity:0}
+.book[data-fx="zoom"] .page.turningNext{transform:scale(.82) rotate(-1.5deg);opacity:0}.book[data-fx="zoom"] .page.turningPrev{transform:scale(1.13) rotate(1.5deg);opacity:0}
+.book[data-fx="slide"] .page,.book[data-fx="fade"] .page,.book[data-fx="zoom"] .page{transform-origin:center center}
+@media(max-width:560px){.themeGrid,.fxGrid{grid-template-columns:repeat(2,minmax(0,1fr))}.themeCard,.fxCard{min-height:60px;padding:9px}.topbar{padding-top:8px}}
+
+/* ===== AUTHENTIC QURAN / KANZ-UL-IMAN UPDATE ===== */
+.arabic{font-family:"Noto Naskh Arabic","Amiri Quran",serif!important;font-weight:600;font-feature-settings:"liga" 1,"calt" 1;text-rendering:optimizeLegibility}
+.kanzulWrap{max-width:590px;margin:16px auto 8px;padding:15px 15px 13px;border-radius:16px;border:1px solid rgba(151,109,53,.14);background:rgba(168,123,62,.055)}
+.kanzulLabel{display:flex;align-items:center;justify-content:center;gap:7px;font-size:8px;letter-spacing:.7px;font-weight:900;color:#8a6a45;margin-bottom:10px}
+.kanzulUrdu{font-family:Alegreya,Manrope,serif;direction:ltr;text-align:center;font-size:17px;line-height:1.8;color:#4d3927;font-weight:600}
+.quranBadge{display:inline-flex;align-items:center;gap:5px;margin-top:8px;border:1px solid rgba(152,111,54,.13);border-radius:999px;padding:5px 8px;font-size:7.5px;color:#8a6a45;background:rgba(166,122,62,.045)}
+body[data-app-theme="amoled"] .kanzulWrap{background:#080506;border-color:rgba(255,151,188,.10)}
+body[data-app-theme="amoled"] .kanzulUrdu{color:#f5e9ee}
+body[data-app-theme="amoled"] .kanzulLabel,body[data-app-theme="amoled"] .quranBadge{color:#d8a8ba}
+body[data-app-theme="minimal"] .kanzulWrap{background:#faf9f6;border-color:rgba(0,0,0,.07)}
+body[data-app-theme="minimal"] .kanzulUrdu{color:#222}
+body[data-app-theme="noor"] .kanzulWrap{background:rgba(243,200,110,.05);border-color:rgba(243,200,110,.10)}
+body[data-app-theme="noor"] .kanzulUrdu{color:#f5ead4}
+body[data-app-theme="noor"] .kanzulLabel,body[data-app-theme="noor"] .quranBadge{color:#d8bc77}
+@media(max-width:560px){.kanzulUrdu{font-size:16px;line-height:1.75}}
+
+/* ===== FONT LAB + HOME POLISH ===== */
+:root{
+  --arabic-reader-font:"Noto Naskh Arabic","Amiri Quran",serif;
+  --roman-reader-font:Alegreya,Manrope,serif;
+}
+.arabic{font-family:var(--arabic-reader-font)!important}
+.roman,.meaning,.kanzulUrdu{font-family:var(--roman-reader-font)!important}
+.fontGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:9px 0 3px}
+.fontCard{
+  border:1px solid var(--line);background:var(--surface2);color:inherit;border-radius:15px;padding:10px;
+  text-align:left;min-height:70px;transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease
+}
+.fontCard:active{transform:scale(.985)}
+.fontCard.active{border-color:color-mix(in srgb,var(--gold) 45%,transparent);box-shadow:0 0 0 1px color-mix(in srgb,var(--gold) 14%,transparent) inset,0 10px 28px rgba(0,0,0,.12)}
+.fontCard b{display:block;font-size:9px;margin-bottom:4px}
+.fontCard small{display:block;color:var(--muted);font-size:7.5px;line-height:1.35}
+.fontSampleArabic{display:block;direction:rtl;text-align:center;font-size:21px;line-height:1.4;margin:4px 0 5px;color:var(--gold2)}
+.fontSampleRoman{display:block;font-size:12px;line-height:1.45;margin:5px 0;color:var(--gold2)}
+.font-amiri{font-family:"Amiri Quran",serif}
+.font-noto{font-family:"Noto Naskh Arabic",serif}
+.font-scheherazade{font-family:"Scheherazade New",serif}
+.font-lateef{font-family:Lateef,serif}
+.font-markazi{font-family:"Markazi Text",serif}
+.font-manrope{font-family:Manrope,sans-serif}
+.font-alegreya{font-family:Alegreya,serif}
+.font-lora{font-family:Lora,serif}
+.font-merriweather{font-family:Merriweather,serif}
+.font-poppins{font-family:Poppins,sans-serif}
+
+/* decorative Islamic-style divider */
+.ornamentLine{display:flex;align-items:center;justify-content:center;gap:9px;margin:13px 5px 7px;color:var(--gold);opacity:.82}
+.ornamentLine i{height:1px;flex:1;max-width:120px;background:linear-gradient(90deg,transparent,color-mix(in srgb,var(--gold) 62%,transparent),transparent)}
+.ornamentLine span{font-size:11px;filter:drop-shadow(0 0 10px color-mix(in srgb,var(--gold) 28%,transparent))}
+.hero{isolation:isolate}
+.hero:before{
+  content:"";position:absolute;inset:7px;border-radius:23px;pointer-events:none;z-index:0;
+  border:1px solid color-mix(in srgb,var(--gold) 12%,transparent);
+  background:
+    linear-gradient(90deg,color-mix(in srgb,var(--gold) 25%,transparent) 0 1px,transparent 1px 100%),
+    linear-gradient(color-mix(in srgb,var(--gold) 25%,transparent) 0 1px,transparent 1px 100%);
+  background-size:32px 32px;mask:linear-gradient(#0000 0 68%,#000 92%);
+  opacity:.2
+}
+.hero>*{position:relative;z-index:1}
+.hero .kicker{box-shadow:0 0 0 1px rgba(255,255,255,.015) inset}
+.card,.quick button,.nowCard,.continueCard,.recentChip,.toolBtn,.navBtn,.rBtn,.settingsBtn{
+  will-change:transform;transition:transform .2s cubic-bezier(.2,.8,.2,1),box-shadow .25s ease,border-color .25s ease,background .25s ease
+}
+.card:hover,.nowCard:hover,.continueCard:hover,.recentChip:hover{transform:translateY(-2px)}
+.quick button:active,.toolBtn:active,.navBtn:active,.rBtn:active,.settingsBtn:active{transform:scale(.96)}
+.card .arrow{transition:transform .2s ease,background .2s ease}.card:hover .arrow{transform:translateX(2px)}
+.logo{animation:logoFloat 5.2s ease-in-out infinite}
+@keyframes logoFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+.hero h2{animation:heroIn .55s cubic-bezier(.2,.8,.2,1) both}
+.hero p{animation:heroIn .55s .07s cubic-bezier(.2,.8,.2,1) both}
+.search{animation:heroIn .55s .14s cubic-bezier(.2,.8,.2,1) both}
+@keyframes heroIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
+@media(max-width:560px){.fontGrid{grid-template-columns:repeat(2,minmax(0,1fr))}.fontCard{min-height:66px;padding:9px}}
+
+/* ===== SMART SEARCH FIX ===== */
+.searchWrap{position:relative}
+.search{position:relative;z-index:6}
+.searchGlyph{width:26px;height:26px;display:grid;place-items:center;color:var(--gold2);font-size:19px;flex:0 0 auto;opacity:.8}
+.searchClear{display:none;width:38px;height:38px;border:0;border-radius:13px;background:var(--surface2,#13231c);color:inherit;font-size:14px;flex:0 0 auto}
+.searchClear.show{display:grid;place-items:center}
+.searchResults{position:absolute;left:0;right:0;top:calc(100% + 7px);z-index:35;display:none;border:1px solid var(--line);background:color-mix(in srgb,var(--panel) 96%,transparent);backdrop-filter:blur(18px);border-radius:18px;padding:6px;box-shadow:0 22px 55px rgba(0,0,0,.32);max-height:310px;overflow:auto}
+.searchResults.open{display:block;animation:searchDrop .18s ease both}
+@keyframes searchDrop{from{opacity:0;transform:translateY(-5px) scale(.99)}to{opacity:1;transform:none}}
+.searchResult{width:100%;border:0;background:transparent;color:inherit;display:flex;align-items:center;gap:10px;text-align:left;border-radius:13px;padding:10px;transition:.18s}
+.searchResult:active{transform:scale(.985)}
+.searchResult:hover{background:color-mix(in srgb,var(--surface2) 86%,transparent)}
+.searchResultIcon{width:34px;height:34px;border-radius:11px;display:grid;place-items:center;flex:0 0 auto;background:color-mix(in srgb,var(--gold) 11%,var(--surface2));color:var(--gold2);font-size:12px}
+.searchResultText{min-width:0;flex:1}.searchResultText b{display:block;font-family:Alegreya,serif;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.searchResultText small{display:block;color:var(--muted);font-size:8px;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.searchResultTag{font-size:7px;color:var(--gold2);border:1px solid color-mix(in srgb,var(--gold) 18%,transparent);border-radius:999px;padding:4px 6px;white-space:nowrap}
+.searchEmpty{padding:15px 12px;text-align:center;color:var(--muted);font-size:9px}
+.searchHint{padding:7px 9px 5px;color:var(--muted);font-size:7.5px;border-top:1px solid var(--line);margin-top:3px}
+body[data-app-theme="minimal"] .searchResults{background:rgba(255,255,255,.96);box-shadow:0 22px 50px rgba(0,0,0,.14)}
+
+/* ===== ROMAN URDU MEANING CARD ===== */
+.meaningCard{
+  max-width:590px;margin:15px auto 8px;padding:14px 15px 13px;border-radius:16px;
+  border:1px solid rgba(151,109,53,.14);background:rgba(168,123,62,.055);text-align:center
+}
+.meaningLabel{
+  display:flex;align-items:center;justify-content:center;gap:6px;
+  font-size:8px;letter-spacing:.65px;font-weight:900;color:#8a6a45;margin-bottom:8px
+}
+.meaningText{
+  font-family:var(--roman-reader-font);font-size:14px;line-height:1.75;color:#5c4734
+}
+.meaningKanz{
+  display:inline-flex;margin-top:8px;border:1px solid rgba(152,111,54,.13);border-radius:999px;
+  padding:4px 7px;font-size:7px;color:#8a6a45;background:rgba(166,122,62,.045)
+}
+body[data-app-theme="amoled"] .meaningCard{background:#080506;border-color:rgba(255,151,188,.10)}
+body[data-app-theme="amoled"] .meaningText{color:#f5e9ee}
+body[data-app-theme="amoled"] .meaningLabel,body[data-app-theme="amoled"] .meaningKanz{color:#d8a8ba}
+body[data-app-theme="minimal"] .meaningCard{background:#faf9f6;border-color:rgba(0,0,0,.07)}
+body[data-app-theme="minimal"] .meaningText{color:#30302d}
+body[data-app-theme="noor"] .meaningCard{background:rgba(243,200,110,.05);border-color:rgba(243,200,110,.10)}
+body[data-app-theme="noor"] .meaningText{color:#f2e6d1}
+body[data-app-theme="noor"] .meaningLabel,body[data-app-theme="noor"] .meaningKanz{color:#d8bc77}
+
+
+/* ===== COMPACT READER + IVORY NOIR PREMIUM ===== */
+body[data-app-theme="duo"]{
+  --bg:#ece8df;--panel:#11120f;--panel2:#1a1b17;--gold:#c99a3f;--gold2:#f0cc77;
+  --muted:#77746c;--accent:#2d332d;--line:rgba(28,29,25,.10);--surface:#fffdf8;--surface2:#171813;
+  background:
+    radial-gradient(circle at 88% 2%,rgba(201,154,63,.15),transparent 24%),
+    linear-gradient(180deg,#f4f0e8 0%,#e8e3d9 100%);
+  color:#171814;
+}
+body[data-app-theme="duo"] .topbar:after{
+  background:linear-gradient(180deg,rgba(244,240,232,.97),rgba(244,240,232,.84))
+}
+body[data-app-theme="duo"] .brand h1{color:#151612!important}
+body[data-app-theme="duo"] .brand small{color:#77756f!important}
+body[data-app-theme="duo"] .logo{
+  background:linear-gradient(145deg,#181914,#0c0d0a);border-color:rgba(201,154,63,.34);
+  box-shadow:0 12px 30px rgba(48,43,32,.16),inset 0 1px rgba(255,255,255,.05)
+}
+body[data-app-theme="duo"] .hero{
+  color:#fbf7ed;background:
+    radial-gradient(circle at 90% 10%,rgba(201,154,63,.14),transparent 28%),
+    linear-gradient(145deg,#1d1e19,#0f100d);
+  border-color:rgba(201,154,63,.22);box-shadow:0 24px 60px rgba(38,34,27,.20)
+}
+body[data-app-theme="duo"] .hero h2{color:#fffaf0}
+body[data-app-theme="duo"] .hero p{color:#bdb9af!important}
+body[data-app-theme="duo"] .hero:before{border-color:rgba(240,204,119,.13)}
+body[data-app-theme="duo"] .search{
+  background:#0c0d0b;border-color:rgba(255,255,255,.08)
+}
+body[data-app-theme="duo"] .search input{color:#fffdf7}
+body[data-app-theme="duo"] .search input::placeholder{color:#88877f}
+body[data-app-theme="duo"] .statusPill{
+  background:#161713;color:#c8c4b9;border-color:rgba(255,255,255,.07)
+}
+body[data-app-theme="duo"] .nowCard{
+  color:#fff8e9;background:
+    radial-gradient(circle at 92% 10%,rgba(201,154,63,.13),transparent 27%),
+    linear-gradient(145deg,#1b1c18,#11120f);
+  border-color:rgba(201,154,63,.18);box-shadow:0 16px 36px rgba(42,37,29,.16)
+}
+body[data-app-theme="duo"] .nowCard h4{color:#fff9ed!important}
+body[data-app-theme="duo"] .nowCard p{color:#a8a49b!important}
+body[data-app-theme="duo"] .nowGo{background:#f4ecdc;color:#171814;border-color:#ead39d}
+body[data-app-theme="duo"] .card,
+body[data-app-theme="duo"] .continueCard,
+body[data-app-theme="duo"] .stat,
+body[data-app-theme="duo"] .recentChip,
+body[data-app-theme="duo"] .trustCard{
+  background:linear-gradient(145deg,#fffefa,#f5f1e8);color:#181914;
+  border-color:rgba(41,40,34,.09);box-shadow:0 13px 32px rgba(47,43,34,.10)
+}
+body[data-app-theme="duo"] .card h4,
+body[data-app-theme="duo"] .continueCard h4,
+body[data-app-theme="duo"] .recentChip b{color:#171814!important}
+body[data-app-theme="duo"] .card p,
+body[data-app-theme="duo"] .continueCard p,
+body[data-app-theme="duo"] .recentChip span,
+body[data-app-theme="duo"] .trustCard p{color:#77746b!important}
+body[data-app-theme="duo"] .quick button{
+  background:#fbf8f1;color:#57554e;border-color:rgba(34,34,29,.09)
+}
+body[data-app-theme="duo"] .quick button.active{
+  background:#171813;color:#f3ce78;border-color:#171813;box-shadow:0 10px 24px rgba(30,28,23,.14)
+}
+body[data-app-theme="duo"] .settingsBtn{
+  background:#171813;color:#f2cd76;border-color:#171813;box-shadow:0 14px 34px rgba(35,31,25,.20)
+}
+body[data-app-theme="duo"] .settingsPanel{
+  background:#151612;color:#f7f2e8;border-color:rgba(255,255,255,.08)
+}
+body[data-app-theme="duo"] .settingRow{border-color:rgba(255,255,255,.07)}
+body[data-app-theme="duo"] .settingRow small{color:#99958c}
+body[data-app-theme="duo"] .themeCard,
+body[data-app-theme="duo"] .fontCard,
+body[data-app-theme="duo"] .fxCard,
+body[data-app-theme="duo"] .switch{
+  background:#20211c;color:#f4efe5;border-color:rgba(255,255,255,.08)
+}
+body[data-app-theme="duo"] .readerOverlay{
+  background:rgba(18,18,15,.92);backdrop-filter:blur(16px)
+}
+body[data-app-theme="duo"] .readerTop{color:#fff8ec}
+body[data-app-theme="duo"] .readerTop small{color:#aaa69c}
+body[data-app-theme="duo"] .page{
+  background:
+    linear-gradient(90deg,rgba(112,83,39,.055),transparent 6%),
+    radial-gradient(circle at 75% 10%,rgba(255,255,255,.8),transparent 25%),
+    #fbf6ea;
+  color:#211e18;box-shadow:0 26px 65px rgba(0,0,0,.42),inset 0 0 0 1px rgba(103,77,36,.09)
+}
+body[data-app-theme="duo"] .page:before{border-color:rgba(153,113,47,.19)}
+body[data-app-theme="duo"] .arabic{color:#171712}
+body[data-app-theme="duo"] .roman{color:#3f392f}
+body[data-app-theme="duo"] .meaningText{color:#574d3d}
+body[data-app-theme="duo"] .meaningCard{
+  background:rgba(203,159,77,.07);border-color:rgba(161,118,46,.14)
+}
+body[data-app-theme="duo"] .meaningLabel,
+body[data-app-theme="duo"] .meaningKanz,
+body[data-app-theme="duo"] .pageNo,
+body[data-app-theme="duo"] .sourceBox{color:#8c6a31}
+body[data-app-theme="duo"] .when{color:#72572d;background:rgba(202,155,65,.08);border-color:rgba(163,120,45,.12)}
+body[data-app-theme="duo"] .toolBtn,
+body[data-app-theme="duo"] .navBtn,
+body[data-app-theme="duo"] .rBtn{
+  background:#1b1c18;color:#f6f0e5;border-color:rgba(255,255,255,.08)
+}
+
+/* tighter reader: less empty space and less scrolling */
+.readerShell{height:min(96vh,760px)}
+.readerTop{padding:0 3px 6px}
+.readerTop h3{font-size:18px}
+.readerTop small{font-size:8px}
+.rBtn{height:35px;min-width:35px;border-radius:12px;padding:0 9px}
+.book{height:clamp(390px,59vh,555px)}
+.page{padding:18px 19px 15px}
+.page:before{inset:8px}
+.pageNo{font-size:8px;letter-spacing:1.2px}
+.duaTitle{font-size:23px;margin:5px 0 3px}
+.when{font-size:8px;padding:5px 8px}
+.repeatNote{margin-top:5px;padding:4px 7px}
+.divider{width:76px;margin:10px auto}
+.arabic{line-height:1.72!important;margin:2px auto 10px!important}
+.roman{line-height:1.5!important;margin:0 auto 7px!important}
+.meaningCard{margin:8px auto 5px!important;padding:10px 11px 9px!important}
+.meaningLabel{margin-bottom:5px!important}
+.meaningText{line-height:1.55!important}
+.meaningKanz{margin-top:5px!important}
+.sourceBox{margin:8px auto 0!important;padding-top:8px!important}
+.pageFoot{margin-top:8px!important}
+.readerTools{gap:6px;padding:5px 2px 0}
+.toolBtn{padding:9px 10px;min-width:66px}
+.readerBottom{gap:6px;padding:5px 3px 0}
+.navBtn{padding:9px 13px}
+.bookProgress{margin:0 4px 4px}
+
+/* fancy double-line details without clutter */
+.card:after,.nowCard:after,.continueCard:after{
+  content:"";position:absolute;inset:5px;border-radius:inherit;pointer-events:none;
+  border:1px solid color-mix(in srgb,var(--gold) 7%,transparent);opacity:.55
+}
+.card,.nowCard,.continueCard{position:relative;overflow:hidden}
+.card .tag{position:relative;z-index:1}
+
+
+@media(max-width:560px){
+  .readerOverlay{padding:7px}
+  .readerShell{height:96vh}
+  .book{width:98vw;height:clamp(370px,57vh,500px)}
+  .page{padding:16px 15px 13px}
+  .duaTitle{font-size:21px}
+  .divider{margin:8px auto}
+  .arabic{line-height:1.62!important;margin-bottom:8px!important}
+  .roman{line-height:1.45!important;margin-bottom:6px!important}
+  .meaningCard{margin:7px auto 4px!important;padding:9px 10px 8px!important}
+  .sourceBox{margin-top:7px!important;padding-top:7px!important}
+  .pageFoot{margin-top:7px!important}
+  .readerTools{padding-top:4px}
+  .readerBottom{padding-top:4px}
+}
+
+
+/* ===== COMPACT DUA LIST + ORNAMENT ELEMENT ===== */
+.cards{gap:8px}
+.card{
+  min-height:96px!important;
+  padding:11px 50px 11px 17px!important;
+  border-radius:20px!important;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+.card .tag{
+  align-self:flex-start;
+  max-width:calc(100% - 28px);
+  padding:4px 7px!important;
+  font-size:7px!important;
+  line-height:1!important;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  margin-bottom:6px;
+}
+.card h4{
+  font-size:18px!important;
+  line-height:1.08!important;
+  margin:0 0 4px!important;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  padding-right:2px;
+}
+.card p{
+  font-size:8.5px!important;
+  line-height:1.2!important;
+  margin:0!important;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.card .fav{
+  top:10px!important;
+  right:13px!important;
+  font-size:15px!important;
+}
+.card .arrow{
+  right:12px!important;
+  bottom:11px!important;
+  width:30px!important;
+  height:30px!important;
+  border-radius:11px!important;
+  z-index:2;
+}
+.cardMark{
+  position:absolute;
+  left:0;
+  top:18px;
+  bottom:18px;
+  width:7px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:2;
+}
+.cardMark:before{
+  content:"";
+  position:absolute;
+  width:2px;
+  top:0;
+  bottom:0;
+  border-radius:999px;
+  background:linear-gradient(180deg,transparent,color-mix(in srgb,var(--gold) 65%,transparent),transparent);
+}
+.cardMark:after{
+  content:"◆";
+  position:relative;
+  font-size:7px;
+  color:var(--gold);
+  filter:drop-shadow(0 0 6px color-mix(in srgb,var(--gold) 35%,transparent));
+  background:var(--surface,#fff);
+  padding:2px 0;
+}
+.card:hover .cardMark:after{transform:scale(1.15)}
+.cardMark:after{transition:transform .2s ease}
+.card:after{
+  inset:4px!important;
+  border-radius:16px!important;
+  border-color:color-mix(in srgb,var(--gold) 9%,transparent)!important;
+}
+/* subtle fancy corner */
+.cardCorner{
+  position:absolute;
+  right:42px;
+  top:10px;
+  width:18px;
+  height:18px;
+  opacity:.22;
+  pointer-events:none;
+}
+.cardCorner:before,.cardCorner:after{
+  content:"";
+  position:absolute;
+  background:var(--gold);
+  border-radius:999px;
+}
+.cardCorner:before{width:12px;height:1px;right:0;top:0}
+.cardCorner:after{width:1px;height:12px;right:0;top:0}
+body[data-app-theme="duo"] .cardMark:after{background:#fbf8f1;color:#b88732}
+body[data-app-theme="amoled"] .cardMark:after{background:#050505}
+body[data-app-theme="minimal"] .cardMark:after{background:#fff}
+body[data-app-theme="noor"] .cardMark:after{background:#101425}
+body[data-app-theme="islamic"] .cardMark:after{background:#0b1511}
+@media(max-width:560px){
+  .cards{gap:7px}
+  .card{min-height:90px!important;padding:10px 48px 10px 16px!important}
+  .card h4{font-size:17px!important}
+  .card p{font-size:8px!important}
+  .card .tag{margin-bottom:5px}
+}
+
+
+/* ===== TRUE COMPACT LIST V2 ===== */
+.cards{gap:7px!important}
+.card.compactCard{
+  display:grid!important;
+  grid-template-columns:38px minmax(0,1fr) 48px!important;
+  align-items:center!important;
+  gap:10px!important;
+  min-height:78px!important;
+  height:auto!important;
+  padding:9px 10px!important;
+  border-radius:18px!important;
+  overflow:hidden!important;
+  justify-content:initial!important;
+}
+.card.compactCard:after{inset:3px!important;border-radius:15px!important}
+.duaGlyph{
+  width:36px;height:36px;border-radius:12px;display:grid;place-items:center;
+  background:color-mix(in srgb,var(--gold) 10%,var(--surface2));
+  color:var(--gold2);font-size:15px;border:1px solid color-mix(in srgb,var(--gold) 14%,transparent);
+  box-shadow:inset 0 1px rgba(255,255,255,.035);
+}
+.duaCardText{min-width:0}
+.duaMeta{
+  font-size:6.8px;line-height:1;text-transform:uppercase;letter-spacing:.55px;
+  color:color-mix(in srgb,var(--gold) 78%,var(--muted));font-weight:800;
+  margin-bottom:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis
+}
+.card.compactCard h4{
+  margin:0!important;font-size:17px!important;line-height:1.05!important;
+  white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important
+}
+.card.compactCard p{
+  margin:4px 0 0!important;font-size:7.8px!important;line-height:1.1!important;
+  white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;color:var(--muted)!important
+}
+.duaCardActions{
+  height:54px;display:grid;grid-template-rows:22px 28px;align-items:center;justify-items:center
+}
+.card.compactCard .fav{
+  position:static!important;width:28px;height:22px;padding:0!important;font-size:14px!important;
+  display:grid;place-items:center
+}
+.card.compactCard .arrow{
+  position:static!important;width:28px!important;height:28px!important;border-radius:9px!important;
+  display:grid;place-items:center;font-size:13px!important
+}
+/* old ornament pieces hidden in compact mode */
+.card.compactCard .cardMark,.card.compactCard .cardCorner,.card.compactCard .tag{display:none!important}
+body[data-app-theme="duo"] .duaGlyph{background:#171813;color:#f0c86e;border-color:#24251f}
+body[data-app-theme="minimal"] .duaGlyph{background:#f1efe9;color:#222;border-color:#e1ded5}
+body[data-app-theme="amoled"] .duaGlyph{background:#0b0b0b;color:#ff9cbe;border-color:#171717}
+body[data-app-theme="noor"] .duaGlyph{background:#181d34;color:#f3c86e;border-color:#252b4b}
+body[data-app-theme="islamic"] .duaGlyph{background:#12231d;color:#e4c977;border-color:#1d352c}
+@media(max-width:560px){
+  .card.compactCard{
+    grid-template-columns:34px minmax(0,1fr) 44px!important;
+    gap:8px!important;min-height:72px!important;padding:8px 9px!important
+  }
+  .duaGlyph{width:32px;height:32px;border-radius:10px;font-size:13px}
+  .card.compactCard h4{font-size:16px!important}
+  .card.compactCard p{font-size:7.4px!important;margin-top:3px!important}
+  .duaMeta{font-size:6.4px;margin-bottom:3px}
+  .duaCardActions{height:50px;grid-template-rows:20px 26px}
+  .card.compactCard .arrow{width:26px!important;height:26px!important}
+}
+
+
+/* ===== SETTINGS SCROLL BUG FIX ===== */
+.settingsSheet{
+  overflow:hidden;
+  touch-action:none;
+}
+.settingsPanel{
+  max-height:min(92dvh,820px)!important;
+  overflow-y:auto!important;
+  overflow-x:hidden!important;
+  overscroll-behavior:contain;
+  -webkit-overflow-scrolling:touch;
+  touch-action:pan-y!important;
+  scrollbar-width:thin;
+  scrollbar-color:color-mix(in srgb,var(--gold) 45%,transparent) transparent;
+  padding-bottom:calc(28px + env(safe-area-inset-bottom))!important;
+}
+.settingsPanel::-webkit-scrollbar{width:4px}
+.settingsPanel::-webkit-scrollbar-track{background:transparent}
+.settingsPanel::-webkit-scrollbar-thumb{
+  background:color-mix(in srgb,var(--gold) 45%,transparent);
+  border-radius:999px
+}
+.sheetTop{
+  position:sticky!important;
+  top:-17px;
+  z-index:15;
+  margin:-17px -15px 7px;
+  padding:17px 15px 11px;
+  background:linear-gradient(180deg,var(--panel) 76%,color-mix(in srgb,var(--panel) 92%,transparent));
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--line);
+}
+.settingsScrollHint{
+  position:sticky;
+  bottom:0;
+  z-index:10;
+  text-align:center;
+  padding:8px 8px 3px;
+  margin-top:7px;
+  font-size:7.5px;
+  color:var(--muted);
+  background:linear-gradient(0deg,var(--panel) 58%,transparent);
+  pointer-events:none;
+}
+@media(max-width:560px){
+  .settingsPanel{
+    max-height:88dvh!important;
+    border-radius:22px 22px 0 0!important;
+  }
+  .sheetTop{top:-17px}
+}
+
+
+/* ===== READER TOP-GAP FIX ===== */
+.readerShell{
+  height:auto!important;
+  max-height:96dvh!important;
+  overflow:hidden;
+  justify-content:flex-start!important;
+}
+.bookWrap{
+  flex:0 0 auto!important;
+  min-height:0!important;
+  display:grid!important;
+  place-items:start center!important;
+  margin-top:4px!important;
+}
+.book{
+  height:clamp(390px,58dvh,540px)!important;
+}
+.readerTools{margin-top:5px!important}
+.readerBottom{margin-top:1px!important}
+@media(max-width:560px){
+  .readerShell{
+    height:auto!important;
+    max-height:97dvh!important;
+  }
+  .bookWrap{
+    flex:0 0 auto!important;
+    place-items:start center!important;
+    margin-top:3px!important;
+  }
+  .book{
+    height:clamp(360px,55dvh,490px)!important;
+  }
+}
+
+
+/* ===== READER LAYOUT HARD FIX V2 ===== */
+.readerOverlay{
+  align-items:flex-start!important;
+  padding-top:max(10px,env(safe-area-inset-top))!important;
+  overflow-y:auto!important;
+}
+.readerShell{
+  width:min(760px,100%)!important;
+  height:auto!important;
+  max-height:none!important;
+  display:grid!important;
+  grid-template-rows:auto auto auto auto auto!important;
+  align-content:start!important;
+  row-gap:5px!important;
+  margin:0 auto!important;
+  overflow:visible!important;
+}
+.readerTop{
+  margin:0!important;
+  padding:0 3px 5px!important;
+}
+.bookProgress{
+  margin:0 4px 2px!important;
+}
+.bookWrap{
+  display:block!important;
+  width:100%!important;
+  height:auto!important;
+  min-height:0!important;
+  margin:0!important;
+  padding:0!important;
+}
+.book{
+  width:min(650px,96vw)!important;
+  height:clamp(390px,58dvh,540px)!important;
+  margin:0 auto!important;
+}
+.readerTools{
+  margin:0!important;
+  padding:4px 2px 0!important;
+}
+.readerBottom{
+  margin:0!important;
+  padding:2px 3px 6px!important;
+}
+@media(max-width:560px){
+  .readerOverlay{
+    padding:7px!important;
+    padding-top:max(7px,env(safe-area-inset-top))!important;
+  }
+  .readerShell{
+    row-gap:4px!important;
+  }
+  .book{
+    width:98vw!important;
+    height:clamp(360px,55dvh,490px)!important;
+  }
+}
+
+
+/* ===== ADAPTIVE BOOK HEIGHT V3 ===== */
+.book{transition:height .22s ease,transform .58s cubic-bezier(.2,.75,.2,1)!important}
+.page{scrollbar-width:thin;scrollbar-color:color-mix(in srgb,var(--gold) 35%,transparent) transparent}
+.page::-webkit-scrollbar{width:3px}
+.page::-webkit-scrollbar-thumb{background:color-mix(in srgb,var(--gold) 35%,transparent);border-radius:999px}
+@media(max-width:560px){
+  .readerTools,.readerBottom{flex-wrap:nowrap!important}
+  .readerTools{overflow-x:auto!important;justify-content:flex-start!important;padding-left:2px!important}
+  .readerBottom{justify-content:center!important}
+}
+
+
+/* ===== FULL HEIGHT READER V4 ===== */
+.readerOverlay{
+  overflow:hidden!important;
+  align-items:flex-start!important;
+}
+.readerShell{
+  height:calc(100dvh - 14px)!important;
+  max-height:none!important;
+  display:grid!important;
+  grid-template-rows:auto auto minmax(0,1fr) auto auto!important;
+  align-content:stretch!important;
+  row-gap:4px!important;
+  overflow:hidden!important;
+}
+.bookWrap{
+  min-height:0!important;
+  height:100%!important;
+  display:block!important;
+  margin:0!important;
+  padding:0!important;
+}
+.book{
+  height:100%!important;
+  min-height:0!important;
+  max-height:none!important;
+  margin:0 auto!important;
+}
+.page{
+  overflow-y:auto!important;
+  overscroll-behavior:contain;
+  -webkit-overflow-scrolling:touch;
+}
+.readerTools{
+  flex:0 0 auto!important;
+  margin:0!important;
+  padding:4px 2px 0!important;
+}
+.readerBottom{
+  flex:0 0 auto!important;
+  margin:0!important;
+  padding:2px 3px 4px!important;
+}
+@media(max-width:560px){
+  .readerShell{
+    height:calc(100dvh - 8px)!important;
+    row-gap:3px!important;
+  }
+  .readerTop{padding-bottom:3px!important}
+  .bookProgress{margin-bottom:1px!important}
+  .readerTools{padding-top:3px!important}
+  .readerBottom{padding-top:1px!important;padding-bottom:2px!important}
+}
+
+
+/* ===== READER SPACE FIX V5 ===== */
+/* Mobile browsers were not honoring the grid fill reliably.
+   Give the book a direct viewport-based height so the unused lower area is used. */
+.readerOverlay{
+  overflow-y:auto!important;
+  align-items:flex-start!important;
+}
+.readerShell{
+  height:auto!important;
+  min-height:calc(100dvh - 8px)!important;
+  max-height:none!important;
+  overflow:visible!important;
+}
+.bookWrap{
+  height:auto!important;
+  min-height:0!important;
+}
+.book{
+  height:min(70dvh,880px)!important;
+  min-height:560px!important;
+  max-height:none!important;
+}
+.page{
+  overflow-y:auto!important;
+  padding-bottom:18px!important;
+}
+.readerTools{
+  margin-top:5px!important;
+}
+.readerBottom{
+  padding-bottom:10px!important;
+}
+@media(max-width:560px){
+  .readerShell{
+    min-height:calc(100dvh - 6px)!important;
+  }
+  .book{
+    height:72dvh!important;
+    min-height:610px!important;
+  }
+  .page{
+    padding-bottom:20px!important;
+  }
+}
+/* Very short screens: keep controls reachable and allow page scrolling */
+@media(max-height:760px){
+  .book{
+    height:64dvh!important;
+    min-height:440px!important;
+  }
+}
+
+
+/* ===== CONTENT-AWARE READER HEIGHT V6 ===== */
+.pageInner{display:block;min-height:0}
+.book{
+  min-height:0!important;
+  max-height:none!important;
+  height:auto!important;
+  transition:height .22s ease,transform .58s cubic-bezier(.2,.75,.2,1)!important;
+}
+.bookWrap{
+  height:auto!important;
+  min-height:0!important;
+}
+.readerShell{
+  height:auto!important;
+  min-height:0!important;
+  max-height:calc(100dvh - 8px)!important;
+  overflow:visible!important;
+}
+.page{
+  overflow-y:auto!important;
+}
+@media(max-width:560px){
+  .book{min-height:0!important;height:auto!important}
+  .readerShell{max-height:calc(100dvh - 6px)!important}
+}
+
+
+/* ===== PREMIUM SETTINGS SIDEBAR + GPT DARK ===== */
+.settingsSheet{
+  position:fixed!important;inset:0!important;z-index:90!important;
+  display:block!important;background:rgba(0,0,0,.48)!important;
+  backdrop-filter:blur(8px)!important;
+  opacity:0!important;visibility:hidden!important;pointer-events:none!important;
+  transition:opacity .28s ease,visibility .28s ease!important;
+}
+.settingsSheet.open{opacity:1!important;visibility:visible!important;pointer-events:auto!important}
+.settingsPanel{
+  position:absolute!important;right:0!important;top:0!important;bottom:0!important;
+  width:min(460px,92vw)!important;height:100dvh!important;max-height:none!important;
+  margin:0!important;border-radius:26px 0 0 26px!important;
+  border:1px solid var(--line)!important;border-right:0!important;
+  padding:0 16px 28px!important;overflow-y:auto!important;overflow-x:hidden!important;
+  transform:translateX(104%)!important;
+  transition:transform .34s cubic-bezier(.2,.85,.2,1)!important;
+  box-shadow:-28px 0 80px rgba(0,0,0,.38)!important;
+  overscroll-behavior:contain!important;-webkit-overflow-scrolling:touch!important;
+}
+.settingsSheet.open .settingsPanel{transform:translateX(0)!important}
+.sheetTop{
+  position:sticky!important;top:0!important;z-index:20!important;
+  margin:0 -16px!important;padding:16px!important;
+  min-height:78px!important;background:color-mix(in srgb,var(--panel) 94%,transparent)!important;
+  backdrop-filter:blur(20px)!important;border-bottom:1px solid var(--line)!important;
+}
+.settingsBrand{display:flex;align-items:center;gap:11px}
+.settingsBrandIcon{
+  width:38px;height:38px;border-radius:13px;display:grid;place-items:center;
+  background:linear-gradient(145deg,var(--surface2),var(--panel2));
+  color:var(--gold2);border:1px solid color-mix(in srgb,var(--gold) 22%,transparent);
+  box-shadow:inset 0 1px rgba(255,255,255,.04)
+}
+.settingsBrand h3{margin:0!important;font-size:20px!important}
+.settingsBrand small{display:block;color:var(--muted);font-size:8px;margin-top:2px}
+.sheetClose{width:38px!important;height:38px!important;border-radius:13px!important}
+.settingsNav{
+  position:sticky;top:78px;z-index:18;display:flex;gap:6px;overflow-x:auto;
+  margin:0 -16px 14px;padding:9px 16px;background:color-mix(in srgb,var(--panel) 92%,transparent);
+  backdrop-filter:blur(18px);border-bottom:1px solid var(--line);scrollbar-width:none
+}
+.settingsNav::-webkit-scrollbar{display:none}
+.settingsNav button{
+  flex:0 0 auto;border:1px solid var(--line);background:var(--surface2);color:var(--muted);
+  border-radius:999px;padding:8px 11px;font-size:8px;font-weight:800;transition:.2s
+}
+.settingsNav button.active{color:var(--gold2);border-color:color-mix(in srgb,var(--gold) 30%,transparent);background:color-mix(in srgb,var(--gold) 8%,var(--surface2))}
+.settingsSection{
+  margin:0 0 12px;padding:13px;border:1px solid var(--line);border-radius:18px;
+  background:color-mix(in srgb,var(--surface) 88%,transparent)
+}
+.settingsSectionTitle{display:flex;align-items:center;gap:10px;padding-bottom:10px;border-bottom:1px solid var(--line);margin-bottom:4px}
+.settingsSectionTitle>span{
+  width:29px;height:29px;border-radius:9px;display:grid;place-items:center;
+  background:var(--surface2);color:var(--gold2);font-size:7px;font-weight:900;border:1px solid var(--line)
+}
+.settingsSectionTitle b{font-size:11px}.settingsSectionTitle small{display:block;color:var(--muted);font-size:7.5px;margin-top:2px}
+.settingsSection .settingRow{padding:11px 0!important}
+.settingStack{display:block!important}
+.settingsSection .themeGrid,.settingsSection .fontGrid,.settingsSection .fxGrid{margin-top:10px}
+.settingsInstall{margin-bottom:4px}
+.settingsInstall .installBtn{display:block!important}
+.settingsBtn{
+  width:48px!important;height:48px!important;border-radius:16px!important;
+  box-shadow:0 16px 38px rgba(0,0,0,.28)!important
+}
+
+/* GPT-style graphite dark theme */
+body[data-app-theme="gpt"]{
+  --bg:#212121;--panel:#262626;--panel2:#303030;--gold:#10a37f;--gold2:#7fe3c4;
+  --muted:#a9a9a9;--accent:#10a37f;--line:rgba(255,255,255,.09);--surface:#2a2a2a;--surface2:#333333;
+  background:radial-gradient(circle at 88% 0%,rgba(16,163,127,.08),transparent 24%),#212121;
+  color:#ececec
+}
+body[data-app-theme="gpt"] .topbar:after{background:linear-gradient(180deg,rgba(33,33,33,.98),rgba(33,33,33,.88))}
+body[data-app-theme="gpt"] .hero{
+  background:linear-gradient(145deg,#2f2f2f,#262626);border-color:rgba(255,255,255,.08);
+  box-shadow:0 18px 50px rgba(0,0,0,.18)
+}
+body[data-app-theme="gpt"] .hero h2,body[data-app-theme="gpt"] .brand h1,body[data-app-theme="gpt"] .sectionHead h3{color:#f4f4f4!important}
+body[data-app-theme="gpt"] .hero p,body[data-app-theme="gpt"] .brand small{color:#aaa!important}
+body[data-app-theme="gpt"] .search{background:#303030;border-color:rgba(255,255,255,.09)}
+body[data-app-theme="gpt"] .search input{color:#f4f4f4}
+body[data-app-theme="gpt"] .search input::placeholder{color:#8e8e8e}
+body[data-app-theme="gpt"] .card,
+body[data-app-theme="gpt"] .continueCard,
+body[data-app-theme="gpt"] .nowCard,
+body[data-app-theme="gpt"] .stat,
+body[data-app-theme="gpt"] .recentChip,
+body[data-app-theme="gpt"] .trustCard{
+  background:#2a2a2a!important;color:#ececec!important;border-color:rgba(255,255,255,.075)!important;box-shadow:none!important
+}
+body[data-app-theme="gpt"] .card h4,body[data-app-theme="gpt"] .continueCard h4,body[data-app-theme="gpt"] .nowCard h4,body[data-app-theme="gpt"] .recentChip b{color:#f2f2f2!important}
+body[data-app-theme="gpt"] .card p,body[data-app-theme="gpt"] .continueCard p,body[data-app-theme="gpt"] .nowCard p,body[data-app-theme="gpt"] .recentChip span{color:#aaa!important}
+body[data-app-theme="gpt"] .quick button{background:#2a2a2a;color:#bdbdbd;border-color:rgba(255,255,255,.08)}
+body[data-app-theme="gpt"] .quick button.active{background:#343434;color:#7fe3c4;border-color:rgba(16,163,127,.32)}
+body[data-app-theme="gpt"] .duaGlyph{background:#333;color:#7fe3c4;border-color:rgba(16,163,127,.18)}
+body[data-app-theme="gpt"] .settingsBtn{background:#303030;color:#7fe3c4;border-color:rgba(255,255,255,.09)}
+body[data-app-theme="gpt"] .settingsPanel{background:#212121!important;color:#ececec!important}
+body[data-app-theme="gpt"] .settingsSection{background:#282828;border-color:rgba(255,255,255,.08)}
+body[data-app-theme="gpt"] .themeCard,
+body[data-app-theme="gpt"] .fontCard,
+body[data-app-theme="gpt"] .fxCard,
+body[data-app-theme="gpt"] .switch{background:#303030;color:#ececec;border-color:rgba(255,255,255,.08)}
+body[data-app-theme="gpt"] .readerOverlay{background:rgba(20,20,20,.94)}
+body[data-app-theme="gpt"] .readerTop{color:#ececec}
+body[data-app-theme="gpt"] .page{
+  background:#2b2b2b;color:#ececec;
+  box-shadow:0 24px 65px rgba(0,0,0,.38),inset 0 0 0 1px rgba(255,255,255,.06)
+}
+body[data-app-theme="gpt"] .page:before{border-color:rgba(16,163,127,.10)}
+body[data-app-theme="gpt"] .arabic{color:#f6f6f6}
+body[data-app-theme="gpt"] .roman{color:#e2e2e2}
+body[data-app-theme="gpt"] .meaningCard{background:#303030;border-color:rgba(16,163,127,.16)}
+body[data-app-theme="gpt"] .meaningText{color:#d6d6d6}
+body[data-app-theme="gpt"] .meaningLabel,
+body[data-app-theme="gpt"] .meaningKanz,
+body[data-app-theme="gpt"] .pageNo,
+body[data-app-theme="gpt"] .sourceBox{color:#7fe3c4}
+body[data-app-theme="gpt"] .when{color:#bfeedd;background:rgba(16,163,127,.09);border-color:rgba(16,163,127,.14)}
+body[data-app-theme="gpt"] .toolBtn,
+body[data-app-theme="gpt"] .navBtn,
+body[data-app-theme="gpt"] .rBtn{background:#303030;color:#ececec;border-color:rgba(255,255,255,.08)}
+
+@media(max-width:560px){
+  .settingsPanel{width:94vw!important;border-radius:24px 0 0 24px!important}
+  .settingsSection{padding:11px;border-radius:16px}
+  .settingsNav{top:78px}
+}
+
+
+/* ===== FINAL APK SPLASH BRANDING ===== */
+.apkSplashIcon{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:28px;
+  z-index:2;animation:sealIn .85s cubic-bezier(.2,.85,.2,1) both
+}
+.brandSeal{position:relative;overflow:hidden}
+.brandSeal .apkSplashIcon+svg{position:relative;z-index:1}
+.designerFocus{
+  position:relative;margin-top:24px;padding:17px 28px 14px;min-width:min(330px,86vw);
+  border:1px solid rgba(241,212,127,.24);border-radius:21px;
+  background:linear-gradient(145deg,rgba(241,212,127,.055),rgba(255,255,255,.012));
+  box-shadow:0 18px 55px rgba(0,0,0,.32),inset 0 0 0 1px rgba(255,255,255,.025);
+  animation:designerFocusIn .8s .58s cubic-bezier(.16,.85,.2,1) both
+}
+.designerLine{display:flex;align-items:center;gap:9px;justify-content:center}
+.designerLine i{
+  display:block;width:56px;height:1px;background:linear-gradient(90deg,transparent,#f1d47f);
+  transform-origin:right;animation:lineDraw .8s .9s ease both
+}
+.designerLine i:last-child{background:linear-gradient(90deg,#f1d47f,transparent);transform-origin:left}
+.designerLine span{color:#e8d697;font-size:9px;letter-spacing:3.1px;font-weight:800}
+.splash .designerFocus .name{
+  position:relative;z-index:2;margin-top:7px;font-family:Alegreya,serif;font-size:31px;
+  letter-spacing:.35px;color:#fff7e7;text-shadow:0 0 12px rgba(242,207,111,.35),0 0 35px rgba(217,184,106,.16);
+  animation:nameGlow 1.65s 1.05s ease-in-out infinite alternate
+}
+.designerGlow{
+  position:absolute;left:12%;right:12%;bottom:8px;height:2px;border-radius:99px;
+  background:linear-gradient(90deg,transparent,#f1d47f,#fff2bc,#f1d47f,transparent);
+  filter:blur(.15px);box-shadow:0 0 13px rgba(241,212,127,.55);
+  transform:scaleX(0);animation:glowSweep 1s 1.05s cubic-bezier(.2,.8,.2,1) forwards
+}
+@keyframes designerFocusIn{from{opacity:0;transform:translateY(18px) scale(.96)}to{opacity:1;transform:none}}
+@keyframes lineDraw{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes glowSweep{to{transform:scaleX(1)}}
+@keyframes nameGlow{from{filter:brightness(.96)}to{filter:brightness(1.18)}}
+
+</style>
+</head>
+<body class="noise">
+<div class="splash" id="splash">
+  <div class="splashCard">
+    <div class="brandSeal">
+      
+      <svg viewBox="0 0 108 108" aria-hidden="true">
+        <defs><linearGradient id="ng" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#0b2d26"/><stop offset="1" stop-color="#03110e"/></linearGradient></defs>
+        <rect x="3" y="3" width="102" height="102" rx="28" fill="url(#ng)" stroke="#10a37f" stroke-width="2"/>
+        <path d="M18 53C18 35 34 20 54 20s36 15 36 33" fill="none" stroke="#d9b86a" stroke-width="3"/>
+        <path fill="#f2d98d" fill-rule="evenodd" d="M63 25a23 23 0 1 0 0 46 19 19 0 1 1 0-46z"/>
+        <path fill="#fff2bc" d="M78 27l2 5 5 2-5 2-2 5-2-5-5-2 5-2z"/>
+        <path d="M22 64c12-4 22-2 32 6 10-8 20-10 32-6l-3 20c-12-3-21 0-29 7-8-7-17-10-29-7z" fill="#f7f1e3" stroke="#d9b86a" stroke-width="2"/>
+        <path d="M26 67c10-2 19 0 28 7 9-7 18-9 28-7l-2 12c-10-1-18 2-26 8-8-6-16-9-26-8z" fill="#0f6e59"/>
+        <path d="M54 70v17" stroke="#d9b86a" stroke-width="2"/>
+        <path d="M28 84l20 11M80 84L60 95" stroke="#d9b86a" stroke-width="4" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <h1>Noor-e-Dua</h1>
+    <p>Har dua • sahi waqt • ek khoobsurat digital kitaab</p>
+    <div class="designerFocus">
+      <div class="designerLine"><i></i><span>DESIGNED BY</span><i></i></div>
+      <div class="name">Altaf Shaikh</div>
+      <div class="designerGlow" aria-hidden="true"></div>
+    </div>
+  </div>
+</div>
+
+<div class="app">
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">
+        <svg viewBox="0 0 108 108" aria-hidden="true"><path fill="#f1d47f" fill-rule="evenodd" d="M66 20a31 31 0 1 0 0 62 26 26 0 1 1 0-62z"/><path fill="#e6b85f" d="M82 21l3 7 7 3-7 3-3 7-3-7-7-3 7-3z"/></svg>
+      </div>
+      <div><h1>Noor-e-Dua</h1><small>Read • Understand • Remember</small></div>
+    </div>
+    <div class="brandBadge">Altaf Shaikh Studio</div>
+  </header>
+
+  <section class="hero">
+    <span class="kicker">✦ NOOR-E-DUA • CUSTOM EDITION</span>
+    <h2>Konsi dua, kab padhni hai — sab ek jagah.</h2>
+    <p>Arabic Quran-style font, readable Roman Urdu, simple meaning aur source ke saath. Kisi title par tap kijiye aur real-book style reader khul jayega.</p>
+    <div class="searchWrap">
+      <div class="search">
+        <span class="searchGlyph" aria-hidden="true">⌕</span>
+        <input id="search" autocomplete="off" inputmode="search" placeholder="Search: barkat, safar, neend, rizq...">
+        <button class="searchClear" id="searchClear" aria-label="Clear search">✕</button>
+      </div>
+      <div class="searchResults" id="searchResults"></div>
+    </div>
+    <div class="statusRow">
+      <span class="statusPill"><i class="statusDot" id="netDot"></i><span id="netText">Online</span></span>
+      <span class="statusPill">◈ Source references included</span>
+      <span class="statusPill">⌁ Offline shell ready</span>
+    </div>
+  </section>
+  <div class="ornamentLine" aria-hidden="true"><i></i><span>✦</span><span>۞</span><span>✦</span><i></i></div>
+
+  <div class="nowCard" id="nowCard">
+    <div><div class="eyebrow">QUICK SUGGESTION</div><h4 id="nowTitle">Dua</h4><p id="nowWhen"></p></div>
+    <button class="nowGo" id="nowGo">Read now →</button>
+  </div>
+
+  <div class="libraryStrip">
+    <div class="stat"><b id="statTotal">0</b><span>Total duas</span></div>
+    <div class="stat"><b id="statFav">0</b><span>Favorites</span></div>
+    <div class="stat"><b id="statRead">0</b><span>Opened</span></div>
+  </div>
+
+  <div class="quick" id="filters">
+    <button class="active" data-cat="all"><span class="ico">✦</span>Sab</button>
+    <button data-cat="daily"><span class="ico">☀</span>Daily</button>
+    <button data-cat="home"><span class="ico">⌂</span>Ghar</button>
+    <button data-cat="travel"><span class="ico">➜</span>Safar</button>
+    <button data-cat="protection"><span class="ico">◈</span>Hifazat</button>
+    <button data-cat="health"><span class="ico">✚</span>Sehat</button>
+    <button data-cat="quran"><span class="ico">۞</span>Quran</button>
+    <button data-cat="salah"><span class="ico">☾</span>Namaz</button>
+    <button data-cat="fav"><span class="ico">♥</span>Favorites</button>
+  </div>
+
+  <div class="continueCard" id="continueCard">
+    <div><div class="eyebrow">CONTINUE READING</div><h4 id="continueTitle">Dua</h4><p id="continueWhen"></p></div>
+    <button class="continueGo" id="continueGo">Open page →</button>
+  </div>
+
+  <div class="sectionHead"><h3>Dua Collection</h3><span id="count"></span></div>
+  <main class="cards" id="cards"></main>
+
+  <section class="recentWrap" id="recentWrap">
+    <div class="recentHead"><h3>Recently opened</h3><small>Tap to continue</small></div>
+    <div class="recentList" id="recentList"></div>
+  </section>
+
+  <div class="trustCard">
+    <div class="trustIcon">✓</div>
+    <div><b>Reference-first library</b><p>Har entry ke saath source reference diya gaya hai. Public/final religious release se pehle scholar review karwana best rahega; website abhi learning/testing build hai.</p></div>
+  </div>
+
+  <footer style="text-align:center;color:#66756e;font-size:9px;margin-top:28px">
+    Noor-e-Dua • Crafted by <span style="color:#d7bf7d">Altaf Shaikh</span>
+  </footer>
+</div>
+
+<div class="readerOverlay" id="reader">
+  <div class="readerShell">
+    <div class="readerTop" id="readerTop">
+      <div class="title"><h3 id="readerTitle">Dua</h3><small id="readerSub">Book Reader</small></div>
+      <div class="readerActions">
+        <button class="rBtn" id="themeBtn">◐</button>
+        <button class="rBtn" id="fontBtn">A+</button>
+        <button class="rBtn" id="closeReader">✕</button>
+      </div>
+      <div class="themeSelect" id="themeMenu">
+        <button data-app-theme="amoled">AMOLED</button>
+        <button data-app-theme="minimal">Minimal</button>
+        <button data-app-theme="islamic">Islamic</button>
+        <button data-app-theme="noor">Noor Royal</button>
+      </div>
+    </div>
+    <div class="bookProgress" id="bookProgressWrap"><i id="bookProgress"></i></div>
+    <div class="bookWrap">
+      <div class="book theme-classic" id="book">
+        <div class="bookmarkRibbon" id="bookmarkRibbon"></div>
+        <article class="page" id="page"></article>
+        <div class="pageTurnShadow"></div>
+        <div class="pageEdge"></div>
+      </div>
+    </div>
+    <div class="readerTools" id="readerTools">
+      <button class="toolBtn" id="listenBtn">🔊 Listen</button>
+      <button class="toolBtn" id="viewBtn">Aa Full</button>
+      <button class="toolBtn" id="readerFav">♡ Favorite</button>
+      <button class="toolBtn" id="shareBtn">↗ Share</button>
+    </div>
+    <div class="readerBottom" id="readerBottom">
+      <button class="navBtn" id="prev">← Previous</button>
+      <span class="hint">Swipe pages</span>
+      <button class="navBtn" id="next">Next →</button>
+    </div>
+  </div>
+</div>
+<button class="settingsBtn" id="settingsBtn" aria-label="Settings">⚙</button>
+<div class="settingsSheet" id="settingsSheet">
+  <aside class="settingsPanel" aria-label="Noor Dua settings">
+    <div class="sheetTop">
+      <div class="settingsBrand">
+        <div class="settingsBrandIcon">✦</div>
+        <div><h3>Noor Control Center</h3><small>All settings • one premium sidebar</small></div>
+      </div>
+      <button class="sheetClose" id="sheetClose">✕</button>
+    </div>
+
+    <nav class="settingsNav" id="settingsNav">
+      <button data-settings-target="settingsExperience" class="active">General</button>
+      <button data-settings-target="settingsAppearance">Themes</button>
+      <button data-settings-target="settingsTypography">Fonts</button>
+      <button data-settings-target="settingsMotion">Motion</button>
+    </nav>
+
+    <section class="settingsSection" id="settingsExperience">
+      <div class="settingsSectionTitle"><span>01</span><div><b>Experience</b><small>Reading aur touch controls</small></div></div>
+      <div class="settingRow"><div><b>Touch sound + haptic</b><small>Buttons aur page turn par soft feedback</small></div><button class="switch" id="settingSound">ON</button></div>
+      <div class="settingRow"><div><b>Reading mode</b><small>Full / Arabic+Roman / Arabic only</small></div><button class="switch" id="settingView">FULL</button></div>
+    </section>
+
+    <section class="settingsSection" id="settingsAppearance">
+      <div class="settingsSectionTitle"><span>02</span><div><b>Full App Theme</b><small>Home, reader, cards aur sidebar sab change honge</small></div></div>
+      <div class="themeGrid" id="themeGrid">
+        <button class="themeCard" data-app-theme="gpt"><span class="swatches"><i style="background:#212121"></i><i style="background:#2f2f2f"></i><i style="background:#10a37f"></i></span><b>GPT Dark</b><small>Graphite • soft mint • premium dark</small></button>
+        <button class="themeCard" data-app-theme="amoled"><span class="swatches"><i style="background:#000"></i><i style="background:#ff78ad"></i><i style="background:#fff"></i></span><b>AMOLED</b><small>Pure black • pink glow</small></button>
+        <button class="themeCard" data-app-theme="minimal"><span class="swatches"><i style="background:#fff"></i><i style="background:#efeee9"></i><i style="background:#222"></i></span><b>Minimal</b><small>Clean • light • distraction-free</small></button>
+        <button class="themeCard" data-app-theme="islamic"><span class="swatches"><i style="background:#07100d"></i><i style="background:#2f8d71"></i><i style="background:#d9b86a"></i></span><b>Islamic</b><small>Emerald • gold • classic</small></button>
+        <button class="themeCard" data-app-theme="noor"><span class="swatches"><i style="background:#0a0d1a"></i><i style="background:#8b76e8"></i><i style="background:#f3c86e"></i></span><b>Noor Royal</b><small>Navy • violet • gold</small></button>
+        <button class="themeCard" data-app-theme="duo"><span class="swatches"><i style="background:#f2eee5"></i><i style="background:#151612"></i><i style="background:#c89a42"></i></span><b>Ivory Noir</b><small>Light + dark • premium contrast</small></button>
+      </div>
+    </section>
+
+    <section class="settingsSection" id="settingsTypography">
+      <div class="settingsSectionTitle"><span>03</span><div><b>Typography</b><small>Reader size aur font families</small></div></div>
+      <div class="settingRow settingStack">
+        <div><b>Reader Font Size</b><small>Arabic, Roman Urdu aur meaning ko ek saath bada/chhota kijiye</small></div>
+        <div class="rangeWrap"><div class="rangeLine"><span></span><span class="rangeValue" id="fontValue">100%</span></div>
+          <input class="fontRange" id="fontRange" type="range" min="75" max="155" step="5" value="100">
+          <div class="rangeScale"><span>Small</span><span>Normal</span><span>Large</span></div>
+        </div>
+      </div>
+      <div class="settingRow settingStack">
+        <div><b>Arabic Font Family</b><small>Quran-style font choose kijiye</small></div>
+        <div class="fontGrid" id="arabicFontGrid">
+          <button class="fontCard" data-arabic-font="noto"><b>Noto Naskh Arabic</b><span class="fontSampleArabic font-noto">بِسْمِ اللّٰهِ</span><small>Clear • balanced</small></button>
+          <button class="fontCard" data-arabic-font="amiri"><b>Amiri Quran</b><span class="fontSampleArabic font-amiri">بِسْمِ اللّٰهِ</span><small>Traditional Quran feel</small></button>
+          <button class="fontCard" data-arabic-font="scheherazade"><b>Scheherazade New</b><span class="fontSampleArabic font-scheherazade">بِسْمِ اللّٰهِ</span><small>Elegant Naskh</small></button>
+          <button class="fontCard" data-arabic-font="lateef"><b>Lateef</b><span class="fontSampleArabic font-lateef">بِسْمِ اللّٰهِ</span><small>Soft handwritten feel</small></button>
+          <button class="fontCard" data-arabic-font="markazi"><b>Markazi Text</b><span class="fontSampleArabic font-markazi">بِسْمِ اللّٰهِ</span><small>Compact • bold</small></button>
+        </div>
+      </div>
+      <div class="settingRow settingStack">
+        <div><b>Roman Urdu Font Family</b><small>Tarjuma aur Roman reading ka style</small></div>
+        <div class="fontGrid" id="romanFontGrid">
+          <button class="fontCard" data-roman-font="alegreya"><b>Alegreya</b><span class="fontSampleRoman font-alegreya">Bismillahir Rahmanir Raheem</span><small>Book-like • elegant</small></button>
+          <button class="fontCard" data-roman-font="manrope"><b>Manrope</b><span class="fontSampleRoman font-manrope">Bismillahir Rahmanir Raheem</span><small>Modern • clean</small></button>
+          <button class="fontCard" data-roman-font="lora"><b>Lora</b><span class="fontSampleRoman font-lora">Bismillahir Rahmanir Raheem</span><small>Premium serif</small></button>
+          <button class="fontCard" data-roman-font="merriweather"><b>Merriweather</b><span class="fontSampleRoman font-merriweather">Bismillahir Rahmanir Raheem</span><small>Long reading</small></button>
+          <button class="fontCard" data-roman-font="poppins"><b>Poppins</b><span class="fontSampleRoman font-poppins">Bismillahir Rahmanir Raheem</span><small>Rounded • modern</small></button>
+        </div>
+      </div>
+    </section>
+
+    <section class="settingsSection" id="settingsMotion">
+      <div class="settingsSectionTitle"><span>04</span><div><b>Motion & Pages</b><small>Page transition customize kijiye</small></div></div>
+      <div class="fxGrid" id="fxGrid">
+        <button class="fxCard" data-fx="flip"><b>Real Flip</b><small>3D book page turn</small></button>
+        <button class="fxCard" data-fx="slide"><b>Smooth Slide</b><small>Horizontal motion</small></button>
+        <button class="fxCard" data-fx="fade"><b>Soft Fade</b><small>Calm transition</small></button>
+        <button class="fxCard" data-fx="zoom"><b>Focus Zoom</b><small>Modern zoom</small></button>
+      </div>
+    </section>
+
+    <section class="settingsSection settingsInstall">
+      <div class="settingsSectionTitle"><span>05</span><div><b>App</b><small>Install aur offline experience</small></div></div>
+      <button class="installBtn" id="installBtn">＋ Install Noor-e-Dua</button>
+    </section>
+  </aside>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+const D=[
+{title:"Sone se pehle",when:"Bistar par sone se pehle",cat:["daily"],tag:"Night",arabic:"بِاسْمِكَ اللَّهُمَّ أَمُوتُ وَأَحْيَا",roman:"Bismika Allahumma amootu wa ahya.",meaning:"Ae Allah, tere naam ke saath main marta aur jeeta hoon.",source:"Sahih al-Bukhari"},
+{title:"Neend se uthne ke baad",when:"Aankh khulne ke baad",cat:["daily"],tag:"Morning",arabic:"الْحَمْدُ لِلَّهِ الَّذِي أَحْيَانَا بَعْدَ مَا أَمَاتَنَا وَإِلَيْهِ النُّشُورُ",roman:"Alhamdu lillahil-ladhi ahyana ba'da ma amatana wa ilayhin-nushoor.",meaning:"Tamam tareef Allah ke liye hai jisne hame maut jaisi neend ke baad zinda kiya, aur usi ki taraf lautna hai.",source:"Sahih al-Bukhari"},
+{title:"Khane se pehle",when:"Khana shuru karte waqt",cat:["daily","home"],tag:"Food",arabic:"بِسْمِ اللَّهِ",roman:"Bismillah.",meaning:"Allah ke naam se.",source:"Sunan Abi Dawud / Jami' at-Tirmidhi"},
+{title:"Khane ke baad",when:"Khana khatam hone par",cat:["daily","home"],tag:"Food",arabic:"الْحَمْدُ لِلَّهِ الَّذِي أَطْعَمَنِي هَذَا وَرَزَقَنِيهِ مِنْ غَيْرِ حَوْلٍ مِنِّي وَلَا قُوَّةٍ",roman:"Alhamdu lillahil-ladhi at'amani hadha wa razaqanihi min ghayri hawlin minni wa la quwwah.",meaning:"Allah ka shukr jisne mujhe ye khana khilaya aur bina meri taqat ke mujhe rizq diya.",source:"Sunan Abi Dawud / Jami' at-Tirmidhi"},
+{title:"Ghar se nikalte waqt",when:"Darwaze se bahar nikalte waqt",cat:["daily","home","travel","protection"],tag:"Protection",arabic:"بِسْمِ اللَّهِ تَوَكَّلْتُ عَلَى اللَّهِ لَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ",roman:"Bismillah, tawakkaltu 'alallah, la hawla wa la quwwata illa billah.",meaning:"Allah ke naam se; maine Allah par bharosa kiya. Allah ke baghair na quwwat hai na taqat.",source:"Sunan Abi Dawud / Jami' at-Tirmidhi"},
+{title:"Masjid mein dakhil hote waqt",when:"Masjid mein qadam rakhte waqt",cat:["daily"],tag:"Masjid",arabic:"اللَّهُمَّ افْتَحْ لِي أَبْوَابَ رَحْمَتِكَ",roman:"Allahumma-ftah li abwaba rahmatik.",meaning:"Ae Allah, mere liye apni rehmat ke darwaze khol de.",source:"Sahih Muslim"},
+{title:"Masjid se nikalte waqt",when:"Masjid se bahar aate waqt",cat:["daily"],tag:"Masjid",arabic:"اللَّهُمَّ إِنِّي أَسْأَلُكَ مِنْ فَضْلِكَ",roman:"Allahumma inni as'aluka min fadlik.",meaning:"Ae Allah, main tujhse tera fazl mangta hoon.",source:"Sahih Muslim"},
+{title:"Bathroom mein dakhil hote waqt",when:"Toilet mein jane se pehle",cat:["daily","home"],tag:"Daily",arabic:"اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الْخُبُثِ وَالْخَبَائِثِ",roman:"Allahumma inni a'udhu bika minal-khubthi wal-khaba'ith.",meaning:"Ae Allah, main buri aur napaak cheezon se teri panaah mangta hoon.",source:"Sahih al-Bukhari / Sahih Muslim"},
+{title:"Bathroom se nikalne ke baad",when:"Toilet se bahar aane par",cat:["daily","home"],tag:"Daily",arabic:"غُفْرَانَكَ",roman:"Ghufranak.",meaning:"Ae Allah, main teri maghfirat chahta hoon.",source:"Sunan Abi Dawud / Jami' at-Tirmidhi"},
+{title:"Safar ki dua",when:"Sawari ya safar shuru karte waqt",cat:["travel"],tag:"Travel",arabic:"سُبْحَانَ الَّذِي سَخَّرَ لَنَا هَذَا وَمَا كُنَّا لَهُ مُقْرِنِينَ ۝ وَإِنَّا إِلَى رَبِّنَا لَمُنْقَلِبُونَ",roman:"Subhanalladhi sakhkhara lana hadha wa ma kunna lahu muqrinin, wa inna ila Rabbina lamunqalibun.",meaning:"Paak hai woh jisne is sawari ko hamare qaboo mein diya; warna hum ise qaboo nahi kar sakte the. Aur hame apne Rab ki taraf lautna hai.",source:"Qur'an 43:13–14; travel remembrance in Sahih Muslim"},
+{title:"Barish ke waqt",when:"Barish shuru ho",cat:["daily"],tag:"Rain",arabic:"اللَّهُمَّ صَيِّبًا نَافِعًا",roman:"Allahumma sayyiban nafi'an.",meaning:"Ae Allah, is barish ko faydemand bana.",source:"Sahih al-Bukhari"},
+{title:"Pareshani aur gham",when:"Tension, gham ya fikr ho",cat:["daily","protection"],tag:"Relief",arabic:"اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الْهَمِّ وَالْحَزَنِ وَالْعَجْزِ وَالْكَسَلِ وَالْبُخْلِ وَالْجُبْنِ وَضَلَعِ الدَّيْنِ وَغَلَبَةِ الرِّجَالِ",roman:"Allahumma inni a'udhu bika minal-hammi wal-hazan, wal-'ajzi wal-kasal, wal-bukhli wal-jubn, wa dala'id-dayni wa ghalabatir-rijal.",meaning:"Ae Allah, main fikr, gham, kamzori, susti, bukhl, buzdili, qarz ke bojh aur logon ke ghalbe se teri panaah mangta hoon.",source:"Sahih al-Bukhari"},
+{title:"Mushkil waqt mein",when:"Sakht pareshani ya mushkil mein",cat:["daily","protection","quran"],tag:"Dua of Yunus • Kanz-ul-Iman",arabic:"لَا إِلَهَ إِلَّا أَنْتَ سُبْحَانَكَ إِنِّي كُنْتُ مِنَ الظَّالِمِينَ",roman:"La ilaha illa Anta, subhanaka inni kuntu minaz-zalimin.",kanzul:"Tere siwa koi ma'bood nahin, Tu har aib se paak hai, beshak mujh se be-ja hua.",meaning:"",source:"Qur'an 21:87 • Tarjuma Kanz-ul-Iman (Roman Urdu) — Dawat-e-Islami Quran"},
+{title:"Walidain ke liye",when:"Parents ke liye dua karte waqt",cat:["home","quran"],tag:"Parents • Kanz-ul-Iman",arabic:"رَبِّ ارْحَمْهُمَا كَمَا رَبَّيَانِي صَغِيرًا",roman:"Rabbir-hamhuma kama rabbayani saghira.",kanzul:"Ae mere Rab! Tu un dono par rahm farma jaisa un dono ne mujhe bachpan mein pala.",meaning:"",source:"Qur'an 17:24 • Tarjuma Kanz-ul-Iman (Roman Urdu) — Dawat-e-Islami Quran"},
+{title:"Ilm badhne ki dua",when:"Padhai ya seekhne se pehle/dauran",cat:["daily","quran"],tag:"Knowledge • Kanz-ul-Iman",arabic:"رَبِّ زِدْنِي عِلْمًا",roman:"Rabbi zidni 'ilma.",kanzul:"Ae mere Rab! Mere ilm mein izafa farma.",meaning:"",source:"Qur'an 20:114 • Tarjuma Kanz-ul-Iman (Roman Urdu) — Dawat-e-Islami Quran"},
+{title:"Duniya aur akhirat ki bhalai",when:"Jami' dua ke taur par",cat:["daily","quran"],tag:"Qur'anic • Kanz-ul-Iman",arabic:"رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ",roman:"Rabbana atina fid-dunya hasanatan wa fil-akhirati hasanatan wa qina 'adhaban-nar.",kanzul:"Ae hamare Rab! Hamein duniya mein bhalai ata farma aur hamein aakhirat mein bhi bhalai ata farma aur hamein dozakh ke azaab se bacha.",meaning:"",source:"Qur'an 2:201 • Tarjuma Kanz-ul-Iman (Roman Urdu) — Dawat-e-Islami Quran"},
+{title:"Maghfirat ki dua",when:"Tauba aur maafi mangte waqt",cat:["daily"],tag:"Forgiveness",arabic:"رَبِّ اغْفِرْ لِي وَتُبْ عَلَيَّ إِنَّكَ أَنْتَ التَّوَّابُ الرَّحِيمُ",roman:"Rabbighfir li wa tub 'alayya innaka Antat-Tawwabur-Rahim.",meaning:"Ae mere Rab, mujhe bakhsh de aur meri tauba qubool farma; beshak Tu bohat tauba qubool karne wala, nihayat meherban hai.",source:"Sunan Abi Dawud / Jami' at-Tirmidhi"},
+{title:"Kapde pehente waqt",when:"Naya ya roz ka libas pehente waqt",cat:["daily","home"],tag:"Clothes",arabic:"الْحَمْدُ لِلَّهِ الَّذِي كَسَانِي هَذَا وَرَزَقَنِيهِ مِنْ غَيْرِ حَوْلٍ مِنِّي وَلَا قُوَّةٍ",roman:"Alhamdu lillahil-ladhi kasani hadha wa razaqanihi min ghayri hawlin minni wa la quwwah.",meaning:"Allah ka shukr jisne mujhe ye libas pehnaya aur bina meri taqat ke ye ata kiya.",source:"Sunan Abi Dawud"},
+{title:"Subah-shaam hifazat",when:"Subah aur shaam 3 martaba",cat:["daily","protection"],tag:"Morning & Evening",repeat:"3×",arabic:"بِسْمِ اللَّهِ الَّذِي لَا يَضُرُّ مَعَ اسْمِهِ شَيْءٌ فِي الْأَرْضِ وَلَا فِي السَّمَاءِ وَهُوَ السَّمِيعُ الْعَلِيمُ",roman:"Bismillahil-ladhi la yadurru ma'asmihi shay'un fil-ardi wa la fis-sama'i wa Huwas-Sami'ul-'Alim.",meaning:"Allah ke naam ke saath, jiske naam ke hote hue zameen aur aasman mein koi cheez nuqsan nahi de sakti; aur Woh sab sunne, sab jaanne wala hai.",source:"Sunan Abi Dawud / Jami' at-Tirmidhi"},
+{title:"Har shar se panaah",when:"Kisi jagah utarne ya hifazat chahne par",cat:["protection","travel"],tag:"Protection",arabic:"أَعُوذُ بِكَلِمَاتِ اللَّهِ التَّامَّاتِ مِنْ شَرِّ مَا خَلَقَ",roman:"A'udhu bi kalimatillahit-tammati min sharri ma khalaq.",meaning:"Main Allah ke poore kalimat ke zariye uski makhlooq ke shar se panaah mangta hoon.",source:"Sahih Muslim"},
+{title:"Gusse ke waqt",when:"Jab gussa aaye",cat:["daily","protection"],tag:"Anger",arabic:"أَعُوذُ بِاللَّهِ مِنَ الشَّيْطَانِ الرَّجِيمِ",roman:"A'udhu billahi minash-shaytanir-rajim.",meaning:"Main shaitan mardood se Allah ki panaah mangta hoon.",source:"Sahih al-Bukhari / Sahih Muslim"},
+{title:"Dard ki dua",when:"Jism mein dard ho — pehle Bismillah 3 martaba, phir ye 7 martaba",cat:["health","protection"],tag:"Pain",repeat:"Bismillah 3× • Dua 7×",arabic:"أَعُوذُ بِاللَّهِ وَقُدْرَتِهِ مِنْ شَرِّ مَا أَجِدُ وَأُحَاذِرُ",roman:"A'udhu billahi wa qudratihi min sharri ma ajidu wa uhadhir.",meaning:"Main Allah aur uski qudrat ki panaah mangta hoon us cheez ke shar se jo main mehsoos karta hoon aur jis se darta hoon.",source:"Sahih Muslim"},
+{title:"Bimar ki shifa",when:"Bimar shakhs ke liye 7 martaba",cat:["health"],tag:"Healing",repeat:"7×",arabic:"أَسْأَلُ اللَّهَ الْعَظِيمَ رَبَّ الْعَرْشِ الْعَظِيمِ أَنْ يَشْفِيَكَ",roman:"As'alullahal-'Azim Rabbal-'Arshil-'Azim an yashfiyak.",meaning:"Main Azeem Allah se, jo Arsh-e-Azeem ka Rab hai, dua karta hoon ke Woh aapko shifa de.",source:"Sunan Abi Dawud / Jami' at-Tirmidhi"},
+{title:"Wuzu ke baad",when:"Wuzu mukammal karne ke baad",cat:["daily"],tag:"Wudu",arabic:"أَشْهَدُ أَنْ لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ وَأَشْهَدُ أَنَّ مُحَمَّدًا عَبْدُهُ وَرَسُولُهُ",roman:"Ashhadu an la ilaha illallahu wahdahu la sharika lah, wa ashhadu anna Muhammadan 'abduhu wa rasuluh.",meaning:"Main gawahi deta hoon ke Allah ke siwa koi mabood nahi, Woh akela hai, uska koi shareek nahi; aur Muhammad ﷺ uske bande aur Rasool hain.",source:"Sahih Muslim"},
+{title:"Azan ke baad",when:"Azan khatam hone ke baad",cat:["daily"],tag:"Adhan",arabic:"اللَّهُمَّ رَبَّ هَذِهِ الدَّعْوَةِ التَّامَّةِ وَالصَّلَاةِ الْقَائِمَةِ آتِ مُحَمَّدًا الْوَسِيلَةَ وَالْفَضِيلَةَ وَابْعَثْهُ مَقَامًا مَحْمُودًا الَّذِي وَعَدْتَهُ",roman:"Allahumma Rabba hadhihid-da'watit-tammah, was-salatil-qa'imah, ati Muhammadanil-wasilata wal-fadilah, wab'athhu maqaman mahmudanilladhi wa'adtah.",meaning:"Ae Allah, is poori dawat aur qayam hone wali namaz ke Rab, Muhammad ﷺ ko waseelah aur fazilat ata farma aur unhein woh maqam-e-mahmood ata farma jiska Tu ne wada kiya.",source:"Sahih al-Bukhari"},
+{title:"Qabristan ki dua",when:"Qabristan mein dakhil hote waqt",cat:["daily"],tag:"Cemetery",arabic:"السَّلَامُ عَلَيْكُمْ دَارَ قَوْمٍ مُؤْمِنِينَ وَإِنَّا إِنْ شَاءَ اللَّهُ بِكُمْ لَاحِقُونَ أَسْأَلُ اللَّهَ لَنَا وَلَكُمُ الْعَافِيَةَ",roman:"Assalamu 'alaykum dara qawmin mu'minin, wa inna in sha'Allahu bikum lahiqun, as'alullaha lana wa lakumul-'afiyah.",meaning:"Aye momin logon ke ghar walon, tum par salam ho. In sha Allah hum bhi tumse milne wale hain. Hum Allah se apne aur tumhare liye afiyat mangte hain.",source:"Sahih Muslim"},
+{title:"Hidayat aur paakdamni",when:"Hidayat, taqwa aur be-niyazi mangte waqt",cat:["daily"],tag:"Guidance",arabic:"اللَّهُمَّ إِنِّي أَسْأَلُكَ الْهُدَى وَالتُّقَى وَالْعَفَافَ وَالْغِنَى",roman:"Allahumma inni as'alukal-huda wat-tuqa wal-'afafa wal-ghina.",meaning:"Ae Allah, main tujhse hidayat, taqwa, paakdamni aur be-niyazi mangta hoon.",source:"Sahih Muslim"},
+{title:"Safar se wapsi",when:"Safar se wapas aate waqt",cat:["travel"],tag:"Return",arabic:"آيِبُونَ تَائِبُونَ عَابِدُونَ لِرَبِّنَا حَامِدُونَ",roman:"Ayibuna ta'ibuna 'abiduna li-Rabbina hamidun.",meaning:"Hum lautne wale, tauba karne wale, ibadat karne wale aur apne Rab ki hamd karne wale hain.",source:"Sahih Muslim"},
+{title:"Sayyid-ul-Istighfar",when:"Subah-shaam maghfirat ki azeem dua",cat:["daily","protection"],tag:"Forgiveness",arabic:"اللَّهُمَّ أَنْتَ رَبِّي لَا إِلَهَ إِلَّا أَنْتَ خَلَقْتَنِي وَأَنَا عَبْدُكَ وَأَنَا عَلَى عَهْدِكَ وَوَعْدِكَ مَا اسْتَطَعْتُ أَعُوذُ بِكَ مِنْ شَرِّ مَا صَنَعْتُ أَبُوءُ لَكَ بِنِعْمَتِكَ عَلَيَّ وَأَبُوءُ بِذَنْبِي فَاغْفِرْ لِي فَإِنَّهُ لَا يَغْفِرُ الذُّنُوبَ إِلَّا أَنْتَ",roman:"Allahumma Anta Rabbi la ilaha illa Anta, khalaqtani wa ana 'abduka, wa ana 'ala 'ahdika wa wa'dika mastata'tu. A'udhu bika min sharri ma sana'tu, abu'u laka bini'matika 'alayya, wa abu'u bidhanbi, faghfir li fa innahu la yaghfirudh-dhunuba illa Anta.",meaning:"Ae Allah, Tu mera Rab hai; Tere siwa koi mabood nahi. Tu ne mujhe paida kiya aur main Tera banda hoon... main apne gunah ka iqrar karta hoon; mujhe bakhsh de, kyunki Tere siwa gunah koi nahi bakhshta.",source:"Sahih al-Bukhari"},
+{title:"Durood-e-Ibraheem",when:"Namaz ke qa'dah mein Tashahhud ke baad aur durood padhte waqt",cat:["daily","salah"],tag:"Durood",arabic:"اللّٰهُمَّ صَلِّ عَلٰى مُحَمَّدٍ وَّعَلٰى آلِ مُحَمَّدٍ كَمَا صَلَّيْتَ عَلٰى إِبْرَاهِيْمَ وَعَلٰى آلِ إِبْرَاهِيْمَ إِنَّكَ حَمِيْدٌ مَّجِيْدٌ ۞ اللّٰهُمَّ بَارِكْ عَلٰى مُحَمَّدٍ وَّعَلٰى آلِ مُحَمَّدٍ كَمَا بَارَكْتَ عَلٰى إِبْرَاهِيْمَ وَعَلٰى آلِ إِبْرَاهِيْمَ إِنَّكَ حَمِيْدٌ مَّجِيْدٌ",roman:"Allahumma salli 'ala Muhammadin wa 'ala aali Muhammadin kama sallaita 'ala Ibraheema wa 'ala aali Ibraheema innaka Hameedum Majeed. Allahumma baarik 'ala Muhammadin wa 'ala aali Muhammadin kama baarakta 'ala Ibraheema wa 'ala aali Ibraheema innaka Hameedum Majeed.",meaning:"Ae Allah! Muhammad ﷺ aur Aal-e-Muhammad par rehmat nazil farma, jaisa Tune Ibrahim علیہ السلام aur Aal-e-Ibrahim par rehmat nazil farmai. Beshak Tu tareef wala, buzurgi wala hai. Ae Allah! Muhammad ﷺ aur Aal-e-Muhammad par barkat nazil farma, jaisa Tune Ibrahim علیہ السلام aur Aal-e-Ibrahim par barkat nazil farmai. Beshak Tu tareef wala, buzurgi wala hai.",source:"Dawat-e-Islami — Laws of Salah / Durood-e-Ibraheem"},
+{title:"Surah Al-Fatihah",when:"Namaz aur Quran ki tilawat mein",cat:["daily","quran","salah"],tag:"Quran • Kanz-ul-Iman",arabic:"بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِیْمِ ۝ اَلْحَمْدُ لِلّٰهِ رَبِّ الْعٰلَمِیْنَ ۝ الرَّحْمٰنِ الرَّحِیْمِ ۝ مٰلِكِ یَوْمِ الدِّیْنِ ۝ اِیَّاكَ نَعْبُدُ وَ اِیَّاكَ نَسْتَعِیْنُ ۝ اِهْدِنَا الصِّرَاطَ الْمُسْتَقِیْمَ ۝ صِرَاطَ الَّذِیْنَ اَنْعَمْتَ عَلَیْهِمْ غَیْرِ الْمَغْضُوْبِ عَلَیْهِمْ وَ لَا الضَّآلِّیْنَ",roman:"Bismillahir-Rahmanir-Raheem. Alhamdu lillahi Rabbil-'aalameen. Ar-Rahmanir-Raheem. Maaliki Yawmid-Deen. Iyyaaka na'budu wa iyyaaka nasta'een. Ihdinas-siraatal-mustaqeem. Siraatal-lazeena an'amta 'alayhim ghayril-maghdoobi 'alayhim wa lad-daalleen.",kanzul:"Allah ke naam se shuru jo bahut meherban, rehmat wala. Sab khoobiyan Allah ko jo maalik saare jahan walon ka. Bahut meherban, rehmat wala. Roz-e-jaza ka maalik. Hum tujhi ko poojein aur tujhi se madad chahein. Hum ko seedha raasta chala. Raasta un ka jin par Tu ne ehsan kiya, na un ka jin par ghazab hua aur na behke huon ka.",meaning:"",source:"Tarjuma Kanz-ul-Iman (Roman Urdu) — Dawat-e-Islami Quran"},
+{title:"Ayat-ul-Kursi",when:"Hifazat, zikr aur tilawat ke liye",cat:["daily","quran","protection"],tag:"Quran 2:255 • Kanz-ul-Iman",arabic:"اَللّٰهُ لَاۤ اِلٰهَ اِلَّا هُوَۚ اَلْحَیُّ الْقَیُّوْمُ ۚ لَا تَاْخُذُهٗ سِنَةٌ وَّ لَا نَوْمٌؕ لَهٗ مَا فِی السَّمٰوٰتِ وَ مَا فِی الْاَرْضِؕ مَنْ ذَا الَّذِیْ یَشْفَعُ عِنْدَهٗۤ اِلَّا بِاِذْنِهٖؕ یَعْلَمُ مَا بَیْنَ اَیْدِیْهِمْ وَ مَا خَلْفَهُمْۚ وَ لَا یُحِیْطُوْنَ بِشَیْءٍ مِّنْ عِلْمِهٖۤ اِلَّا بِمَا شَآءَۚ وَسِعَ كُرْسِیُّهُ السَّمٰوٰتِ وَ الْاَرْضَۚ وَ لَا یَـٴُـوْدُهٗ حِفْظُهُمَاۚ وَ هُوَ الْعَلِیُّ الْعَظِیْمُ",roman:"Allahu la ilaha illa Huwa, Al-Hayyul-Qayyum. La ta'khuzuhu sinatun wa la nawm. Lahu ma fis-samawati wa ma fil-ard. Man dhal-ladhi yashfa'u 'indahu illa bi-idhnih. Ya'lamu ma bayna aydihim wa ma khalfahum, wa la yuhituna bi-shay'im-min 'ilmihi illa bima sha'. Wasi'a kursiyyuhus-samawati wal-ard, wa la ya'uduhu hifzuhuma, wa Huwal-'Aliyyul-'Azim.",kanzul:"Allah woh hai jis ke siwa koi ma'bood nahin, woh khud zinda hai, doosron ko qa'im rakhne wala hai, use na oongh aati hai aur na neend. Jo kuch aasmanon mein hai aur jo kuch zameen mein, sab usi ka hai. Kaun hai jo us ke haan us ki ijazat ke baghair sifarish kare? Woh jaanta hai jo kuch un ke aage hai aur jo kuch un ke peeche hai, aur log us ke ilm mein se itna hi haasil kar sakte hain jitna woh chahe. Us ki Kursi aasman aur zameen ko apni wus'at mein liye hue hai aur un ki hifazat use thaka nahin sakti, aur wahi buland shaan wala, azmat wala hai.",meaning:"",source:"Tarjuma Kanz-ul-Iman (Roman Urdu) — Dawat-e-Islami Quran • Al-Baqarah 2:255"},
+{title:"Surah Al-Kafirun",when:"4 Qul mein se pehli Surah",cat:["quran","protection"],tag:"4 Qul • Kanz-ul-Iman",arabic:"بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِیْمِ ۝ قُلْ یٰۤاَیُّهَا الْكٰفِرُوْنَ ۝ لَاۤ اَعْبُدُ مَا تَعْبُدُوْنَ ۝ وَ لَاۤ اَنْتُمْ عٰبِدُوْنَ مَاۤ اَعْبُدُ ۝ وَ لَاۤ اَنَا عَابِدٌ مَّا عَبَدْتُّمْ ۝ وَ لَاۤ اَنْتُمْ عٰبِدُوْنَ مَاۤ اَعْبُدُ ۝ لَكُمْ دِیْنُكُمْ وَ لِیَ دِیْنِ",roman:"Bismillahir-Rahmanir-Raheem. Qul ya ayyuhal-kafirun. La a'budu ma ta'budun. Wa la antum 'abiduna ma a'bud. Wa la ana 'abidum-ma 'abadtum. Wa la antum 'abiduna ma a'bud. Lakum deenukum wa liya deen.",kanzul:"Allah ke naam se shuru jo nihayat meherban, rehmat wala hai. Tum farmao! Ae kafiro! Main un ki ibadat nahin karta jinhein tum poojte ho. Aur tum us ki ibadat karne wale nahin jis ki main ibadat karta hoon. Aur na main us ki ibadat karunga jise tum ne pooja. Aur na tum us ki ibadat karne wale ho jis ki main ibadat karta hoon. Tumhare liye tumhara deen hai aur mere liye mera deen hai.",meaning:"",source:"Tarjuma Kanz-ul-Iman (Roman Urdu) — Dawat-e-Islami Quran • Surah 109"},
+{title:"Surah Al-Ikhlas",when:"4 Qul mein se doosri Surah",cat:["quran","protection"],tag:"4 Qul • Kanz-ul-Iman",arabic:"بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِیْمِ ۝ قُلْ هُوَ اللّٰهُ اَحَدٌ ۝ اَللّٰهُ الصَّمَدُ ۝ لَمْ یَلِدْ وَ لَمْ یُوْلَدْ ۝ وَ لَمْ یَكُنْ لَّهٗ كُفُوًا اَحَدٌ",roman:"Bismillahir-Rahmanir-Raheem. Qul Huwallahu Ahad. Allahus-Samad. Lam yalid wa lam yulad. Wa lam yakul-lahu kufuwan ahad.",kanzul:"Allah ke naam se shuru jo nihayat meherban, rehmat wala hai. Tum farmao: Woh Allah ek hai. Allah be-niyaz hai. Na us ne kisi ko janam diya aur na woh kisi se paida hua. Aur koi us ke barabar nahin.",meaning:"",source:"Tarjuma Kanz-ul-Iman (Roman Urdu) — Dawat-e-Islami Quran • Surah 112"},
+{title:"Surah Al-Falaq",when:"4 Qul mein se teesri Surah",cat:["quran","protection"],tag:"4 Qul • Kanz-ul-Iman",arabic:"بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِیْمِ ۝ قُلْ اَعُوْذُ بِرَبِّ الْفَلَقِ ۝ مِنْ شَرِّ مَا خَلَقَ ۝ وَ مِنْ شَرِّ غَاسِقٍ اِذَا وَقَبَ ۝ وَ مِنْ شَرِّ النَّفّٰثٰتِ فِی الْعُقَدِ ۝ وَ مِنْ شَرِّ حَاسِدٍ اِذَا حَسَدَ",roman:"Bismillahir-Rahmanir-Raheem. Qul a'udhu bi-Rabbil-falaq. Min sharri ma khalaq. Wa min sharri ghasiqin idha waqab. Wa min sharrin-naffathati fil-'uqad. Wa min sharri hasidin idha hasad.",kanzul:"Allah ke naam se shuru jo nihayat meherban, rehmat wala hai. Tum farmao: Main subah ke Rab ki panaah leta hoon. Us ki tamam makhlooq ke shar se. Aur sakht andheri raat ke shar se jab woh chha jaye. Aur un auraton ke shar se jo girahon mein phoonkein maarti hain. Aur hasad wale ke shar se jab woh hasad kare.",meaning:"",source:"Tarjuma Kanz-ul-Iman (Roman Urdu) — Dawat-e-Islami Quran • Surah 113"},
+{title:"Surah An-Naas",when:"4 Qul mein se chauthi Surah",cat:["quran","protection"],tag:"4 Qul • Kanz-ul-Iman",arabic:"بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِیْمِ ۝ قُلْ اَعُوْذُ بِرَبِّ النَّاسِ ۝ مَلِكِ النَّاسِ ۝ اِلٰهِ النَّاسِ ۝ مِنْ شَرِّ الْوَسْوَاسِ الْخَنَّاسِ ۝ الَّذِیْ یُوَسْوِسُ فِیْ صُدُوْرِ النَّاسِ ۝ مِنَ الْجِنَّةِ وَ النَّاسِ",roman:"Bismillahir-Rahmanir-Raheem. Qul a'udhu bi-Rabbin-naas. Malikin-naas. Ilahin-naas. Min sharril-waswasil-khannas. Alladhi yuwaswisu fi sudurin-naas. Minal-jinnati wan-naas.",kanzul:"Allah ke naam se shuru jo nihayat meherban, rehmat wala hai. Tum kaho: Main tamam logon ke Rab ki panaah leta hoon. Tamam logon ka Badshah. Tamam logon ka Ma'bood. Baar baar waswase daalne wale, chhup jaane wale ke shar se panaah leta hoon. Woh jo logon ke dilon mein waswase daalta hai. Jinnon aur insaanon mein se.",meaning:"",source:"Tarjuma Kanz-ul-Iman (Roman Urdu) — Dawat-e-Islami Quran • Surah 114"}
+];
+
+const FEATURED=["Durood-e-Ibraheem","Surah Al-Fatihah","Ayat-ul-Kursi","Surah Al-Kafirun","Surah Al-Ikhlas","Surah Al-Falaq","Surah An-Naas"];
+let current=0,filtered=D.map((_,i)=>i),soundOn=localStorage.getItem("duaSound")!=="off",readerScale=Number(localStorage.getItem("duaFontScale")||1),viewMode=localStorage.getItem("duaViewMode")||"full",speaking=false,deferredInstall=null,appTheme=localStorage.getItem("duaAppTheme")||"gpt",pageFx=localStorage.getItem("duaPageFx")||"flip",arabicFont=localStorage.getItem("duaArabicFont")||"noto",romanFont=localStorage.getItem("duaRomanFont")||"alegreya";
+const opened=new Set(JSON.parse(localStorage.getItem("duaOpened")||"[]"));
+let recent=JSON.parse(localStorage.getItem("duaRecent")||"[]");
+const $=s=>document.querySelector(s), cards=$("#cards"), reader=$("#reader"), page=$("#page"), book=$("#book");
+const favs=new Set(JSON.parse(localStorage.getItem("duaFavs")||"[]"));
+
+function haptic(strong=false){
+  if(soundOn && window.NoorNative && NoorNative.haptic){try{NoorNative.haptic(!!strong)}catch(e){}}
+  else if(soundOn && navigator.vibrate) navigator.vibrate(strong?18:8);
+  if(!soundOn) return;
+  try{
+    const C=window.AudioContext||window.webkitAudioContext; if(!C)return;
+    if(!window._ctx) window._ctx=new C(); const c=window._ctx;
+    const o=c.createOscillator(),g=c.createGain(); o.type="sine";o.frequency.value=strong?310:420;
+    g.gain.setValueAtTime(.03,c.currentTime);g.gain.exponentialRampToValueAtTime(.0001,c.currentTime+.055);
+    o.connect(g).connect(c.destination);o.start();o.stop(c.currentTime+.06);
+  }catch(e){}
+}
+function pageSound(){
+ if(!soundOn)return;
+ try{
+  const C=window.AudioContext||window.webkitAudioContext;if(!C)return;if(!window._ctx)window._ctx=new C();const c=window._ctx;
+  const len=Math.floor(c.sampleRate*.09),b=c.createBuffer(1,len,c.sampleRate),d=b.getChannelData(0);
+  for(let i=0;i<len;i++)d[i]=(Math.random()*2-1)*(1-i/len)*.08;
+  const s=c.createBufferSource(),f=c.createBiquadFilter();f.type="highpass";f.frequency.value=900;s.buffer=b;s.connect(f).connect(c.destination);s.start();
+ }catch(e){}
+}
+function toast(t){const el=$("#toast");el.textContent=t;el.classList.add("show");clearTimeout(el._t);el._t=setTimeout(()=>el.classList.remove("show"),1300)}
+function getSearchMatches(q){
+ const needle=q.trim().toLowerCase();if(!needle)return [];
+ return D.map((d,i)=>({d,i,hay:[d.title,d.when,d.tag,d.roman,d.meaning||"",d.kanzul||"",...(d.cat||[])].join(" ").toLowerCase()}))
+   .filter(x=>x.hay.includes(needle))
+   .sort((a,b)=>{const at=a.d.title.toLowerCase().includes(needle)?0:1,bt=b.d.title.toLowerCase().includes(needle)?0:1;if(at!==bt)return at-bt;const ar=FEATURED.indexOf(a.d.title),br=FEATURED.indexOf(b.d.title);return (ar<0?999:ar)-(br<0?999:br)});
+}
+function renderSearchResults(){
+ const q=$("#search").value.trim(),box=$("#searchResults"),clear=$("#searchClear");
+ clear.classList.toggle("show",!!q);
+ if(!q){box.classList.remove("open");box.innerHTML="";return}
+ const all=getSearchMatches(q),matches=all.slice(0,6);
+ box.innerHTML=matches.length?matches.map(x=>"<button class=\"searchResult\" data-search-i=\""+x.i+"\"><span class=\"searchResultIcon\">✦</span><span class=\"searchResultText\"><b>"+x.d.title+"</b><small>"+x.d.when+"</small></span><span class=\"searchResultTag\">"+x.d.tag+"</span></button>").join("")+"<div class=\"searchHint\">"+all.length+" result"+(all.length===1?"":"s")+" • Tap karke direct dua kholiye</div>":"<div class=\"searchEmpty\">“"+q+"” ke liye abhi koi dua nahi mili.</div>";
+ box.classList.add("open");
+}
+function renderCards(){
+ const q=$("#search").value.trim().toLowerCase(), active=$("#filters .active")?.dataset.cat||"all";
+ filtered=D.map((d,i)=>({d,i})).filter(x=>{
+   const searchOk=!q||[x.d.title,x.d.when,x.d.tag,x.d.roman,x.d.meaning||"",x.d.kanzul||"",...(x.d.cat||[])].join(" ").toLowerCase().includes(q);
+   const categoryOk=q?true:((active==="all")||(active==="fav"&&favs.has(x.i))||x.d.cat.includes(active));
+   return searchOk&&categoryOk;
+ }).map(x=>x.i);
+ const rank=t=>{const n=FEATURED.indexOf(t);return n<0?999:n};filtered.sort((a,b)=>rank(D[a].title)-rank(D[b].title));
+ $("#count").textContent=filtered.length+" duas";
+ cards.innerHTML=filtered.length?filtered.map(i=>{const d=D[i];const sym=d.cat.includes("quran")?"۞":d.cat.includes("salah")?"☾":d.cat.includes("travel")?"➜":d.cat.includes("health")?"✚":"✦";return `<article class="card compactCard" data-i="${i}"><span class="duaGlyph" aria-hidden="true">${sym}</span><div class="duaCardText"><div class="duaMeta">${d.tag}</div><h4 title="${d.title}">${d.title}</h4><p title="${d.when}">${d.when}</p></div><div class="duaCardActions"><button class="fav ${favs.has(i)?"on":""}" data-fav="${i}">♥</button><span class="arrow">›</span></div></article>`}).join(""):`<div class="emptyState">Yahan abhi koi dua nahi mili. Search ya category change kijiye.</div>`;
+ renderSearchResults();updateContinue();
+}
+function fitBookToContent(){
+  requestAnimationFrame(()=>{
+    const inner=page.querySelector(".pageInner");
+    if(!inner)return;
+    const vh=(window.visualViewport&&window.visualViewport.height)||window.innerHeight;
+    const topH=($("#readerTop")?.offsetHeight||0)+($("#bookProgressWrap")?.offsetHeight||0);
+    const bottomH=($("#readerTools")?.offsetHeight||0)+($("#readerBottom")?.offsetHeight||0);
+    const available=Math.max(340,vh-topH-bottomH-34);
+    const natural=Math.ceil(inner.getBoundingClientRect().height)+36;
+    const target=Math.max(340,Math.min(natural,available));
+    book.style.setProperty("height",target+"px","important");
+    page.scrollTop=0;
+  });
+}
+function renderPage(){
+ page.scrollTop=0;
+ const d=D[current]; $("#readerTitle").textContent=d.title;$("#readerSub").textContent=d.when;
+ book.classList.remove("mode-arabic","mode-arabicroman");
+ if(viewMode==="arabic")book.classList.add("mode-arabic");
+ if(viewMode==="arabicroman")book.classList.add("mode-arabicroman");
+ const meaningText=d.kanzul||d.meaning||"";
+ const meaningLabel=d.kanzul?"Roman Urdu Meaning • Tarjuma-e-Kanz-ul-Iman":"Roman Urdu Meaning";
+ page.innerHTML=`<div class="pageInner"><div class="pageHead"><div class="pageNo">NOOR-E-DUA • ${current+1} / ${D.length}</div><div class="duaTitle">${d.title}</div><span class="when">${d.when}</span>${d.repeat?`<div><span class="repeatNote">↻ ${d.repeat}</span></div>`:""}</div>
+ <div class="divider"></div><div class="arabic" style="font-size:calc(clamp(30px,5vw,46px)*${readerScale})">${d.arabic}</div>
+ <div class="roman" style="font-size:${(17*readerScale).toFixed(1)}px">${d.roman}</div>
+ ${meaningText?`<div class="meaning meaningCard"><div class="meaningLabel">✦ ${meaningLabel} ✦</div><div class="meaningText" style="font-size:${(14*readerScale).toFixed(1)}px">${meaningText}</div>${d.kanzul?`<div class="meaningKanz">Ala Hazrat Imam Ahmad Raza Khan رحمۃ اللہ علیہ</div>`:""}</div>`:""}
+ <div class="sourceBox">Source: ${d.source}</div>
+ <div class="pageFoot"><span>Designed by Altaf Shaikh</span><span>✦ Noor-e-Dua ✦</span></div></div>`;
+ $("#viewBtn").textContent=viewMode==="full"?"Aa Full":viewMode==="arabicroman"?"Aa A+R+M":"Aa Arabic";
+ $("#readerFav").textContent=(favs.has(current)?"♥":"♡")+" Favorite";$("#readerFav").classList.toggle("on",favs.has(current));
+ $("#bookmarkRibbon").classList.toggle("show",favs.has(current));
+ $("#bookProgress").style.width=((current+1)/D.length*100).toFixed(1)+"%";
+ fitBookToContent();
+ localStorage.setItem("duaLast",String(current)); updateContinue();
+}
+
+function openReader(i){
+ current=i;opened.add(i);localStorage.setItem("duaOpened",JSON.stringify([...opened]));
+ recent=[i,...recent.filter(x=>x!==i)].slice(0,6);localStorage.setItem("duaRecent",JSON.stringify(recent));
+ renderPage();renderRecent();updateStats();reader.classList.add("open");document.body.style.overflow="hidden";haptic(true)
+}
+function closeReader(){stopSpeech();reader.classList.remove("open");document.body.style.overflow="";haptic()}
+function go(dir){
+ stopSpeech();
+ const idx=filtered.indexOf(current);let ni=idx+dir;if(ni<0||ni>=filtered.length){toast("Is side aur page nahi hai");return}
+ page.classList.add(dir>0?"turningNext":"turningPrev");pageSound();if(navigator.vibrate&&soundOn)navigator.vibrate(10);
+ setTimeout(()=>{current=filtered[ni];renderPage();page.scrollTop=0;page.classList.remove("turningNext","turningPrev")},260)
+}
+function updateStats(){
+ $("#statTotal").textContent=D.length;$("#statFav").textContent=favs.size;$("#statRead").textContent=opened.size;
+}
+function renderRecent(){
+ const wrap=$("#recentWrap"),list=$("#recentList"),valid=recent.filter(i=>D[i]);
+ wrap.style.display=valid.length?"block":"none";
+ list.innerHTML=valid.map(i=>`<button class="recentChip" data-recent="${i}"><b>${D[i].title}</b><span>${D[i].when}</span></button>`).join("");
+}
+function pickNow(){
+ const h=new Date().getHours();let idx=0;
+ if(h>=5&&h<10) idx=D.findIndex(d=>d.title==="Neend se uthne ke baad");
+ else if(h>=10&&h<14) idx=D.findIndex(d=>d.title==="Khane se pehle");
+ else if(h>=14&&h<19) idx=D.findIndex(d=>d.title==="Subah-shaam hifazat");
+ else if(h>=19&&h<22) idx=D.findIndex(d=>d.title==="Duniya aur akhirat ki bhalai");
+ else idx=D.findIndex(d=>d.title==="Sone se pehle");
+ if(idx<0)idx=0;$("#nowTitle").textContent=D[idx].title;$("#nowWhen").textContent=D[idx].when;$("#nowGo").dataset.i=idx;
+}
+function updateNetwork(){
+ const on=navigator.onLine;$("#netText").textContent=on?"Online":"Offline";$("#netDot").classList.toggle("off",!on)
+}
+function applyAppTheme(theme,save=true){
+ const allowed=["gpt","amoled","minimal","islamic","noor","duo"];appTheme=allowed.includes(theme)?theme:"islamic";
+ document.body.dataset.appTheme=appTheme;if(save)localStorage.setItem("duaAppTheme",appTheme);
+ document.querySelectorAll("[data-app-theme]").forEach(b=>b.classList.toggle("active",b.dataset.appTheme===appTheme));
+ book.dataset.fx=pageFx;syncSettings();
+}
+function applyPageFx(fx,save=true){
+ const allowed=["flip","slide","fade","zoom"];pageFx=allowed.includes(fx)?fx:"flip";book.dataset.fx=pageFx;
+ if(save)localStorage.setItem("duaPageFx",pageFx);
+ document.querySelectorAll("[data-fx]").forEach(b=>b.classList.toggle("active",b.dataset.fx===pageFx));syncSettings();
+}
+function setReaderScale(v,save=true){
+ readerScale=Math.max(.75,Math.min(1.55,Number(v)||1));
+ if(save)localStorage.setItem("duaFontScale",String(readerScale));
+ if($("#fontRange"))$("#fontRange").value=Math.round(readerScale*100);
+ if($("#fontValue"))$("#fontValue").textContent=Math.round(readerScale*100)+"%";
+ if(reader.classList.contains("open"))renderPage();
+}
+function applyReaderFonts(save=true){
+ const aMap={
+  noto:'"Noto Naskh Arabic","Amiri Quran",serif',
+  amiri:'"Amiri Quran","Noto Naskh Arabic",serif',
+  scheherazade:'"Scheherazade New","Noto Naskh Arabic",serif',
+  lateef:'Lateef,"Noto Naskh Arabic",serif',
+  markazi:'"Markazi Text","Noto Naskh Arabic",serif'
+ };
+ const rMap={
+  alegreya:'Alegreya,Manrope,serif',
+  manrope:'Manrope,system-ui,sans-serif',
+  lora:'Lora,Alegreya,serif',
+  merriweather:'Merriweather,Alegreya,serif',
+  poppins:'Poppins,Manrope,sans-serif'
+ };
+ if(!aMap[arabicFont])arabicFont="noto";if(!rMap[romanFont])romanFont="alegreya";
+ document.documentElement.style.setProperty("--arabic-reader-font",aMap[arabicFont]);
+ document.documentElement.style.setProperty("--roman-reader-font",rMap[romanFont]);
+ if(save){localStorage.setItem("duaArabicFont",arabicFont);localStorage.setItem("duaRomanFont",romanFont)}
+ document.querySelectorAll("[data-arabic-font]").forEach(b=>b.classList.toggle("active",b.dataset.arabicFont===arabicFont));
+ document.querySelectorAll("[data-roman-font]").forEach(b=>b.classList.toggle("active",b.dataset.romanFont===romanFont));
+}
+function syncSettings(){
+ $("#settingSound").textContent=soundOn?"ON":"OFF";$("#settingSound").classList.toggle("on",soundOn);
+ $("#settingView").textContent=viewMode==="full"?"FULL":viewMode==="arabicroman"?"A+R":"ARABIC";$("#settingView").classList.add("on");
+ document.querySelectorAll("[data-app-theme]").forEach(b=>b.classList.toggle("active",b.dataset.appTheme===appTheme));
+ document.querySelectorAll("[data-fx]").forEach(b=>b.classList.toggle("active",b.dataset.fx===pageFx));
+ if($("#fontRange")){$("#fontRange").value=Math.round(readerScale*100);$("#fontValue").textContent=Math.round(readerScale*100)+"%"}
+ applyReaderFonts(false)
+}
+function updateContinue(){
+ const raw=localStorage.getItem("duaLast"),i=raw===null?-1:Number(raw),box=$("#continueCard");
+ if(Number.isInteger(i)&&D[i]){box.classList.add("show");$("#continueTitle").textContent=D[i].title;$("#continueWhen").textContent=D[i].when;$("#continueGo").dataset.i=i}else box.classList.remove("show");
+}
+function stopSpeech(){if("speechSynthesis" in window)speechSynthesis.cancel();speaking=false;$("#listenBtn")?.classList.remove("listenPulse");if($("#listenBtn"))$("#listenBtn").textContent="🔊 Listen"}
+function nativeSpeechDone(){
+ speaking=false;$("#listenBtn").textContent="🔊 Listen";$("#listenBtn").classList.remove("listenPulse");
+}
+window.noorNativeSpeechDone=nativeSpeechDone;
+function speakCurrent(){
+ if(window.NoorNative && NoorNative.speak){
+   if(speaking){try{NoorNative.stopSpeak()}catch(e){};nativeSpeechDone();return}
+   speaking=true;$("#listenBtn").textContent="■ Stop";$("#listenBtn").classList.add("listenPulse");
+   try{NoorNative.speak(D[current].arabic)}catch(e){nativeSpeechDone()}
+   haptic(true);return;
+ }
+ if(!("speechSynthesis" in window)){toast("Is device/browser me Arabic voice available nahi hai");return}
+ if(speaking){stopSpeech();return}
+ stopSpeech();const u=new SpeechSynthesisUtterance(D[current].arabic);u.lang="ar-SA";u.rate=.82;u.pitch=1;
+ const voices=speechSynthesis.getVoices();const ar=voices.find(v=>/^ar(-|_)/i.test(v.lang));if(ar)u.voice=ar;
+ u.onstart=()=>{speaking=true;$("#listenBtn").textContent="■ Stop";$("#listenBtn").classList.add("listenPulse")};
+ u.onend=u.onerror=nativeSpeechDone;
+ speechSynthesis.speak(u);haptic(true);
+}
+
+async function shareCurrent(){
+ const d=D[current];
+ const parts=[d.title,"",d.arabic,"","Roman: "+d.roman];
+ if(d.kanzul)parts.push("","Tarjuma Kanz-ul-Iman:",d.kanzul);
+ if(d.meaning)parts.push("",d.meaning);
+ parts.push("","Source: "+d.source,"","Noor-e-Dua — Designed by Altaf Shaikh");
+ const text=parts.join("\n");
+ try{
+   if(window.NoorNative && NoorNative.share){NoorNative.share(d.title,text)}
+   else if(navigator.share)await navigator.share({title:d.title,text});
+   else{await navigator.clipboard.writeText(text);toast("Dua copied")}
+ }catch(e){}
+}
+
+cards.addEventListener("click",e=>{const f=e.target.closest("[data-fav]");if(f){e.stopPropagation();const i=+f.dataset.fav;favs.has(i)?favs.delete(i):favs.add(i);localStorage.setItem("duaFavs",JSON.stringify([...favs]));haptic();renderCards();return}
+ const c=e.target.closest(".card");if(c)openReader(+c.dataset.i)});
+$("#filters").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;$("#filters button.active")?.classList.remove("active");b.classList.add("active");haptic();renderCards()});
+function toggleSound(){soundOn=!soundOn;localStorage.setItem("duaSound",soundOn?"on":"off");toast(soundOn?"Touch sound + haptic ON":"Sound + haptic OFF");syncSettings();haptic(true)}
+$("#search").addEventListener("input",renderCards);
+$("#search").addEventListener("keydown",e=>{if(e.key==="Enter"){const first=getSearchMatches(e.currentTarget.value)[0];if(first){openReader(first.i);$("#searchResults").classList.remove("open");e.currentTarget.blur()}}});
+$("#searchClear").onclick=()=>{$("#search").value="";renderCards();$("#search").focus();haptic()};
+$("#searchResults").onclick=e=>{const b=e.target.closest("[data-search-i]");if(!b)return;openReader(Number(b.dataset.searchI));$("#searchResults").classList.remove("open");haptic(true)};
+document.addEventListener("click",e=>{if(!e.target.closest(".searchWrap"))$("#searchResults").classList.remove("open")});
+$("#nowGo").onclick=e=>openReader(Number(e.currentTarget.dataset.i));
+$("#recentList").onclick=e=>{const b=e.target.closest("[data-recent]");if(b)openReader(Number(b.dataset.recent))};
+function openSettings(){
+ $("#settingsSheet").classList.add("open");
+ document.body.dataset.settingsOpen="1";
+ document.body.style.overflow="hidden";
+ syncSettings();
+ const p=document.querySelector(".settingsPanel");if(p)p.scrollTop=0;
+ document.querySelectorAll("#settingsNav button").forEach((x,i)=>x.classList.toggle("active",i===0));
+ haptic();
+}
+function closeSettings(){
+ $("#settingsSheet").classList.remove("open");
+ delete document.body.dataset.settingsOpen;
+ if(!reader.classList.contains("open"))document.body.style.overflow="";
+}
+$("#settingsBtn").onclick=openSettings;
+$("#sheetClose").onclick=closeSettings;
+$("#settingsNav").onclick=e=>{
+ const b=e.target.closest("[data-settings-target]");if(!b)return;
+ const target=document.getElementById(b.dataset.settingsTarget);if(!target)return;
+ document.querySelectorAll("#settingsNav button").forEach(x=>x.classList.toggle("active",x===b));
+ target.scrollIntoView({behavior:"smooth",block:"start"});haptic();
+};
+$("#settingsSheet").onclick=e=>{if(e.target===$("#settingsSheet"))closeSettings()};
+$("#settingSound").onclick=toggleSound;
+$("#settingView").onclick=()=>{$("#viewBtn").click();syncSettings()};
+$("#themeGrid").onclick=e=>{const b=e.target.closest("[data-app-theme]");if(!b)return;applyAppTheme(b.dataset.appTheme);toast((b.querySelector("b")?.textContent||"")+" theme");haptic(true)};
+$("#fxGrid").onclick=e=>{const b=e.target.closest("[data-fx]");if(!b)return;applyPageFx(b.dataset.fx);toast((b.querySelector("b")?.textContent||"")+" effect");haptic()};
+$("#fontRange").oninput=e=>setReaderScale(Number(e.target.value)/100);
+$("#fontRange").onchange=e=>{setReaderScale(Number(e.target.value)/100);haptic()};
+$("#arabicFontGrid").onclick=e=>{const b=e.target.closest("[data-arabic-font]");if(!b)return;arabicFont=b.dataset.arabicFont;applyReaderFonts();if(reader.classList.contains("open"))renderPage();toast(b.querySelector("b").textContent+" applied");haptic(true)};
+$("#romanFontGrid").onclick=e=>{const b=e.target.closest("[data-roman-font]");if(!b)return;romanFont=b.dataset.romanFont;applyReaderFonts();if(reader.classList.contains("open"))renderPage();toast(b.querySelector("b").textContent+" applied");haptic(true)};
+window.addEventListener("online",updateNetwork);window.addEventListener("offline",updateNetwork);
+window.addEventListener("beforeinstallprompt",e=>{e.preventDefault();deferredInstall=e;$("#installBtn").classList.add("show")});
+$("#installBtn").onclick=async()=>{if(!deferredInstall){toast("Install option browser support par depend karta hai");return}deferredInstall.prompt();await deferredInstall.userChoice;deferredInstall=null;$("#installBtn").classList.remove("show")};
+$("#closeReader").onclick=closeReader;$("#next").onclick=()=>go(1);$("#prev").onclick=()=>go(-1);
+$("#continueGo").onclick=e=>openReader(Number(e.currentTarget.dataset.i));
+$("#listenBtn").onclick=speakCurrent;
+$("#shareBtn").onclick=shareCurrent;
+$("#readerFav").onclick=()=>{favs.has(current)?favs.delete(current):favs.add(current);localStorage.setItem("duaFavs",JSON.stringify([...favs]));renderPage();renderCards();haptic()};
+$("#viewBtn").onclick=()=>{viewMode=viewMode==="full"?"arabicroman":viewMode==="arabicroman"?"arabic":"full";localStorage.setItem("duaViewMode",viewMode);renderPage();syncSettings();haptic()};
+$("#themeBtn").onclick=openSettings;
+$("#themeMenu").onclick=e=>{const b=e.target.closest("[data-app-theme]");if(!b)return;applyAppTheme(b.dataset.appTheme);$("#themeMenu").classList.remove("open");toast(b.textContent+" theme");haptic(true)};
+$("#fontBtn").onclick=()=>{openSettings();setTimeout(()=>$("#fontRange").focus(),100)};
+let sx=0,sy=0,dragging=false;
+page.addEventListener("touchstart",e=>{sx=e.touches[0].clientX;sy=e.touches[0].clientY;dragging=false},{passive:true});
+page.addEventListener("touchmove",e=>{
+ const dx=e.touches[0].clientX-sx,dy=e.touches[0].clientY-sy;
+ if(Math.abs(dx)>12&&Math.abs(dx)>Math.abs(dy)*1.15){
+   dragging=true;page.classList.add("dragging");
+   const clamped=Math.max(-110,Math.min(110,dx)),p=Math.min(1,Math.abs(clamped)/110);
+   if(pageFx==="flip"){const deg=clamped/7;page.style.transform=`translateX(${clamped*.05}px) rotateY(${deg}deg)`}
+   else if(pageFx==="slide"){page.style.transform=`translateX(${clamped*.42}px) scale(${1-p*.015})`}
+   else if(pageFx==="fade"){page.style.transform=`translateX(${clamped*.06}px)`;page.style.opacity=String(1-p*.55)}
+   else{page.style.transform=`scale(${1-p*.11}) rotate(${clamped/160}deg)`;page.style.opacity=String(1-p*.22)}
+   page.style.boxShadow=`${clamped<0?-18:18}px 26px 60px rgba(0,0,0,.42)`;
+ }
+},{passive:true});
+page.addEventListener("touchend",e=>{
+ const dx=e.changedTouches[0].clientX-sx,dy=e.changedTouches[0].clientY-sy;
+ page.classList.remove("dragging");page.style.transform="";page.style.boxShadow="";page.style.opacity="";
+ if(dragging&&Math.abs(dx)>55&&Math.abs(dx)>Math.abs(dy)*1.2)go(dx<0?1:-1);
+ dragging=false;
+},{passive:true});
+applyAppTheme(appTheme,false);applyPageFx(pageFx,false);setReaderScale(readerScale,false);applyReaderFonts(false);
+updateContinue();renderCards();renderRecent();updateStats();pickNow();updateNetwork();syncSettings();
+setTimeout(()=>$("#splash").classList.add("hide"),2800);
+window.addEventListener("resize",()=>{if(reader.classList.contains("open"))fitBookToContent()});
+if(window.visualViewport)visualViewport.addEventListener("resize",()=>{if(reader.classList.contains("open"))fitBookToContent()});
+if("serviceWorker" in navigator)navigator.serviceWorker.register("sw.js").catch(()=>{});
+</script>
+</body>
+</html>
