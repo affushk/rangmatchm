@@ -846,6 +846,60 @@ body[data-app-theme="islamic"] .duaGlyph{background:#12231d;color:#e4c977;border
   .readerBottom{justify-content:center!important}
 }
 
+
+/* ===== FULL HEIGHT READER V4 ===== */
+.readerOverlay{
+  overflow:hidden!important;
+  align-items:flex-start!important;
+}
+.readerShell{
+  height:calc(100dvh - 14px)!important;
+  max-height:none!important;
+  display:grid!important;
+  grid-template-rows:auto auto minmax(0,1fr) auto auto!important;
+  align-content:stretch!important;
+  row-gap:4px!important;
+  overflow:hidden!important;
+}
+.bookWrap{
+  min-height:0!important;
+  height:100%!important;
+  display:block!important;
+  margin:0!important;
+  padding:0!important;
+}
+.book{
+  height:100%!important;
+  min-height:0!important;
+  max-height:none!important;
+  margin:0 auto!important;
+}
+.page{
+  overflow-y:auto!important;
+  overscroll-behavior:contain;
+  -webkit-overflow-scrolling:touch;
+}
+.readerTools{
+  flex:0 0 auto!important;
+  margin:0!important;
+  padding:4px 2px 0!important;
+}
+.readerBottom{
+  flex:0 0 auto!important;
+  margin:0!important;
+  padding:2px 3px 4px!important;
+}
+@media(max-width:560px){
+  .readerShell{
+    height:calc(100dvh - 8px)!important;
+    row-gap:3px!important;
+  }
+  .readerTop{padding-bottom:3px!important}
+  .bookProgress{margin-bottom:1px!important}
+  .readerTools{padding-top:3px!important}
+  .readerBottom{padding-top:1px!important;padding-bottom:2px!important}
+}
+
 </style>
 </head>
 <body class="noise">
@@ -1135,13 +1189,7 @@ function renderCards(){
 }
 function fitBookToContent(){
   requestAnimationFrame(()=>{
-    const vh=(window.visualViewport&&window.visualViewport.height)||window.innerHeight;
-    const chrome=($("#readerTop")?.offsetHeight||0)+($("#bookProgress")?.offsetHeight||0)+($("#readerTools")?.offsetHeight||0)+($("#readerBottom")?.offsetHeight||0)+36;
-    const maxH=Math.max(360,Math.min(760,vh-chrome));
-    book.style.setProperty("height","1px","important");
-    const natural=Math.max(0,page.scrollHeight+4);
-    const target=Math.max(340,Math.min(natural,maxH));
-    book.style.setProperty("height",target+"px","important");
+    book.style.setProperty("height","100%","important");
     page.scrollTop=0;
   });
 }
