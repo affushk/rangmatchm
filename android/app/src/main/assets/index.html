@@ -1167,6 +1167,64 @@ body[data-app-theme="gpt"] .rBtn{background:#303030;color:#ececec;border-color:r
 body[data-app-theme="gpt"] .voiceCard.active{border-color:rgba(16,163,127,.44);background:#303b38;color:#eafff8}
 @media(max-width:390px){.voiceGrid{grid-template-columns:1fr}.voiceCard{min-height:58px}}
 
+
+/* ===== MERE PYARE AAQA ﷺ — PREMIUM SEERAT ===== */
+.seeratHero{
+  position:relative;display:grid;grid-template-columns:56px minmax(0,1fr) 34px;gap:13px;align-items:center;
+  margin:0 0 18px;padding:16px;border-radius:25px;overflow:hidden;cursor:pointer;
+  background:
+    radial-gradient(circle at 86% 18%,rgba(217,184,106,.16),transparent 28%),
+    linear-gradient(145deg,#10251f,#08120f);
+  border:1px solid rgba(217,184,106,.25);box-shadow:0 18px 45px rgba(0,0,0,.18);
+}
+.seeratHero:before{content:"";position:absolute;inset:6px;border:1px solid rgba(242,217,141,.10);border-radius:20px;pointer-events:none}
+.seeratMoon{
+  width:54px;height:54px;border-radius:18px;display:grid;place-items:center;font-size:28px;
+  color:#f2d98d;background:linear-gradient(145deg,#173a31,#0c1e19);border:1px solid rgba(242,217,141,.20);
+  box-shadow:inset 0 1px rgba(255,255,255,.04),0 10px 24px rgba(0,0,0,.18)
+}
+.seeratHeroText{min-width:0;position:relative;z-index:1}
+.seeratKicker{font-size:7px;letter-spacing:1.35px;color:#d9b86a;font-weight:900;margin-bottom:4px}
+.seeratHero h3{margin:0;color:#fff8e8;font-family:Alegreya,serif;font-size:24px;line-height:1}
+.seeratHero p{margin:5px 0 4px;color:#c9c2b4;font-size:8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.seeratHero span{font-size:7px;color:#85d9bf}
+.seeratArrow{width:32px;height:32px;border-radius:11px;display:grid;place-items:center;color:#f2d98d;background:#153329;border:1px solid rgba(242,217,141,.18);font-size:19px}
+.seeratHero:active{transform:scale(.988)}
+.seeratOverlay{z-index:85}
+.seeratShell{height:auto!important;max-height:calc(100dvh - 12px)!important}
+.seeratBook{height:min(72dvh,780px)!important;min-height:430px!important;max-height:none!important}
+.seeratPage{overflow-y:auto!important;padding:24px 24px 18px!important}
+.seeratPage .pageInner{max-width:650px;margin:0 auto}
+.seeratChapter{
+  text-align:center;font-size:7px;letter-spacing:1.7px;color:var(--gold2);font-weight:900;text-transform:uppercase
+}
+.seeratHeading{text-align:center;font-family:Alegreya,serif;font-size:27px;line-height:1.05;margin:7px 0 4px}
+.seeratSub{text-align:center;color:var(--muted);font-size:8px;margin-bottom:13px}
+.seeratRule{width:86px;height:1px;margin:0 auto 14px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.seeratBody{font-family:var(--roman-reader-font);font-size:15px;line-height:1.72;color:inherit}
+.seeratBody p{margin:0 0 12px}
+.seeratBody b{color:var(--gold2)}
+.seeratBism{text-align:center;font-size:34px;color:var(--gold2);margin:1px 0 10px}
+.seeratList{margin:4px 0 12px;padding-left:22px;columns:2;column-gap:28px}
+.seeratList li{margin:0 0 5px;break-inside:avoid}
+.timeline{padding:13px 15px;border-radius:15px;background:color-mix(in srgb,var(--gold) 7%,var(--surface2));border:1px solid color-mix(in srgb,var(--gold) 15%,transparent);line-height:1.75;margin-bottom:12px}
+.seeratSource{margin-top:16px;padding-top:10px;border-top:1px solid var(--line);font-size:7.5px;line-height:1.45;color:var(--muted)}
+.seeratNote{margin-top:7px;font-size:7px;color:var(--muted)}
+.seeratBottom{padding-top:5px!important}
+body[data-app-theme="gpt"] .seeratHero{background:linear-gradient(145deg,#28332f,#202522);border-color:rgba(16,163,127,.24)}
+body[data-app-theme="gpt"] .seeratMoon,body[data-app-theme="gpt"] .seeratArrow{background:#303b38;color:#7fe3c4;border-color:rgba(16,163,127,.22)}
+body[data-app-theme="gpt"] .seeratKicker{color:#7fe3c4}
+body[data-app-theme="amoled"] .seeratHero{background:#070707;border-color:rgba(255,120,173,.22)}
+@media(max-width:560px){
+ .seeratHero{grid-template-columns:48px minmax(0,1fr) 30px;padding:13px 12px;border-radius:20px}
+ .seeratMoon{width:46px;height:46px;border-radius:15px;font-size:24px}
+ .seeratHero h3{font-size:21px}.seeratHero p{font-size:7.3px}
+ .seeratBook{height:70dvh!important;min-height:410px!important}
+ .seeratPage{padding:20px 18px 15px!important}
+ .seeratHeading{font-size:24px}.seeratBody{font-size:14px;line-height:1.68}
+ .seeratList{columns:1}
+}
+
 </style>
 </head>
 <body class="noise">
@@ -1255,6 +1313,18 @@ body[data-app-theme="gpt"] .voiceCard.active{border-color:rgba(16,163,127,.44);b
     <button class="continueGo" id="continueGo">Open page →</button>
   </div>
 
+  
+  <section class="seeratHero" id="seeratOpen" role="button" tabindex="0" aria-label="Mere Pyare Aaqa seerat section">
+    <div class="seeratMoon">☾</div>
+    <div class="seeratHeroText">
+      <div class="seeratKicker">✦ SEERAT-E-MUSTAFA ﷺ ✦</div>
+      <h3>Mere Pyare Aaqa ﷺ</h3>
+      <p>Mubarak zindagi • khandan • Ahl-e-Bayt • akhlaq • aham waqiat</p>
+      <span>12 verified chapters • Roman Urdu</span>
+    </div>
+    <div class="seeratArrow">›</div>
+  </section>
+
   <div class="sectionHead"><h3>Dua Collection</h3><span id="count"></span></div>
   <main class="cards" id="cards"></main>
 
@@ -1271,6 +1341,28 @@ body[data-app-theme="gpt"] .voiceCard.active{border-color:rgba(16,163,127,.44);b
   <footer style="text-align:center;color:#66756e;font-size:9px;margin-top:28px">
     Noor-e-Dua • Crafted by <span style="color:#d7bf7d">Altaf Shaikh</span>
   </footer>
+</div>
+
+
+<div class="readerOverlay seeratOverlay" id="seeratReader">
+  <div class="readerShell seeratShell">
+    <div class="readerTop">
+      <div class="title"><h3 id="seeratTitle">Mere Pyare Aaqa ﷺ</h3><small id="seeratSub">Seerat-e-Mustafa ﷺ</small></div>
+      <div class="readerActions"><button class="rBtn" id="seeratClose">✕</button></div>
+    </div>
+    <div class="bookProgress"><i id="seeratProgress"></i></div>
+    <div class="bookWrap">
+      <div class="book seeratBook" id="seeratBook">
+        <article class="page seeratPage" id="seeratPage"></article>
+        <div class="pageTurnShadow"></div><div class="pageEdge"></div>
+      </div>
+    </div>
+    <div class="readerBottom seeratBottom">
+      <button class="navBtn" id="seeratPrev">← Previous</button>
+      <span class="hint" id="seeratCount">1 / 12</span>
+      <button class="navBtn" id="seeratNext">Next →</button>
+    </div>
+  </div>
 </div>
 
 <div class="readerOverlay" id="reader">
@@ -1442,6 +1534,57 @@ const D=[
 {title:"Surah Al-Ikhlas",when:"4 Qul mein se doosri Surah",cat:["quran","protection"],tag:"4 Qul • Kanz-ul-Iman",arabic:"بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِیْمِ ۝ قُلْ هُوَ اللّٰهُ اَحَدٌ ۝ اَللّٰهُ الصَّمَدُ ۝ لَمْ یَلِدْ وَ لَمْ یُوْلَدْ ۝ وَ لَمْ یَكُنْ لَّهٗ كُفُوًا اَحَدٌ",roman:"Bismillahir-Rahmanir-Raheem. Qul Huwallahu Ahad. Allahus-Samad. Lam yalid wa lam yulad. Wa lam yakul-lahu kufuwan ahad.",kanzul:"Allah ke naam se shuru jo nihayat meherban, rehmat wala hai. Tum farmao: Woh Allah ek hai. Allah be-niyaz hai. Na us ne kisi ko janam diya aur na woh kisi se paida hua. Aur koi us ke barabar nahin.",meaning:"",source:"Tarjuma Kanz-ul-Iman (Roman Urdu) — Dawat-e-Islami Quran • Surah 112"},
 {title:"Surah Al-Falaq",when:"4 Qul mein se teesri Surah",cat:["quran","protection"],tag:"4 Qul • Kanz-ul-Iman",arabic:"بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِیْمِ ۝ قُلْ اَعُوْذُ بِرَبِّ الْفَلَقِ ۝ مِنْ شَرِّ مَا خَلَقَ ۝ وَ مِنْ شَرِّ غَاسِقٍ اِذَا وَقَبَ ۝ وَ مِنْ شَرِّ النَّفّٰثٰتِ فِی الْعُقَدِ ۝ وَ مِنْ شَرِّ حَاسِدٍ اِذَا حَسَدَ",roman:"Bismillahir-Rahmanir-Raheem. Qul a'udhu bi-Rabbil-falaq. Min sharri ma khalaq. Wa min sharri ghasiqin idha waqab. Wa min sharrin-naffathati fil-'uqad. Wa min sharri hasidin idha hasad.",kanzul:"Allah ke naam se shuru jo nihayat meherban, rehmat wala hai. Tum farmao: Main subah ke Rab ki panaah leta hoon. Us ki tamam makhlooq ke shar se. Aur sakht andheri raat ke shar se jab woh chha jaye. Aur un auraton ke shar se jo girahon mein phoonkein maarti hain. Aur hasad wale ke shar se jab woh hasad kare.",meaning:"",source:"Tarjuma Kanz-ul-Iman (Roman Urdu) — Dawat-e-Islami Quran • Surah 113"},
 {title:"Surah An-Naas",when:"4 Qul mein se chauthi Surah",cat:["quran","protection"],tag:"4 Qul • Kanz-ul-Iman",arabic:"بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِیْمِ ۝ قُلْ اَعُوْذُ بِرَبِّ النَّاسِ ۝ مَلِكِ النَّاسِ ۝ اِلٰهِ النَّاسِ ۝ مِنْ شَرِّ الْوَسْوَاسِ الْخَنَّاسِ ۝ الَّذِیْ یُوَسْوِسُ فِیْ صُدُوْرِ النَّاسِ ۝ مِنَ الْجِنَّةِ وَ النَّاسِ",roman:"Bismillahir-Rahmanir-Raheem. Qul a'udhu bi-Rabbin-naas. Malikin-naas. Ilahin-naas. Min sharril-waswasil-khannas. Alladhi yuwaswisu fi sudurin-naas. Minal-jinnati wan-naas.",kanzul:"Allah ke naam se shuru jo nihayat meherban, rehmat wala hai. Tum kaho: Main tamam logon ke Rab ki panaah leta hoon. Tamam logon ka Badshah. Tamam logon ka Ma'bood. Baar baar waswase daalne wale, chhup jaane wale ke shar se panaah leta hoon. Woh jo logon ke dilon mein waswase daalta hai. Jinnon aur insaanon mein se.",meaning:"",source:"Tarjuma Kanz-ul-Iman (Roman Urdu) — Dawat-e-Islami Quran • Surah 114"}
+];
+
+
+const SEERAT=[
+{title:"Mubarak Naam aur Nasab",subtitle:"Naam, nasab aur khandani silsila",body:`
+<div class="seeratBism">ﷺ</div>
+<p><b>Mubarak naam:</b> Muhammad ﷺ. Aap ﷺ ka mashhoor nasab: Muhammad bin Abdullah bin Abdul Muttalib bin Hashim bin Abd Manaf bin Qusayy bin Kilab bin Murrah bin Ka'b bin Lu'ayy bin Ghalib bin Fihr.</p>
+<p>Aap ﷺ Quraysh ke muazzaz khandan <b>Banu Hashim</b> se the. Seerat ki kitabon me nasab ko Hazrat Ismail علیہ السلام ke silsile tak zikr kiya jata hai; upar diya gaya hissa mu'tabar aur mashhoor nasabi silsila hai.</p>`,source:"Dawat-e-Islami — Seerat-e-Mustafa ﷺ, Family History / Genealogy"},
+{title:"Wiladat-e-Mubarak",subtitle:"Makkah Mukarramah • Aam-ul-Feel",body:`
+<p>Aap ﷺ ki wiladat <b>Makkah Mukarramah</b> me Aam-ul-Feel me hui. Ahl-e-Sunnat me <b>12 Rabi-ul-Awwal</b> ka zikr bahut mashhoor hai; tareekhi kutub me exact tareekh ke hawale se kuch ikhtilaf bhi milta hai, isliye isay mashhoor riwayat ke taur par samjhein.</p>
+<p><b>Walid-e-Majid:</b> Hazrat Abdullah bin Abdul Muttalib. <b>Walida-e-Majida:</b> Sayyidah Aaminah bint Wahb. Mashhoor seerat ke mutabiq Walid-e-Majid aap ﷺ ki wiladat se pehle hi inteqal farma chuke the.</p>`,source:"Dawat-e-Islami — Seerat-e-Mustafa ﷺ / Ahl-e-Sunnat seerah works"},
+{title:"Bachpan aur Parwarish",subtitle:"Walida, dada, chacha aur raza'i parwarish",body:`
+<p>Bachpan me Sayyidah <b>Suwaybah</b> aur phir Sayyidah <b>Halimah Sa'diyyah</b> رضی اللہ عنہما ko raza'i parwarish ka sharaf mila. Walida-e-Majida Sayyidah Aaminah رضی اللہ عنہا ka inteqal jab aap ﷺ takriban 6 saal ke the hua.</p>
+<p>Iske baad dada <b>Abdul Muttalib</b> ne parwarish ki; unke inteqal ke baad chacha <b>Abu Talib</b> ne zimmedari sambhali.</p>`,source:"Dawat-e-Islami — Seerat-e-Mustafa ﷺ"},
+{title:"Jawani aur Nikah",subtitle:"Al-Amin • tijarat • Sayyidah Khadijah",body:`
+<p>Nubuwwat se pehle bhi aap ﷺ sachchai aur amanat ke liye mashhoor the aur <b>Al-Amin</b> ke naam se pehchane jate the.</p>
+<p>Takriban 25 saal ki umr me Umm-ul-Mu'mineen <b>Sayyidah Khadijah bint Khuwaylid رضی اللہ عنہا</b> se nikah hua. Jab tak woh zinda rahin, aap ﷺ ne kisi aur se nikah nahi kiya. Sahih hadith me aap ﷺ ka Sayyidah Khadijah ko bahut kasrat se yaad farmana aur unse aulad hone ka zikr milta hai.</p>`,source:"Sahih al-Bukhari 3816–3818; Dawat-e-Islami Seerah"},
+{title:"Nubuwwat aur Pehli Wahi",subtitle:"Ghaar-e-Hira se da'wat ka aaghaz",body:`
+<p>Takriban 40 saal ki umr me nubuwwat ka aaghaz hua. Aap ﷺ Ghaar-e-Hira me ibadat aur tanhai pasand farmate the. Yahin Sayyiduna Jibreel علیہ السلام pehli wahi lekar aaye aur <b>Iqra'</b> ka hukm diya.</p>
+<p>Sahih al-Bukhari ki riwayat me Ghaar-e-Hira, pehli wahi aur Sayyidah Khadijah رضی اللہ عنہا ke paas wapas aane ka tafseeli zikr maujood hai.</p>`,source:"Sahih al-Bukhari 3–4"},
+{title:"Hijrat aur Madinah",subtitle:"Makkah se Madinah • naya Islami muashra",body:`
+<p>Makkah me saalon ki da'wat aur mushkilat ke baad Allah ke hukm se hijrat hui. Aap ﷺ Sayyiduna Abu Bakr Siddiq رضی اللہ عنہ ke saath Makkah se Madinah Munawwarah tashreef le gaye.</p>
+<p>Madinah me Masjid-e-Nabawi ki bunyad, Muhajireen aur Ansar ke darmiyan bhai-charah aur Islami muashray ki tanzeem se naya daur shuru hua.</p>`,source:"Sahih al-Bukhari — Kitab Manaqib al-Ansar / Hijrah narrations; classical Seerah"},
+{title:"Azwaj-e-Mutahharat",subtitle:"Ummahat-ul-Mu'mineen رضی اللہ عنہن",body:`
+<p>Mu'tabar Ahl-e-Sunnat seerah me aap ﷺ ki <b>11 Azwaj-e-Mutahharat</b> ke naam ye diye gaye hain:</p>
+<ol class="seeratList"><li>Khadijah al-Kubra</li><li>Sawdah</li><li>Aishah</li><li>Hafsah</li><li>Umm Salamah</li><li>Umm Habibah</li><li>Zaynab bint Jahsh</li><li>Zaynab bint Khuzaymah</li><li>Maymunah</li><li>Juwayriyah</li><li>Safiyyah رضی اللہ عنہن</li></ol>
+<p>Sayyidah Mariyah Qibtiyyah رضی اللہ عنہا Hazrat Ibrahim رضی اللہ عنہ ki walida thin; unhein 11 Azwaj ki list me shamil nahi kiya jata.</p>`,source:"Dawat-e-Islami — Matchless Messenger / Seerah of Mustafa"},
+{title:"Aulad-e-Mubarak",subtitle:"Shahzade aur shahzadiyan",body:`
+<p>Ahl-e-Sunnat seerah source me <b>7 aulad</b> wali rai ko zyada mu'tabar bataya gaya hai: 3 shahzade — <b>Qasim, Abdullah (Tayyib/Tahir), Ibrahim</b> رضی اللہ عنہم — aur 4 shahzadiyan — <b>Zaynab, Ruqayyah, Umm Kulthum, Fatimah Zahra</b> رضی اللہ عنہن.</p>
+<p>Kuch tareekhi riwayat me sons ki counting ki wajah se total 6 ka zikr bhi milta hai. Hazrat Ibrahim رضی اللہ عنہ Sayyidah Mariyah Qibtiyyah رضی اللہ عنہا se hue; baqi aulad Sayyidah Khadijah رضی اللہ عنہا se hui.</p>`,source:"Dawat-e-Islami — The Beloved Children of the Prophet ﷺ; Sahih al-Bukhari 3818"},
+{title:"Ahl-e-Bayt aur Khandan",subtitle:"Gharana-e-Mustafa ﷺ",body:`
+<p>Ahl-e-Bayt ke mashhoor mubarak afrad me Sayyidah <b>Fatimah Zahra</b>, Sayyiduna <b>Ali al-Murtada</b>, Imam <b>Hasan</b> aur Imam <b>Husayn</b> رضی اللہ عنہم khas taur par yaad kiye jate hain.</p>
+<p>Mashhoor chachao me Sayyiduna <b>Hamzah</b> aur Sayyiduna <b>Abbas</b> رضی اللہ عنہما, Abu Talib aur Abu Lahab ka zikr milta hai. Har shakhs ka maqam aur hukm alag hai; app me adab ke saath sirf nasabi maloomat di gayi hai.</p>`,source:"Dawat-e-Islami — Seerat-e-Mustafa ﷺ / Baatain Mere Huzoor ﷺ Ki"},
+{title:"Husn-e-Akhlaq",subtitle:"Rehmat, narmi, amanat aur insaf",body:`
+<p>Qur'an ne aap ﷺ ke azeem akhlaq ki gawahi di. Aap ﷺ rehmat, narmi, sabr, amanat, insaf, maafi aur husn-e-muashrat ka behtareen namoona the.</p>
+<p>Bachchon se shafqat, ghareebon aur kamzoron ka khayal, ghar walon se husn-e-sulook aur dushmanon ke saath bhi insaf — Seerat-e-Mustafa ﷺ ka bunyadi paigham hai.</p>`,source:"Qur'an 68:4; Sahih hadith collections on manners and mercy"},
+{title:"Aham Waqiat",subtitle:"Seerat timeline",body:`
+<div class="timeline">
+<b>40 saal:</b> Nubuwwat ka aaghaz<br>
+<b>Hijrat:</b> Makkah se Madinah<br>
+<b>2 Hijri:</b> Ghazwa-e-Badr<br>
+<b>3 Hijri:</b> Ghazwa-e-Uhud<br>
+<b>5 Hijri:</b> Ghazwa-e-Khandaq<br>
+<b>6 Hijri:</b> Sulh-e-Hudaybiyah<br>
+<b>8 Hijri:</b> Fath-e-Makkah<br>
+<b>10 Hijri:</b> Hajjat-ul-Wida
+</div>
+<p>Ye timeline sirf bunyadi landmarks hai; tafseeli seerah me har waqia ke asbab, sabaq aur riwayat alag chapters ka mawzu hain.</p>`,source:"Classical Seerah; Sahih al-Bukhari / Sahih Muslim event narrations"},
+{title:"Parda Farmana aur Paigham",subtitle:"Madinah Munawwarah • 11 Hijri",body:`
+<p>Sahih al-Bukhari ke mutabiq Nabi-e-Kareem ﷺ ne <b>63 saal</b> ki umr me parda farmaya aur wafat ka din <b>Monday</b> tha. Aap ﷺ Madinah Munawwarah me Umm-ul-Mu'mineen Sayyidah Aishah رضی اللہ عنہا ke hujra-e-mubarak me parda farma hue aur wahi aaram farma hain.</p>
+<p>Aap ﷺ ki seerat ka markazi sabaq Allah ki bandagi, tawheed, Sunnat, rehmat, adl, husn-e-akhlaq aur ummat ki khair-khwahi hai. Allah hame sachchi muhabbat-e-Rasool ﷺ aur Sunnat par amal naseeb farmaye. Aameen.</p>`,source:"Sahih al-Bukhari 3536, 1387; Ahl-e-Sunnat Seerah"}
 ];
 
 const FEATURED=["Durood-e-Ibraheem","Surah Al-Fatihah","Ayat-ul-Kursi","Surah Al-Kafirun","Surah Al-Ikhlas","Surah Al-Falaq","Surah An-Naas"];
@@ -1708,6 +1851,30 @@ $("#romanFontGrid").onclick=e=>{const b=e.target.closest("[data-roman-font]");if
 window.addEventListener("online",updateNetwork);window.addEventListener("offline",updateNetwork);
 window.addEventListener("beforeinstallprompt",e=>{e.preventDefault();deferredInstall=e;$("#installBtn").classList.add("show")});
 $("#installBtn").onclick=async()=>{if(!deferredInstall){toast("Install option browser support par depend karta hai");return}deferredInstall.prompt();await deferredInstall.userChoice;deferredInstall=null;$("#installBtn").classList.remove("show")};
+
+let seeratIndex=0;
+const seeratReader=$("#seeratReader"),seeratPage=$("#seeratPage"),seeratBook=$("#seeratBook");
+function renderSeerat(){
+ const s=SEERAT[seeratIndex];
+ $("#seeratTitle").textContent=s.title;$("#seeratSub").textContent=s.subtitle;
+ $("#seeratCount").textContent=(seeratIndex+1)+" / "+SEERAT.length;
+ $("#seeratProgress").style.width=(((seeratIndex+1)/SEERAT.length)*100).toFixed(1)+"%";
+ seeratPage.innerHTML=`<div class="pageInner"><div class="seeratChapter">MERE PYARE AAQA ﷺ • CHAPTER ${seeratIndex+1}</div><div class="seeratHeading">${s.title}</div><div class="seeratSub">${s.subtitle}</div><div class="seeratRule"></div><div class="seeratBody">${s.body}</div><div class="seeratSource"><b>Reference:</b> ${s.source}</div><div class="seeratNote">Jahan tareekhi riwayat me ikhtilaf hai, wahan app ne usay note kiya hai. Deeni masail ke liye mu'tabar Sunni scholar se rujoo karein.</div></div>`;
+ seeratPage.scrollTop=0;
+}
+function openSeerat(){seeratIndex=0;renderSeerat();seeratReader.classList.add("open");document.body.style.overflow="hidden";haptic(true)}
+function closeSeerat(){seeratReader.classList.remove("open");document.body.style.overflow="";haptic()}
+function seeratGo(dir){
+ const ni=seeratIndex+dir;if(ni<0||ni>=SEERAT.length){toast("Is side aur chapter nahi hai");return}
+ seeratPage.classList.add(dir>0?"turningNext":"turningPrev");pageSound();
+ setTimeout(()=>{seeratIndex=ni;renderSeerat();seeratPage.classList.remove("turningNext","turningPrev")},240);
+}
+$("#seeratOpen").onclick=openSeerat;
+$("#seeratOpen").onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();openSeerat()}};
+$("#seeratClose").onclick=closeSeerat;
+$("#seeratPrev").onclick=()=>seeratGo(-1);
+$("#seeratNext").onclick=()=>seeratGo(1);
+
 $("#closeReader").onclick=closeReader;$("#next").onclick=()=>go(1);$("#prev").onclick=()=>go(-1);
 $("#continueGo").onclick=e=>openReader(Number(e.currentTarget.dataset.i));
 $("#listenBtn").onclick=speakCurrent;
