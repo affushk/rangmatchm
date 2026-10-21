@@ -1,4 +1,4 @@
-const CACHE="noor-dua-v20";
+const CACHE="noor-dua-v21";
 const ASSETS=["./","./index.html","./app.webmanifest"];
 self.addEventListener("install",e=>{self.skipWaiting();e.waitUntil(caches.open(CACHE).then(c=>c.addAll(ASSETS)))});
 self.addEventListener("activate",e=>{e.waitUntil((async()=>{for(const k of await caches.keys())if(k!==CACHE)await caches.delete(k);await self.clients.claim()})())});
