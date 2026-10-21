@@ -481,7 +481,10 @@ function renderPage(){
  if(viewMode==="arabicroman")book.classList.add("mode-arabicroman");
  page.innerHTML=`<div class="pageHead"><div class="pageNo">NOOR DUA BOOK • ${current+1} / ${D.length}</div><div class="duaTitle">${d.title}</div><span class="when">${d.when}</span>${d.repeat?`<div><span class="repeatNote">↻ ${d.repeat}</span></div>`:""}</div>
  <div class="divider"></div><div class="arabic" style="font-size:calc(clamp(30px,5vw,46px)*${readerScale})">${d.arabic}</div>
- <div class="roman" style="font-size:${(17*readerScale).toFixed(1)}px">${d.roman}</div><div class="meaning" style="font-size:${(11*readerScale).toFixed(1)}px">${d.meaning}</div><div class="sourceBox">Source: ${d.source}</div>
+ <div class="roman" style="font-size:${(17*readerScale).toFixed(1)}px">${d.roman}</div>
+ ${d.kanzul?`<div class="kanzulWrap"><div class="kanzulLabel">✦ ترجمۂ کنزالایمان ✦</div><div class="kanzulUrdu" style="font-size:${(18*readerScale).toFixed(1)}px">${d.kanzul}</div><div class="quranBadge">Ala Hazrat Imam Ahmad Raza Khan رحمۃ اللہ علیہ</div></div>`:""}
+ ${d.meaning?`<div class="meaning" style="font-size:${(11*readerScale).toFixed(1)}px">${d.meaning}</div>`:""}
+ <div class="sourceBox">Source: ${d.source}</div>
  <div class="pageFoot"><span>Designed by Altaf Shaikh</span><span>✦ Noor Dua Book ✦</span></div>`;
  $("#viewBtn").textContent=viewMode==="full"?"Aa Full":viewMode==="arabicroman"?"Aa A+R":"Aa Arabic";
  $("#readerFav").textContent=(favs.has(current)?"♥":"♡")+" Favorite";$("#readerFav").classList.toggle("on",favs.has(current));
@@ -561,7 +564,12 @@ function speakCurrent(){
  speechSynthesis.speak(u);haptic(true);
 }
 async function shareCurrent(){
- const d=D[current],text=`${d.title}\n\n${d.arabic}\n\n${d.roman}\n\n${d.meaning}\nSource: ${d.source}\n\nNoor Dua Book — Designed by Altaf Shaikh`;
+ const d=D[current];
+ const parts=[d.title,"",d.arabic,"","Roman: "+d.roman];
+ if(d.kanzul)parts.push("","Tarjuma Kanz-ul-Iman:",d.kanzul);
+ if(d.meaning)parts.push("",d.meaning);
+ parts.push("","Source: "+d.source,"","Noor Dua Book — Designed by Altaf Shaikh");
+ const text=parts.join("\n");
  try{if(navigator.share)await navigator.share({title:d.title,text});else{await navigator.clipboard.writeText(text);toast("Dua copied")}}catch(e){}
 }
 cards.addEventListener("click",e=>{const f=e.target.closest("[data-fav]");if(f){e.stopPropagation();const i=+f.dataset.fav;favs.has(i)?favs.delete(i):favs.add(i);localStorage.setItem("duaFavs",JSON.stringify([...favs]));haptic();renderCards();return}
