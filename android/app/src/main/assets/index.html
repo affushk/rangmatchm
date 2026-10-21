@@ -1150,6 +1150,23 @@ body[data-app-theme="gpt"] .rBtn{background:#303030;color:#ececec;border-color:r
 @keyframes glowSweep{to{transform:scaleX(1)}}
 @keyframes nameGlow{from{filter:brightness(.96)}to{filter:brightness(1.18)}}
 
+
+/* ===== PREMIUM LISTEN VOICE ===== */
+.voiceGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:10px}
+.voiceCard{
+  min-height:72px;padding:10px 9px;border-radius:14px;border:1px solid var(--line);
+  background:var(--surface2);color:inherit;text-align:left;transition:.2s ease
+}
+.voiceCard b{display:block;font-size:9px;margin-bottom:5px}
+.voiceCard small{display:block;color:var(--muted);font-size:6.8px;line-height:1.35}
+.voiceCard.active{
+  border-color:color-mix(in srgb,var(--gold) 42%,transparent);
+  background:color-mix(in srgb,var(--gold) 9%,var(--surface2));
+  box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--gold) 8%,transparent),0 8px 22px rgba(0,0,0,.12)
+}
+body[data-app-theme="gpt"] .voiceCard.active{border-color:rgba(16,163,127,.44);background:#303b38;color:#eafff8}
+@media(max-width:390px){.voiceGrid{grid-template-columns:1fr}.voiceCard{min-height:58px}}
+
 </style>
 </head>
 <body class="noise">
@@ -1316,6 +1333,14 @@ body[data-app-theme="gpt"] .rBtn{background:#303030;color:#ececec;border-color:r
       <div class="settingsSectionTitle"><span>01</span><div><b>Experience</b><small>Reading aur touch controls</small></div></div>
       <div class="settingRow"><div><b>Touch sound + haptic</b><small>Buttons aur page turn par soft feedback</small></div><button class="switch" id="settingSound">ON</button></div>
       <div class="settingRow"><div><b>Reading mode</b><small>Full / Arabic+Roman / Arabic only</small></div><button class="switch" id="settingView">FULL</button></div>
+      <div class="settingRow settingStack">
+        <div><b>Listen Voice</b><small>Arabic sunne ke liye natural voice style choose kijiye</small></div>
+        <div class="voiceGrid" id="voiceGrid">
+          <button class="voiceCard" data-voice-mode="qari"><b>🎙 Qari</b><small>Deep • soft • recitation feel</small></button>
+          <button class="voiceCard" data-voice-mode="teacher"><b>◉ Clear Teacher</b><small>Clear pronunciation • balanced</small></button>
+          <button class="voiceCard" data-voice-mode="slow"><b>🐢 Slow Learn</b><small>Bachchon aur learning ke liye</small></button>
+        </div>
+      </div>
     </section>
 
     <section class="settingsSection" id="settingsAppearance">
@@ -1420,7 +1445,7 @@ const D=[
 ];
 
 const FEATURED=["Durood-e-Ibraheem","Surah Al-Fatihah","Ayat-ul-Kursi","Surah Al-Kafirun","Surah Al-Ikhlas","Surah Al-Falaq","Surah An-Naas"];
-let current=0,filtered=D.map((_,i)=>i),soundOn=localStorage.getItem("duaSound")!=="off",readerScale=Number(localStorage.getItem("duaFontScale")||1),viewMode=localStorage.getItem("duaViewMode")||"full",speaking=false,deferredInstall=null,appTheme=localStorage.getItem("duaAppTheme")||"gpt",pageFx=localStorage.getItem("duaPageFx")||"flip",arabicFont=localStorage.getItem("duaArabicFont")||"noto",romanFont=localStorage.getItem("duaRomanFont")||"alegreya";
+let current=0,filtered=D.map((_,i)=>i),soundOn=localStorage.getItem("duaSound")!=="off",readerScale=Number(localStorage.getItem("duaFontScale")||1),viewMode=localStorage.getItem("duaViewMode")||"full",speaking=false,deferredInstall=null,appTheme=localStorage.getItem("duaAppTheme")||"gpt",pageFx=localStorage.getItem("duaPageFx")||"flip",arabicFont=localStorage.getItem("duaArabicFont")||"noto",romanFont=localStorage.getItem("duaRomanFont")||"alegreya",voiceMode=localStorage.getItem("duaVoiceMode")||"qari";
 const opened=new Set(JSON.parse(localStorage.getItem("duaOpened")||"[]"));
 let recent=JSON.parse(localStorage.getItem("duaRecent")||"[]");
 const $=s=>document.querySelector(s), cards=$("#cards"), reader=$("#reader"), page=$("#page"), book=$("#book");
@@ -1551,7 +1576,8 @@ function applyAppTheme(theme,save=true){
 function applyPageFx(fx,save=true){
  const allowed=["flip","slide","fade","zoom"];pageFx=allowed.includes(fx)?fx:"flip";book.dataset.fx=pageFx;
  if(save)localStorage.setItem("duaPageFx",pageFx);
- document.querySelectorAll("[data-fx]").forEach(b=>b.classList.toggle("active",b.dataset.fx===pageFx));syncSettings();
+ document.querySelectorAll("[data-fx]").forEach(b=>b.classList.toggle("active",b.dataset.fx===pageFx));
+ document.querySelectorAll("[data-voice-mode]").forEach(b=>b.classList.toggle("active",b.dataset.voiceMode===voiceMode));syncSettings();
 }
 function setReaderScale(v,save=true){
  readerScale=Math.max(.75,Math.min(1.55,Number(v)||1));
@@ -1603,12 +1629,14 @@ function speakCurrent(){
  if(window.NoorNative && NoorNative.speak){
    if(speaking){try{NoorNative.stopSpeak()}catch(e){};nativeSpeechDone();return}
    speaking=true;$("#listenBtn").textContent="■ Stop";$("#listenBtn").classList.add("listenPulse");
-   try{NoorNative.speak(D[current].arabic)}catch(e){nativeSpeechDone()}
+   try{if(NoorNative.setVoiceMode)NoorNative.setVoiceMode(voiceMode);NoorNative.speak(D[current].arabic)}catch(e){nativeSpeechDone()}
    haptic(true);return;
  }
  if(!("speechSynthesis" in window)){toast("Is device/browser me Arabic voice available nahi hai");return}
  if(speaking){stopSpeech();return}
- stopSpeech();const u=new SpeechSynthesisUtterance(D[current].arabic);u.lang="ar-SA";u.rate=.82;u.pitch=1;
+ stopSpeech();const u=new SpeechSynthesisUtterance(D[current].arabic);u.lang="ar-SA";
+ const vp=voiceMode==="teacher"?{rate:.86,pitch:1}:voiceMode==="slow"?{rate:.68,pitch:.96}:{rate:.78,pitch:.92};
+ u.rate=vp.rate;u.pitch=vp.pitch;
  const voices=speechSynthesis.getVoices();const ar=voices.find(v=>/^ar(-|_)/i.test(v.lang));if(ar)u.voice=ar;
  u.onstart=()=>{speaking=true;$("#listenBtn").textContent="■ Stop";$("#listenBtn").classList.add("listenPulse")};
  u.onend=u.onerror=nativeSpeechDone;
@@ -1665,6 +1693,12 @@ $("#settingsNav").onclick=e=>{
 $("#settingsSheet").onclick=e=>{if(e.target===$("#settingsSheet"))closeSettings()};
 $("#settingSound").onclick=toggleSound;
 $("#settingView").onclick=()=>{$("#viewBtn").click();syncSettings()};
+$("#voiceGrid").onclick=e=>{
+ const b=e.target.closest("[data-voice-mode]");if(!b)return;
+ voiceMode=b.dataset.voiceMode;localStorage.setItem("duaVoiceMode",voiceMode);
+ if(window.NoorNative&&NoorNative.setVoiceMode){try{NoorNative.setVoiceMode(voiceMode)}catch(err){}}
+ syncSettings();toast((b.querySelector("b")?.textContent||"Voice")+" applied");haptic(true);
+};
 $("#themeGrid").onclick=e=>{const b=e.target.closest("[data-app-theme]");if(!b)return;applyAppTheme(b.dataset.appTheme);toast((b.querySelector("b")?.textContent||"")+" theme");haptic(true)};
 $("#fxGrid").onclick=e=>{const b=e.target.closest("[data-fx]");if(!b)return;applyPageFx(b.dataset.fx);toast((b.querySelector("b")?.textContent||"")+" effect");haptic()};
 $("#fontRange").oninput=e=>setReaderScale(Number(e.target.value)/100);
@@ -1705,6 +1739,7 @@ page.addEventListener("touchend",e=>{
 },{passive:true});
 applyAppTheme(appTheme,false);applyPageFx(pageFx,false);setReaderScale(readerScale,false);applyReaderFonts(false);
 updateContinue();renderCards();renderRecent();updateStats();pickNow();updateNetwork();syncSettings();
+if(window.NoorNative&&NoorNative.setVoiceMode){try{NoorNative.setVoiceMode(voiceMode)}catch(e){}}
 setTimeout(()=>$("#splash").classList.add("hide"),2800);
 window.addEventListener("resize",()=>{if(reader.classList.contains("open"))fitBookToContent()});
 if(window.visualViewport)visualViewport.addEventListener("resize",()=>{if(reader.classList.contains("open"))fitBookToContent()});
